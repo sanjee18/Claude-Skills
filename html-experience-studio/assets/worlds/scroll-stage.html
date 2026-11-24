@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="only dark">
+<meta name="theme-color" content="#0c0b0a">
+<title>Scroll-Bühne · Referenz-Welt</title>
+<meta name="description" content="Referenz-Welt: eine gepinnte Bühne, ein Film aus Licht, Hairline-Rahmen, Maskentypografie, 3D-Karussell, Glas-Formular. Alles eine Funktion von p.">
+<link rel="studio-fonts" href="Instrument Serif:400,400i;Geist Mono:400,500;Inter:400,500">
+<style>
+/* ---------- tokens: ein Schriftpaar + Mono, eine Akzentfarbe, warmes Schwarz statt #000 ---------- */
+:root{--bg:#0c0b0a;--bone:#ece7dd;--mute:#9a9487;--line:rgba(236,231,221,.26);--acc:#f0b23e;
+  --serif:'Instrument Serif',Georgia,serif;--mono:'Geist Mono',ui-monospace,monospace;--sans:'Inter',system-ui,sans-serif;
+  --x1:96px;--x2:1344px;--y1:96px;--y2:804px;--out:cubic-bezier(.16,1,.3,1)}
+:root[data-orient=portrait]{--x1:44px;--x2:676px;--y1:92px;--y2:1008px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--bone)}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.stage{position:fixed;inset:0;overflow:hidden;background:radial-gradient(60% 70% at 70% 40%,#2a1c0c,var(--bg))}
+canvas.film{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(12,11,10,.72) 0%,rgba(12,11,10,.25) 46%,rgba(12,11,10,0) 70%)}
+.artboard{position:absolute;left:50%;top:50%;width:var(--aw,1440px);height:var(--ah,900px);transform:translate(-50%,-50%) scale(var(--k,1));transform-origin:50% 50%}
+.artboard>*,.ring>*,.formw>*{position:absolute}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lab{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+
+/* ---------- Rahmen: Hairlines + 4-Punkt-Sterne, alles an denselben vier Linien ausgerichtet ---------- */
+.hl{background:var(--line);will-change:transform}
+.hl.v{top:0;bottom:0;width:1px;transform-origin:50% 0}
+.hl.h{left:0;right:0;height:1px;transform-origin:0 50%}
+#v1{left:var(--x1)}#v2{left:var(--x2)}#h1{top:var(--y1)}#h2{top:var(--y2)}
+.star{width:22px;height:22px;margin:-11px 0 0 -11px;color:var(--bone);animation:spin 18s linear infinite}
+.star svg{display:block;width:100%;height:100%;fill:currentColor}
+@keyframes spin{to{transform:rotate(360deg)}}
+#s1{left:var(--x1);top:var(--y1)}#s2{left:var(--x2);top:var(--y1)}#s3{left:var(--x1);top:var(--y2)}#s4{left:var(--x2);top:var(--y2)}
+
+/* ---------- Kopf, Rail, Marke ---------- */
+.mark{left:var(--x1);top:34px;display:flex;align-items:center;gap:14px}
+.mark svg{width:30px;height:30px;fill:none;stroke:var(--bone);stroke-width:1.6;overflow:visible}
+.hdr{right:calc(1440px - var(--x2));top:38px}
+:root[data-orient=portrait] .hdr{right:calc(720px - var(--x2))}
+.hdr a{display:inline-flex;gap:10px;color:var(--bone);padding:8px 0;border-bottom:1px solid transparent;transition:border-color .4s var(--out)}
+.hdr a:hover{border-color:var(--bone)}
+.rail{right:calc(1440px - var(--x2) - 40px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+:root[data-orient=portrait] .rail{display:none}
+.rail a{display:flex;flex-direction:row-reverse;align-items:center;gap:12px;color:var(--mute);transition:color .5s}
+.rail i{display:block;width:14px;height:1px;background:currentColor;transition:width .6s var(--out)}
+.rail em{font-style:normal;font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translateX(8px);transition:opacity .5s,transform .6s var(--out)}
+.rail a.on{color:var(--bone)}.rail a.on i{width:34px}.rail a.on em,.rail a:hover em{opacity:1;transform:none}
+.hint{left:50%;bottom:34px;transform:translateX(-50%);text-align:center}
+.hint i{display:block;width:1px;height:34px;margin:10px auto 0;background:linear-gradient(var(--bone),transparent);animation:drip 2.2s var(--out) infinite;transform-origin:50% 0}
+@keyframes drip{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- Typografie: Masken (.ln>i) und Buchstaben (.ch). Beat-Gruppen werden von JS in/aus bewegt ---------- */
+.g{visibility:hidden;will-change:transform,opacity,filter}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.02em}
+.ln{display:block;overflow:hidden;padding:.04em 0 .2em;margin:-.04em 0 -.2em}.ln>i{display:block;font-style:inherit;will-change:transform}
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding:.04em 0 .2em;margin:-.04em 0 -.2em;white-space:nowrap}
+.ch{display:inline-block;will-change:transform}
+.b0{left:var(--x1);top:352px;width:900px}
+.b0 h1{font-size:118px;line-height:.98}.b0 h1 em{font-style:italic;color:var(--acc)}.b0 h1 .l{display:block}
+.sub{margin-top:30px;width:560px;font-size:19px;line-height:1.5;color:#cfc9bc}
+.cta{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:34px;height:56px;padding:0 28px;border:1px solid var(--bone);border-radius:99px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;overflow:hidden;cursor:pointer;background:none;color:var(--bone)}
+.cta .fl{position:absolute;inset:-1px;display:flex;align-items:center;gap:12px;padding:0 28px;background:var(--bone);color:var(--bg);clip-path:inset(100% 0 0 0);transition:clip-path .55s var(--out)}
+.cta:hover .fl,.cta:focus-visible .fl{clip-path:inset(0)}
+.tag{right:calc(1440px - var(--x2));bottom:calc(900px - var(--y2) + 26px)}
+:root[data-orient=portrait] .tag{right:calc(720px - var(--x2))}
+
+.beat{font-size:132px;line-height:1}
+.b1{left:480px;top:250px;width:714px;text-align:right}
+.b1 .stand,.b2 .stand{margin-top:26px;font-size:19px;line-height:1.5;color:#cfc9bc;width:380px;display:inline-block;text-align:left}
+.hand{position:absolute;right:0;top:218px;width:300px;height:70px;fill:none;stroke:var(--acc);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.b2{left:var(--x1);top:260px;width:760px}
+
+/* Lineal: Skala als Instrument, die Kennzahl wandert an ihr entlang */
+.ruler{right:calc(1440px - var(--x2) + 340px);top:var(--y1);bottom:calc(900px - var(--y2));width:260px}
+.ruler svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ruler line{stroke:var(--bone);stroke-width:1}
+.big{position:absolute;right:56px;top:0;font:400 150px/1 var(--serif);letter-spacing:-.03em;color:var(--acc);white-space:nowrap}
+.big small{font-size:56px;margin-left:4px}
+.b3{left:var(--x1);top:300px;width:560px}
+.chip{display:inline-block;padding:9px 14px;border:1px solid var(--line);border-radius:99px;margin-bottom:26px}
+.b3 h2{font-size:78px;line-height:1.02}.b3 p{margin-top:26px;font-size:18px;line-height:1.55;color:#cfc9bc;width:420px}
+
+/* 3D-Karussell: Karten drehen um die Y-Achse, bleiben aber zur Linse gewandt; Tiefe = Unschärfe */
+.ring{left:0;top:0;width:100%;height:100%;perspective:1700px;pointer-events:none}
+.fq{left:50%;top:50%;width:440px;padding:34px 34px 30px;visibility:hidden;will-change:transform,filter}
+.fq .fr{position:absolute;inset:0;background:rgba(12,11,10,.66);border:1px solid var(--line);filter:url(#tear)}
+.fq>*:not(.fr){position:relative}
+.fq h3{margin-top:18px;font:400 36px/1.08 var(--serif);letter-spacing:-.01em}
+.fq p{margin-top:16px;font-size:15.5px;line-height:1.55;color:#cfc9bc}
+.fq .st{position:absolute;width:12px;height:12px;color:var(--acc)}.fq .st svg{width:100%;height:100%;fill:currentColor;display:block}
+.fq .a{left:-6px;top:-6px}.fq .b{right:-6px;bottom:-6px}
+
+/* Glas-Formular: schwebende Pillen im Raum, Tiefe per translateZ, Material per CSS-Variablen */
+.formw{left:0;top:0;width:100%;height:100%;perspective:1700px;pointer-events:none}.form{pointer-events:auto}
+.frame,.foot,.hand,.ruler,.hint,.tag{pointer-events:none}.mark,.hdr,.rail{z-index:20}
+.form{left:400px;top:230px;width:640px;height:360px;transform-style:preserve-3d;transition:transform .9s var(--out)}
+:root[data-orient=portrait] .form{left:40px;width:640px}
+.gl{position:absolute;display:flex;align-items:center;border-radius:99px;overflow:hidden;opacity:0;
+  --blur:9.5px;--fill:.1;--rim:.41;--sat:1.1;
+  background:linear-gradient(180deg,rgba(255,255,255,calc(var(--fill) + .06)),rgba(255,255,255,var(--fill)));
+  backdrop-filter:blur(var(--blur)) saturate(var(--sat));-webkit-backdrop-filter:blur(var(--blur)) saturate(var(--sat));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,calc(var(--rim) * .35)),inset 0 1px 0 rgba(255,255,255,var(--rim)),inset 0 -6px 12px rgba(0,0,0,.16),0 24px 48px rgba(0,0,0,.35)}
+.gl.box{border-radius:30px;align-items:flex-start}
+.gl::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.28),rgba(255,255,255,0) 38%);pointer-events:none;border-radius:inherit}
+.gl input,.gl textarea,.gl button{flex:1;height:100%;width:100%;padding:0 26px;background:none;border:0;color:var(--bone);font:400 16px/1.4 var(--sans);position:relative;z-index:1}
+.gl textarea{padding:22px 26px;resize:none;height:100%}
+.gl ::placeholder{color:rgba(236,231,221,.62)}
+.gl button{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.glints i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px rgba(255,214,150,.8);animation:tw var(--d,3s) ease-in-out infinite;animation-delay:var(--dl,0s);opacity:0}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+.foot{left:var(--x1);right:calc(1440px - var(--x2));bottom:calc(900px - var(--y2) + 8px);text-align:center;font:400 170px/.9 var(--serif);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(236,231,221,.55);white-space:nowrap;overflow:hidden}
+:root[data-orient=portrait] .foot{right:calc(720px - var(--x2));font-size:120px}
+.frame{left:340px;top:176px;width:760px;height:460px;fill:none;stroke:var(--line);stroke-dasharray:4 6}
+:root[data-orient=portrait] .frame{left:-40px}
+
+/* ---------- Hochformat: eigene Anordnung auf dem Hochformat-Artboard 720x1100 ---------- */
+:root[data-orient=portrait] .b0{top:520px;width:640px}:root[data-orient=portrait] .b0 h1{font-size:84px}
+:root[data-orient=portrait] .sub{width:520px;font-size:17px}
+:root[data-orient=portrait] .beat{font-size:92px}
+:root[data-orient=portrait] .b1{left:44px;top:260px;width:632px}:root[data-orient=portrait] .hand{top:200px}
+:root[data-orient=portrait] .b2{top:300px}
+:root[data-orient=portrait] .ruler{right:44px;width:140px;top:130px;bottom:140px}
+:root[data-orient=portrait] .big{font-size:96px;right:40px}
+:root[data-orient=portrait] .b3{top:420px;width:420px}:root[data-orient=portrait] .b3 h2{font-size:56px}:root[data-orient=portrait] .b3 p{width:340px;font-size:16px}
+:root[data-orient=portrait] .fq{width:420px}
+:root[data-orient=portrait] .form{top:340px}
+@media (prefers-reduced-motion:reduce){.star,.hint i,.glints i{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="tear" x="-6%" y="-10%" width="112%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".018 .026" numOctaves="3" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="12" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <symbol id="star" viewBox="0 0 24 24"><path d="M12 0C12.9 8 16 11.1 24 12 16 12.9 12.9 16 12 24 11.1 16 8 12.9 0 12 8 11.1 11.1 8 12 0Z"/></symbol>
+</defs></svg>
+
+<main class="stage" id="stage">
+  <canvas class="film" id="film" aria-hidden="true"></canvas>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="artboard" id="ab">
+    <i class="hl v" id="v1"></i><i class="hl v" id="v2"></i><i class="hl h" id="h1"></i><i class="hl h" id="h2"></i>
+    <i class="star" id="s1"><svg><use href="#star"/></svg></i><i class="star" id="s2"><svg><use href="#star"/></svg></i>
+    <i class="star" id="s3"><svg><use href="#star"/></svg></i><i class="star" id="s4"><svg><use href="#star"/></svg></i>
+
+    <a class="mark" href="#model" aria-label="Studio Beispiel"><svg viewBox="0 0 30 30" aria-hidden="true"><circle id="mk" cx="15" cy="15" r="12" pathLength="1"/><path id="mk2" d="M9 17 C12 11 18 11 21 17" pathLength="1"/></svg><span class="lab" style="color:var(--bone)">Studio Beispiel</span></a>
+    <nav class="hdr lab"><a href="#kontakt" data-at>Anfragen <span>→</span></a></nav>
+    <nav class="rail" aria-label="Kapitel">
+      <a href="#model" data-at><i></i><em>Das Modell</em></a><a href="#werk" data-at><i></i><em>Das Werk</em></a><a href="#konditionen" data-at><i></i><em>Die Konditionen</em></a>
+      <a href="#fragen" data-at><i></i><em>Fragen</em></a><a href="#kontakt" data-at><i></i><em>Kontakt</em></a>
+    </nav>
+
+    <!-- Beat 0: Titel (h1) -->
+    <section class="b0 g" id="b0">
+      <h1 class="serif"><span class="l" data-split="chars">Ein Ort für Dinge,</span><span class="l" data-split="chars"><em>die bleiben.</em></span></h1>
+      <p class="sub" data-split="lines">Jedes Element dieser Seite ist eine Funktion von einer einzigen Zahl: deiner Scroll-Position. Beispieltext, ersetzen.</p>
+      <a class="cta" href="#kontakt" data-at><span>Gespräch anfragen →</span><span class="fl" aria-hidden="true">Gespräch anfragen →</span></a>
+    </section>
+    <p class="tag lab" id="tag">Referenz-Welt · Beispieltexte</p>
+
+    <!-- Beat 1 + Handschrift -->
+    <section class="b1 g" id="b1">
+      <svg class="hand" id="hand" viewBox="0 0 300 70" aria-hidden="true"><path id="hp" d="M4 52 C30 8 54 6 64 30 C72 52 52 62 46 44 C40 24 86 16 118 34 C142 48 168 52 196 30 C212 18 232 20 238 34 C244 50 262 46 296 14" pathLength="1"/></svg>
+      <p class="beat serif" data-split="chars">Erst die Idee.</p>
+      <p class="stand" data-split="lines">Eine Zeile pro Beat, eine Geste pro Zeile. Der Rest ist Weißraum und Timing.</p>
+    </section>
+    <!-- Beat 2 -->
+    <section class="b2 g" id="b2">
+      <p class="beat serif" data-split="chars"><em>Dann das Werk.</em></p>
+      <p class="stand" data-split="lines">Die Kamera taucht in das Objekt, der Text geht in die Gegenrichtung wieder hinaus.</p>
+    </section>
+
+    <!-- Lineal + Kennzahl -->
+    <div class="ruler g" id="ruler" aria-hidden="true"><svg id="rsvg"></svg><div class="big" id="big"><span id="bign">0</span><small>%</small></div></div>
+    <section class="b3 g" id="b3">
+      <span class="chip lab">Konditionen</span>
+      <h2 class="serif" data-split="lines">Ein Preis, den man versteht.</h2>
+      <p data-split="lines">Die Kennzahl rechts läuft an einer Skala entlang. Wert nur mit Beleg, hier Platzhalter [TBD].</p>
+    </section>
+
+    <!-- 3D-Karussell -->
+    <div class="ring" id="ring" role="region" aria-label="Fragen und Antworten">
+      <article class="fq"><span class="fr"></span><span class="st a"><svg><use href="#star"/></svg></span><span class="st b"><svg><use href="#star"/></svg></span><span class="lab">01</span><h3>Was kostet die Zusammenarbeit?</h3><p>Beispieltext. Zwei Sätze, eine klare Zusage, keine Floskel.</p></article>
+      <article class="fq"><span class="fr"></span><span class="st a"><svg><use href="#star"/></svg></span><span class="st b"><svg><use href="#star"/></svg></span><span class="lab">02</span><h3>Wie lange dauert ein Projekt?</h3><p>Beispieltext. Antworten sind kurz, damit die Karte in einem Blick lesbar bleibt.</p></article>
+      <article class="fq"><span class="fr"></span><span class="st a"><svg><use href="#star"/></svg></span><span class="st b"><svg><use href="#star"/></svg></span><span class="lab">03</span><h3>Wer arbeitet daran?</h3><p>Beispieltext. Namen und Rollen nur, wenn sie belegt sind.</p></article>
+      <article class="fq"><span class="fr"></span><span class="st a"><svg><use href="#star"/></svg></span><span class="st b"><svg><use href="#star"/></svg></span><span class="lab">04</span><h3>Was passiert danach?</h3><p>Beispieltext. Die vorderste Karte ist scharf, die hinteren verlieren Schärfe und Deckkraft.</p></article>
+      <article class="fq"><span class="fr"></span><span class="st a"><svg><use href="#star"/></svg></span><span class="st b"><svg><use href="#star"/></svg></span><span class="lab">05</span><h3>Wie fangen wir an?</h3><p>Beispieltext. Das Formular im nächsten Kapitel ist die Antwort.</p></article>
+    </div>
+
+    <!-- Kontakt: Glas-Pillen -->
+    <svg class="frame g" id="frame" viewBox="0 0 760 460" aria-hidden="true"><rect x=".5" y=".5" width="759" height="459" pathLength="1"/></svg>
+    <div class="formw" id="formw">
+      <form class="form" id="form" autocomplete="off" onsubmit="return false" inert>
+        <div class="gl" style="left:0;top:0;width:300px;height:62px"><input type="text" placeholder="Dein Name" aria-label="Dein Name"></div>
+        <div class="gl" style="left:324px;top:0;width:300px;height:62px"><input type="email" placeholder="E-Mail" aria-label="E-Mail"></div>
+        <div class="gl box" style="left:0;top:84px;width:624px;height:176px"><textarea placeholder="Woran arbeitest du?" aria-label="Woran arbeitest du?"></textarea></div>
+        <div class="gl" style="left:0;top:284px;width:262px;height:56px"><button type="button">Anfrage senden</button></div>
+        <div class="glints" aria-hidden="true"><i style="left:18%;top:-14px;--d:2.1s"></i><i style="left:74%;top:6px;--d:3s;--dl:-.8s"></i><i style="left:96%;top:70px;--d:2.6s;--dl:-1.4s"></i><i style="left:4%;top:262px;--d:3.4s;--dl:-.4s"></i></div>
+      </form>
+    </div>
+    <div class="foot g" id="foot" aria-hidden="true">Beispiel</div>
+
+    <p class="hint lab" id="hint">Scrollen<i></i></p>
+  </div>
+
+  <!-- alle Texte linear, für Screenreader und Suchmaschinen -->
+  <div class="sr"><h2>Ein Ort für Dinge, die bleiben.</h2><p>Erst die Idee. Dann das Werk. Ein Preis, den man versteht.</p><h2>Fragen</h2><p>Was kostet die Zusammenarbeit? Wie lange dauert ein Projekt? Wer arbeitet daran? Was passiert danach? Wie fangen wir an?</p></div>
+</main>
+
+<script src="studio:scrollstage"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const SS = ScrollStage, E = SS.ease, R = SS.range, V = SS.vis, clamp = SS.clamp, mix = SS.mix;
+  const root = document.documentElement, portrait = () => root.dataset.orient === 'portrait';
+  const hash = new URLSearchParams(location.hash.slice(1)), query = new URLSearchParams(location.search);
+  const still = query.has('p') || hash.has('p');                    // fixed frame (tests, posters): no entrance delay
+
+  /* ----- Typografie vorbereiten: Buchstaben und Zeilen-Masken ----- */
+  const sp = (el, m) => SS.split(el, m);
+  const split = {};
+  split.b0h = $$('.b0 h1 .l').flatMap(l => sp(l, 'chars'));
+  const lines = (sel) => sp($(sel), 'lines');
+  const items = () => { split.b0s = lines('.b0 .sub'); split.b1c = sp($('.b1 .beat'), 'chars'); split.b1s = lines('.b1 .stand');
+    split.b2c = sp($('.b2 .beat'), 'chars'); split.b2s = lines('.b2 .stand'); split.b3h = lines('.b3 h2'); split.b3p = lines('.b3 p'); };
+  items(); addEventListener('resize', () => requestAnimationFrame(items));
+
+  /* ----- Hilfsfunktionen der Choreografie ----- */
+  const rv = (els, t, y = 108, spread = .65) => { const n = els.length || 1; els.forEach((el, i) => { const u = clamp(t * (1 + spread) - (i / n) * spread); el.style.transform = `translateY(${(1 - E.outExpo(u)) * y}%)`; }); };
+  // Austritt gerichtet: Gruppe driftet mit (dx,dy), schrumpft leicht, wird unscharf (Pear-Grammatik: -86px / -14px / blur 5 / scale .96)
+  const grp = (el, inT, outT, dx, dy, show = true) => {
+    const vis = show && inT > 0 && outT < 1;
+    el.style.visibility = vis ? 'visible' : 'hidden'; if (!vis) return;
+    el.style.opacity = 1 - E.inOutSine(outT); el.style.transform = `translate3d(${dx * outT}px,${dy * outT}px,0) scale(${1 - .04 * outT})`;
+    el.style.filter = outT > .01 ? `blur(${(5 * outT).toFixed(2)}px)` : 'none';
+  };
+  const kf = (p, frames) => { let i = 0; while (i < frames.length - 2 && p > frames[i + 1][0]) i++; const [a, ...va] = frames[i], [b, ...vb] = frames[i + 1], t = E.inOutSine(clamp((p - a) / (b - a))); return va.map((v, k) => mix(v, vb[k], t)); };
+
+  /* ----- Film: Fragment-Shader als Stellvertreter für ein vorgerendertes Video. p treibt Orb, Position, Eintauchen ----- */
+  const cv = $('#film'), gl = cv.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'high-performance' });
+  let U = null;
+  if (gl) {
+    const vs = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+    const fs = `precision highp float;uniform vec2 uR;uniform float uT,uRad,uDim;uniform vec2 uC;
+float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fb(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return s;}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-.5*uR)/uR.y; float asp=uR.x/uR.y; vec2 c=uC; c.x*=min(1.,asp/1.6); float R=uRad*clamp(asp*1.1,.6,1.);
+  vec2 w=vec2(fb(uv*1.5+vec2(uT*.02,0.)),fb(uv*1.5+vec2(3.1,uT*.017)));
+  float f=fb(uv*2.1+2.4*w); float vein=pow(1.-abs(2.*f-1.),3.);
+  vec3 col=vec3(.04,.034,.028)+vec3(.34,.21,.07)*vein*(.30+.5*(.5+.5*sin(uv.x*1.4+uT*.05)));
+  vec2 d=uv-c; float r=length(d)/R; float inside=1.-smoothstep(.985,1.,r);
+  vec3 nn=vec3(d/R,sqrt(max(0.,1.-r*r))); vec3 L=normalize(vec3(-.5,.6,.65)); float dif=max(0.,dot(nn,L));
+  float ridge=fb(nn.xy*3.2+w*.9+uT*.03);
+  vec3 gold=mix(vec3(.26,.13,.03),vec3(1.,.74,.3),dif*(.5+.95*ridge)); gold+=pow(max(0.,dot(reflect(-L,nn),vec3(0,0,1))),26.)*.55; gold*=uDim;
+  col=mix(col,gold,inside);
+  col+=vec3(1.,.6,.2)*exp(-max(r-1.,0.)*3.2)*.3*step(1.,r)*min(1.,1.6/max(R,.2))*uDim;
+  col*=1.-.6*dot(uv*vec2(.62,.9),uv*vec2(.62,.9)); col+=(h(gl_FragCoord.xy+fract(uT)*91.)-.5)*.04;
+  gl_FragColor=vec4(pow(max(col,0.),vec3(.96)),1.);
+}`;
+    const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(o)); return o; };
+    const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr); gl.useProgram(pr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const a = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
+    U = Object.fromEntries(['uR', 'uT', 'uRad', 'uDim', 'uC'].map(k => [k, gl.getUniformLocation(pr, k)]));
+  }
+  const sizeFilm = () => { const s = Math.min(devicePixelRatio || 1, 1.25) * .75, w = Math.round(innerWidth * s), h = Math.round(innerHeight * s); if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; if (gl) gl.viewport(0, 0, w, h); } };
+  addEventListener('resize', sizeFilm); sizeFilm();
+  const FILM = [[0, .32, .06, .20, 1], [.12, .32, .06, .20, 1], [.30, -.30, .02, .34, 1], [.38, 0, 0, 2.7, .42], [.46, 0, 0, 2.7, .42], [.57, .50, .05, .24, 1],
+    [.68, 0, .02, .58, .5], [.86, 0, .02, .58, .5], [.94, .30, .26, .18, 1], [1, .30, .26, .18, 1]];
+
+  /* ----- Lineal ----- */
+  const rs = $('#rsvg'), ticks = []; for (let i = 0; i < 33; i++) { const l = document.createElementNS('http://www.w3.org/2000/svg', 'line'); rs.append(l); ticks.push(l); }
+
+  /* ----- Karussell ----- */
+  const cards = $$('.fq');
+
+  /* ----- Intro läuft zeitgesteuert, danach übernimmt p ----- */
+  let t0 = null, intro = still ? 1 : 0;
+  const frame = (p, dt) => {
+    const now = performance.now() / 1000; if (t0 === null) t0 = now; if (!still) intro = clamp((now - t0 - .25) / 2.4);
+    const P = portrait();
+    // Film
+    if (gl) { const [cx, cy, rad, dim] = kf(p, FILM).slice(0); gl.uniform2f(U.uR, cv.width, cv.height); gl.uniform1f(U.uT, now); gl.uniform2f(U.uC, cx, cy); gl.uniform1f(U.uRad, rad); gl.uniform1f(U.uDim, dim); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+    $('#scrim').style.opacity = 1 - V(p, .64, .9, .05, .05) * .5;
+    // Rahmen: Linien zeichnen sich zeitgesteuert ein, gleiten am Ende nach außen
+    const dIn = E.outExpo(clamp(intro * 1.6)), out = R(.92, 1, p, 'inOutCubic');
+    $('#v1').style.transform = `translateX(${-out * 60}px) scaleY(${dIn})`; $('#v2').style.transform = `translateX(${out * 60}px) scaleY(${dIn})`;
+    $('#h1').style.transform = `translateY(${-out * 40}px) scaleX(${dIn})`; $('#h2').style.transform = `translateY(${out * 0}px) scaleX(${dIn})`;
+    $$('.star').forEach((s, i) => { s.style.opacity = E.outCubic(clamp(intro * 2 - .3 * i)); });
+    SS.draw($('#mk'), intro); SS.draw($('#mk2'), clamp(intro * 1.6 - .5));
+    $('#hint').style.opacity = clamp(intro * 2 - 1.2) * (1 - R(.01, .05, p));
+
+    // Beat 0
+    const o0 = R(.10, .16, p, 'inOutCubic'); grp($('#b0'), 1, o0, -86, -14, true);
+    rv(split.b0h, intro * 1.0 * 1, 112, .7); rv(split.b0s, clamp(intro * 1.4 - .4)); $('.b0 .cta').style.opacity = clamp(intro * 2 - 1.1);
+    $('#tag').style.opacity = clamp(intro * 2 - 1.2) * (1 - R(.9, .96, p));
+    // Beat 1 + Handschrift
+    const i1 = R(.17, .235, p), o1 = R(.27, .31, p, 'inOutCubic'); grp($('#b1'), i1, o1, 70, -26);
+    rv(split.b1c, i1, 112, .8); rv(split.b1s, clamp(i1 * 1.5 - .5)); SS.draw($('#hp'), R(.21, .29, p, 'inOutSine')); $('#hand').style.opacity = 1 - o1;
+    // Beat 2
+    const i2 = R(.325, .385, p), o2 = R(.405, .445, p, 'inOutCubic'); grp($('#b2'), i2, o2, -70, 24);
+    rv(split.b2c, i2, 112, .8); rv(split.b2s, clamp(i2 * 1.5 - .5));
+    // Lineal + Kennzahl (läuft an der Skala entlang, nahe Ticks wachsen)
+    const ri = R(.47, .52, p), ro = R(.62, .66, p, 'inOutCubic'), rm = R(.50, .62, p, 'inOutQuart');
+    grp($('#ruler'), ri, ro, 40, 0); grp($('#b3'), ri, ro, -60, 0);
+    const rh = $('#ruler').clientHeight || 700, yi = mix(40, rh - 150, rm);
+    ticks.forEach((l, i) => { const y = 14 + i * ((rh - 28) / 32), prox = Math.exp(-Math.pow((y - (yi + 75)) / 70, 2)), len = (i % 4 === 0 ? 22 : 11) + 56 * prox;
+      l.setAttribute('x1', 260); l.setAttribute('x2', 260 - len); l.setAttribute('y1', y); l.setAttribute('y2', y); l.style.opacity = (.32 + .68 * prox).toFixed(3); });
+    $('#big').style.transform = `translateY(${yi}px)`; $('#bign').textContent = Math.round(40 * E.outCubic(rm));
+    rv(split.b3h, ri, 112, .5); rv(split.b3p, clamp(ri * 1.4 - .3));
+    // Karussell: Winkel läuft über 4 Schritte à 72 Grad
+    const t = R(.68, .86, p, 'inOutSine'), ang = -t * 4 * 72, show = V(p, .655, .885, .035, .03), rad = P ? 250 : 360;
+    cards.forEach((c, i) => {
+      const a = i * 72 + ang, z = Math.cos(a * Math.PI / 180), depth = (z + 1) / 2, s = show * (.78 + .22 * depth);
+      c.style.visibility = show > .003 ? 'visible' : 'hidden';
+      c.style.transform = `translate(-50%,-50%) rotateY(${a}deg) translateZ(${rad}px) rotateY(${-a}deg) translateY(${(1 - show) * 40 + Math.sin(a * Math.PI / 180) * -10}px) scale(${s})`;
+      c.style.filter = `blur(${((1 - z) * 2.5 * (z < .99 ? 1 : 0)).toFixed(2)}px)`; c.style.opacity = (.3 + .7 * depth) * show; c.style.zIndex = Math.round(depth * 100);
+      c.style.pointerEvents = 'none';
+    });
+    // Kontakt: Pillen fahren aus der Tiefe ein, Rahmen zeichnet sich
+    const fi = R(.89, .965, p), fo = $('#form'); const tilt = fo.matches(':focus-within') ? [4, 8, 1.5] : [15, 31, 5.6];
+    fo.style.transform = `rotateX(${tilt[0] * (1 - E.outCubic(fi) * .0)}deg) rotateY(${tilt[1]}deg) rotateZ(${tilt[2]}deg) translateZ(${-180 * (1 - E.outExpo(fi))}px)`;
+    fo.inert = fi < .7;
+    $$('.gl', fo).forEach((g, i) => { const u = E.outExpo(clamp(fi * 1.5 - i * .14)); g.style.opacity = u; g.style.transform = `translate3d(${(1 - u) * (i % 2 ? 60 : -60)}px,${(1 - u) * 24}px,${-100 - i * 18}px) rotateZ(${[3, 2, -.5, 3.2][i]}deg)`; });
+    $$('.glints i', fo).forEach(g => { g.style.visibility = fi > .5 ? 'visible' : 'hidden'; });
+    $('#frame').style.visibility = fi > 0 ? 'visible' : 'hidden'; SS.draw($('#frame rect'), R(.9, .97, p, 'inOutSine'));
+    const ft = $('#foot'); ft.style.visibility = fi > 0 ? 'visible' : 'hidden'; ft.style.clipPath = `inset(${(1 - E.outExpo(R(.92, 1, p))) * 100}% 0 0 0)`;
+  };
+
+  SS.init({ runway: 9, tau: .14, artboard: [1440, 900], portrait: [720, 1100], chapters: [
+    { id: 'model', at: .015 }, { id: 'werk', at: .19 }, { id: 'konditionen', at: .48 }, { id: 'fragen', at: .70 }, { id: 'kontakt', at: .975 }], onFrame: frame });
+  if (hash.has('auto')) SS.auto(+(hash.get('sec') || 56), () => { t0 = null; });
+})();
+</script>
+</body>
+</html>

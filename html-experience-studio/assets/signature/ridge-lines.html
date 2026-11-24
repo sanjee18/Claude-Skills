@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ridge Lines · Signature</title>
+<style>html,body{margin:0;height:100%;background:#07080a;overflow:hidden}</style>
+</head><body>
+<!--
+  Ridge Lines — a mountain range drawn only by its cross-sections, flown
+  over slowly at dusk. Survey drawing meets night flight.
+
+  Forty slices of a ridged-noise terrain, each a hairline in true
+  perspective. Hidden lines are really hidden: every pixel walks the
+  slices front to back and stops at the first silhouette that covers it,
+  so near ridges occlude far ones like solid ground. Each slice keeps its
+  place in the world while it approaches (no sliding pattern), fades in
+  at the horizon and out at the bottom edge. Line width is constant in
+  screen pixels; peaks above a threshold take the accent colour, so the
+  highest ground reads like contour labels on a map.
+  Pointer: the camera banks and yaws toward it on the spring; hover lifts
+  the camera a little, opening the view of the range.
+  Hash: #line=c9c3b6&accent=f0b23e&slices=40
+-->
+<script src="studio:sigkit"></script>
+<script>
+Sig({
+  params: { line: '#c8c2b4', accent: '#f2b440', bg: '#07080a' },
+  budget: 1.6e6, rest: [0.5, 0.5],
+  frag: `
+const int N = 40;
+float terrain(vec2 w){
+  float h = 0., a = .55, f = .55;
+  for (int o = 0; o < 3; o++) {
+    float n = noise2(w * f + float(o) * 13.7);
+    h += a * (1. - abs(n * 2. - 1.));                           // ridged: sharp crests, soft valleys
+    f *= 2.1; a *= .45;
+  }
+  float valley = smoothstep(.0, 2.2, abs(w.x));                  // a valley to fly along
+  return pow(h, 2.2) * (.25 + .9 * valley);
+}
+void main(){
+  vec2 uv = gl_FragCoord.xy / uRes;
+  float asp = uRes.x / uRes.y;
+  float yaw = uPtrN.x * .18 * uHover, bank = -uPtrN.x * .035 * uHover;
+  float camH = 1.05 + .25 * uHover + uPtrN.y * .12 * uHover;
+  float horizon = .66;
+  float x = (uv.x - .5) * asp;
+  float y = uv.y + bank * x;                                     // banking tilts the horizon
+  float T = uTime * .55;
+  float ph = fract(T);
+  float k0 = floor(T);
+  float dz = .42, f = .95;
+  float px = 1. / uRes.y;
+  vec3 col = u_bg;
+  // sky: a faint dusk band above the horizon
+  col += u_accent * .025 * exp(-abs(y - horizon - .02) * 18.);
+  for (int i = 0; i < N; i++) {
+    float fi = float(i);
+    float z = (fi + 1. - ph) * dz;                               // this slice's distance
+    float wz = (k0 + fi) * dz;                                   // and its fixed place in the world
+    float wx = x * z / f + yaw * z * 2.;
+    float h = terrain(vec2(wx, wz) * .9);
+    float ly = horizon - (camH - h) * f / z;
+    float d = y - ly;
+    float fade = smoothstep(float(N), float(N) - 8., fi + 1. - ph) * smoothstep(0., 1.2, fi + 1. - ph);
+    float wpx = 1.15 * px * mix(1.4, .8, fi / float(N));
+    if (abs(d) < wpx * 2.5) {
+      float a = smoothstep(wpx * 1.5, 0., abs(d));
+      float peak = smoothstep(.62, .9, h);
+      vec3 lc = mix(u_line, u_accent, peak) * mix(.95, .25, fi / float(N));
+      col = mix(col, lc, a * fade);
+      if (a > .6) break;
+    }
+    if (d < -wpx) break;                                         // under this ridge's silhouette: solid ground
+  }
+  vec2 v = uv - .5;
+  col *= 1. - .45 * dot(v, v);
+  gl_FragColor = vec4(dither(toSrgb(col)), 1.);
+}`
+});
+</script>
+</body></html>

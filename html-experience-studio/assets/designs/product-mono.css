@@ -1,0 +1,21 @@
+/* design: product-mono · warm grey canvas, black & white UI, Geist, hard 1px edges, no effects */
+[data-design=product-mono]{--r:12px;--glass:#fff}
+[data-design=product-mono] body::before{background:radial-gradient(60% 50% at 50% 40%,rgba(255,255,255,.55),transparent 70%)}
+[data-design=product-mono] body::after{display:none}
+[data-design=product-mono] .t{font-weight:600;letter-spacing:-.045em;line-height:1}
+[data-design=product-mono] .acc{color:var(--text);box-shadow:inset 0 -.12em 0 var(--accent2)}
+[data-design=product-mono] .kicker{font:500 12px/1 var(--font-m);letter-spacing:0;text-transform:none;color:var(--muted)}
+[data-design=product-mono] .kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent2);opacity:1}
+[data-design=product-mono] .card,[data-design=product-mono] .bento .tile,[data-design=product-mono] .st-panel,[data-design=product-mono] .card-flat{background:#fff!important;border:1px solid rgba(17,17,17,.12)!important;border-radius:12px!important;box-shadow:0 1px 2px rgba(17,17,17,.05)!important}
+[data-design=product-mono] .card::before,[data-design=product-mono] .tile::before{display:none}
+[data-design=product-mono] .btn{background:#111;color:#fff;border-radius:10px;height:44px;box-shadow:none}
+[data-design=product-mono] .btn:hover{box-shadow:none;background:#000}
+[data-design=product-mono] .btn.ghost{background:#fff;color:#111;border:1px solid rgba(17,17,17,.14)}
+[data-design=product-mono] .tag,[data-design=product-mono] .tl-item .when,[data-design=product-mono] .st-no{font-family:var(--font-m);letter-spacing:0;text-transform:none;color:var(--muted)}
+[data-design=product-mono] .stat{border-top:0;background:#fff;border:1px solid rgba(17,17,17,.12);border-radius:12px;padding:20px}
+[data-design=product-mono] .num .pre,[data-design=product-mono] .num .suf,[data-design=product-mono] .vis-ring i{color:var(--muted)}
+[data-design=product-mono] .vis-ring .arc{stroke:#111}
+[data-design=product-mono] .bul li::before{background:#111;width:6px;height:6px;border-radius:2px;top:.62em}
+[data-design=product-mono] .node{background:#fff;border-color:rgba(17,17,17,.14);border-radius:10px}
+[data-design=product-mono] .node .nd{box-shadow:none;border-radius:3px;background:#111}
+[data-design=product-mono] .rail button.on{background:#111}

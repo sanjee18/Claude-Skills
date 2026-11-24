@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terra Dusk · Signature</title>
+<style>html,body{margin:0;height:100%;background:#02040a;overflow:hidden}img.tex{display:none}</style>
+</head><body>
+<!--
+  Terra Dusk — the Earth as it looks from orbit: real satellite imagery wrapped on a sphere, lit by a low sun.
+  1:1 port of the Originkit "Terra Dusk" component (same shader, same constants, same defaults) onto sigkit.
+
+  Imagery (NASA, public domain; three-globe example assets, embedded by the bundler as data URIs, so it runs offline):
+    tex/earth-day.jpg    Blue Marble, day colour (2048×1024)
+    tex/earth-night.jpg  Black Marble, city lights (4096×2048: lights are points, halving smears towns into blobs)
+    tex/earth-aux.png    r = ocean mask (glint) · g = elevation (relief) · b = cloud cover   (2048×1024)
+
+  Layers      day albedo · relief from real elevation · glint on open water only · clouds drifting against the ground
+              with their own shadows · moonlit night side · city lights read from the night map (sodium orange,
+              dense cores whiten, dimmed by cloud and at the limb) · atmosphere + orange terminator band + halo
+  Output      linear light → ACES filmic → sRGB, dithered
+  Interaction (springs k 60, c 11, ζ≈0.7)
+    drag   spins 1:1 under the finger, coasts, then eases back into its own turn; tilt returns to level
+    hover  the globe turns to face the pointer (camera orbit: surface, sun and stars turn together), lifts slightly
+    sun    on the cursor (default): sweep it and the cities come on behind the terminator; #cursor=0 = fixed sun
+  Hash   #atmo=4f9bff  #clouds=5  #lights=5  #stars=5  #speed=9.4  #hover=6.8  #sunangle=181  #daylight=87  #cursor=1  #size=0.325  #t=10
+  Needs  the bundler (studio:sigkit + <img> → data URI). Opened straight from disk the browser blocks the textures.
+  Recolour / own content: not possible by design (it is the real Earth).
+-->
+<img class="tex" id="tDay" src="tex/earth-day.jpg" alt="">
+<img class="tex" id="tNight" src="tex/earth-night.jpg" alt="">
+<img class="tex" id="tAux" src="tex/earth-aux.png" alt="">
+<script src="studio:sigkit"></script>
+<script>
+const TAU = Math.PI * 2, clamp = (v, a, b) => v < a ? a : v > b ? b : v;
+const AXIAL_TILT = 23.44 * Math.PI / 180; // the Earth's own
+const PERIOD_S = 60;        // seconds per turn at Speed 5
+const CLOUD_DRIFT = 0.012;  // clouds' slide against the ground, rad/s at Speed 5
+const CURSOR_SUN_Z = 0.55;  // with the sun on the cursor, how far in front of the globe it sits
+const MAX_PITCH = 1.1;      // rad; past this the poles take over the view
+const HOVER_TURN = 0.2;     // rad the globe turns at Hover 5, pointer at the frame's edge (≈11°)
+const HOVER_SOFT = 1.4;     // tanh knee: the turn eases off toward the edges instead of stopping dead
+const HOVER_LIFT = 0.025;   // the globe grows by this share while the pointer is on it
+const HOVER_K = 60, HOVER_C = 11; // spring: ζ ≈ 0.7, one small overshoot then still
+const STAR_PARALLAX = 0.35; // star drift, in radii per radian of turn
+// 3×3, row-major flat
+const rx = a => [1, 0, 0, 0, Math.cos(a), -Math.sin(a), 0, Math.sin(a), Math.cos(a)];
+const ry = a => [Math.cos(a), 0, Math.sin(a), 0, 1, 0, -Math.sin(a), 0, Math.cos(a)];
+const rz = a => [Math.cos(a), -Math.sin(a), 0, Math.sin(a), Math.cos(a), 0, 0, 0, 1];
+const mul = (a, b) => { const o = []; for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) o[r * 3 + c] = a[r * 3] * b[c] + a[r * 3 + 1] * b[3 + c] + a[r * 3 + 2] * b[6 + c]; return o; };
+const tr = m => [m[0], m[3], m[6], m[1], m[4], m[7], m[2], m[5], m[8]];
+const app = (m, v) => [0, 1, 2].map(r => m[r * 3] * v[0] + m[r * 3 + 1] * v[1] + m[r * 3 + 2] * v[2]);
+const soft = v => Math.tanh(HOVER_SOFT * clamp(v, -1.5, 1.5)) / Math.tanh(HOVER_SOFT);
+
+let st = null, base = null, L = null;
+const hov = { x: 0, vx: 0, y: 0, vy: 0, lift: 0, vl: 0 };
+const radius = (W, H, p) => Math.min(W, H) * p.size;
+
+st = Sig({
+  drag: true, spinReturn: 1.6, budget: 2.6e6, t0: 8, fallback: '#02040a',
+  params: { atmo: '#4f9bff', clouds: 5, lights: 5, stars: 5, size: 0.325, hover: 6.8, speed: 9.4, sunangle: 181, daylight: 87, cursor: 1 },
+  textures: {
+    uDay:   { el: document.getElementById('tDay') },
+    uNight: { el: document.getElementById('tNight') },
+    uAux:   { el: document.getElementById('tAux') }
+  },
+  dragUnit: () => st ? radius(st.W, st.H, st.params) : 300,           // a drag of one radius turns the globe one radian
+  dragArea: (x, y, W, H) => st && Math.hypot(x - W / 2, y - H / 2) <= radius(W, H, st.params) * 1.15,
+  onFrame(s, set, dt) {
+    const p = s.params, red = s.reduce();
+    const spd = Math.max(0, p.speed) / 5, omega = red ? 0 : TAU * spd / PERIOD_S;
+    if (base === null) base = s.time * omega;
+    if (!s.dragging && !red) base += omega * dt;
+    s.spin.y = clamp(s.spin.y, -MAX_PITCH, MAX_PITCH);
+    const yaw = base + s.spin.x, pitch = s.spin.y;
+
+    const R = radius(s.W, s.H, p), cx = s.W / 2, cy = s.H / 2;
+    const useSp = s.auto && !s.over, over = s.over || s.auto;
+    const px = useSp ? s.sp.x : s.px, py = useSp ? s.sp.y : s.py;
+
+    // hover: the globe turns to face the pointer, on a spring. While the globe is in the hand the targets hold
+    // where they are, so grabbing it never jerks the view; letting go eases it home.
+    const hk = red ? 0 : Math.max(0, p.hover) / 5;
+    let gx = 0, gy = 0, gl2 = 0;
+    if (s.dragging) { gx = hov.x; gy = hov.y; gl2 = 1; }
+    else if (over && hk > 0) {
+      gx = soft((px - cx) / Math.max(1, cx)) * HOVER_TURN * hk;
+      gy = -soft((py - cy) / Math.max(1, cy)) * HOVER_TURN * hk;
+      gl2 = Math.hypot(px - cx, py - cy) < R * 1.1 ? 1 : 0;
+    }
+    const steps = Math.ceil(dt * 120);
+    for (let i = 0; i < steps; i++) {
+      const h = dt / steps;
+      hov.vx += (HOVER_K * (gx - hov.x) - HOVER_C * hov.vx) * h; hov.x += hov.vx * h;
+      hov.vy += (HOVER_K * (gy - hov.y) - HOVER_C * hov.vy) * h; hov.y += hov.vy * h;
+      hov.vl += (HOVER_K * (gl2 - hov.lift) - HOVER_C * hov.vl) * h; hov.lift += hov.vl * h;
+    }
+    const view = mul(ry(hov.x), rx(-hov.y));                       // view-from-world
+    const g = mul(mul(mul(ry(-yaw), rx(-pitch)), rz(-AXIAL_TILT)), tr(view));
+    set('uRot', tr(g));                                            // column-major for GLSL
+    const Rd = R * (1 + HOVER_LIFT * hov.lift * Math.min(1, hk));
+
+    // sun: Sun Angle round the disc, Daylight toward the viewer (lit share of the visible face = (1+sin elev)/2) — or on the cursor
+    const ang = p.sunangle * Math.PI / 180, tz0 = clamp(p.daylight / 50 - 1, -0.98, 1), flat = Math.sqrt(1 - tz0 * tz0);
+    let t = [Math.cos(ang) * flat, Math.sin(ang) * flat, tz0];
+    if (p.cursor >= 0.5 && over) {
+      // placed in view space at the cursor, then taken back into the world the orbit turns
+      t = app(rx(hov.y), app(ry(-hov.x), [clamp((px - cx) / R, -2.5, 2.5), clamp(-(py - cy) / R, -2.5, 2.5), CURSOR_SUN_Z]));
+    }
+    const tl = Math.hypot(...t); t = t.map(v => v / tl);
+    if (!L) L = t; else { const k = 1 - Math.exp(-dt / 0.35); L = L.map((v, i) => v + (t[i] - v) * k); }
+    const ll = Math.hypot(...L) || 1;
+    set('uLight', app(view, L.map(v => v / ll)));
+    set('uRadius', Rd * s.dpr);
+    set('uCloudRot', s.time * spd * CLOUD_DRIFT * (red ? 0 : 1));
+    set('uStarShift', [hov.x * R * s.dpr * STAR_PARALLAX, hov.y * R * s.dpr * STAR_PARALLAX]);
+  },
+  frag: `
+uniform mat3 uRot; uniform vec3 uLight; uniform float uRadius; uniform float uCloudRot; uniform vec2 uStarShift;
+uniform sampler2D uDay; uniform sampler2D uNight; uniform sampler2D uAux;   // aux: r water, g elevation, b cloud
+uniform float uDay_have; uniform float uNight_have; uniform float uAux_have;
+const float GLOW = 0.07;          // halo outside the limb, in radii
+const float BUMP = 2.2;           // relief strength
+const float SHADOW_REACH = 0.012; // how far toward the sun a cloud's shadow falls
+const float EXPOSURE = 1.7;
+const vec3 MOON = vec3(0.008, 0.012, 0.024);  // moonlight on the night side, linear
+const vec3 BG = vec3(0.0078, 0.0157, 0.0392); // #02040A, the page behind the globe
+const float STAR_CELL = 7.0;      // CSS px per star cell
+const float STAR_SHARE = 0.16;    // share of cells holding a star at full Stars
+
+// Equirectangular lookup without the date-line seam (Tarini 2012): of two parameterisations whose wraps sit half a
+// turn apart, use whichever is continuous across this pixel quad, so the mip level never jumps.
+vec2 equi(vec3 q, float shift) {
+  float u1 = fract(atan(q.x, q.z) / TAU + 0.5 + shift);
+  float u2 = fract(u1 + 0.5) - 0.5;
+#ifdef GL_OES_standard_derivatives
+  float u = fwidth(u1) < fwidth(u2) - 0.001 ? u1 : u2;
+#else
+  float u = u1;
+#endif
+  return vec2(u, acos(clamp(q.y, -1.0, 1.0)) / PI);
+}
+
+void main() {
+  vec2 frag = gl_FragCoord.xy;
+  vec2 p = (frag - 0.5 * uRes) / uRadius;
+  float r = length(p);
+  vec2 s = r > 0.999 ? p / r * 0.999 : p;
+  vec3 n = vec3(s, sqrt(max(0.0, 1.0 - dot(s, s))));   // view space
+  vec3 q = uRot * n;                                     // globe space
+  vec3 L = uRot * uLight;
+  vec3 H = uRot * normalize(uLight + vec3(0.0, 0.0, 1.0));
+  float cl = max(length(q.xz), 1e-4);
+  vec3 east = vec3(q.z, 0.0, -q.x) / cl;
+  vec3 north = cross(q, east);
+  float uClouds = max(u_clouds, 0.0) / 5.0, uLights = max(u_lights, 0.0) / 5.0, uStars = clamp(u_stars / 10.0, 0.0, 1.0);
+  vec4 hv = vec4(uDay_have, uNight_have, uAux_have, uAux_have);
+
+  // Every lookup happens up here, in uniform control flow, so the implicit derivatives that pick mip levels are well defined.
+  vec2 uv = equi(q, 0.0);
+  vec2 uvc = equi(q, -uCloudRot / TAU);
+  vec3 day = texture2D(uDay, uv).rgb;
+  vec3 night = texture2D(uNight, uv).rgb;
+  float nightGlow = texture2D(uNight, uv, 3.0).r;   // a few mips down: the same lights, blurred
+  vec4 aux = texture2D(uAux, uv);
+  float hE = texture2D(uAux, uv + vec2(1.5 / 2048.0, 0.0)).g;
+  float hN = texture2D(uAux, uv - vec2(0.0, 1.5 / 1024.0)).g;
+  vec2 toSun = vec2(dot(L, east) / (TAU * cl), -dot(L, north) / PI) * SHADOW_REACH;
+  float cloud = texture2D(uAux, uvc).b;
+  float shadow = texture2D(uAux, uvc + toSun).b;
+
+  float water = aux.r * hv.z;
+  float dry = 1.0 - water;
+  vec3 nb = normalize(q - BUMP * hv.z * dry * ((hE - aux.g) * east + (hN - aux.g) * north));
+  float ndlS = dot(q, L);            // smooth sphere: the terminator
+  float ndl = dot(nb, L);            // with relief: the land's own slopes
+  float mu = n.z;
+  vec3 sun = mix(vec3(1.0, 0.45, 0.22), vec3(1.0), smoothstep(0.0, 0.3, ndlS));   // the sun reddens as it grazes the terminator
+
+  vec3 alb = mix(vec3(0.010, 0.016, 0.030), pow(day, vec3(2.2)), hv.x);
+  float diff = max(ndl, 0.0) * smoothstep(-0.08, 0.12, ndlS);
+  vec3 col = alb * sun * diff;
+
+  // glint on open water: a tight core and a broad sheen
+  float nh = max(dot(q, H), 0.0);
+  col += sun * water * (pow(nh, 240.0) * 0.22 + pow(nh, 24.0) * 0.025) * smoothstep(0.0, 0.25, ndlS);
+
+  float cov = clamp(cloud * uClouds, 0.0, 1.0) * hv.w;
+  float shade = clamp(shadow * uClouds, 0.0, 1.0) * hv.w;
+  col *= 1.0 - 0.55 * shade;
+
+  float dark = 1.0 - smoothstep(-0.16, 0.06, ndlS);
+  // moonlight: the night side is never quite black from orbit
+  col += alb * MOON * dark;
+
+  // city lights: the night map's cities are its only warm pixels, so red alone picks them out. Read as brightness,
+  // not cut at a threshold: suburbs fade into the dark, sparse towns burn sodium orange, dense cores whiten. A blurred
+  // copy adds the haze city light makes in the air; a long path through the atmosphere near the limb dims the lot.
+  float li = clamp((night.r - 0.035) / 0.40, 0.0, 1.0);
+  float lg = clamp((nightGlow - 0.035) / 0.40, 0.0, 1.0);
+  vec3 lamp = mix(vec3(1.0, 0.46, 0.13), vec3(1.0, 0.84, 0.62), smoothstep(0.35, 0.9, li));
+  vec3 city = lamp * li * li * 2.4 + vec3(1.0, 0.42, 0.12) * lg * 0.45;
+  col += city * uLights * dark * (1.0 - 0.85 * cov) * (0.35 + 0.65 * mu) * hv.y;
+
+  float cdiff = smoothstep(-0.12, 0.25, ndlS) * (0.2 + 0.8 * max(ndlS, 0.0));
+  col = mix(col, vec3(0.92, 0.94, 0.97) * (sun * cdiff + MOON * dark), cov);
+
+  // atmosphere: haze thickens toward the limb, a bright limb line on the lit side, an orange band where terminator meets edge
+  float lit = smoothstep(-0.35, 0.5, ndlS);
+  float rim = 1.0 - mu;
+  col = mix(col, u_atmo * 0.35 * lit, pow(rim, 3.0) * 0.55);
+  col += u_atmo * (pow(rim, 1.6) * 0.05 + pow(rim, 6.0) * 0.8) * lit;
+  col += vec3(1.0, 0.38, 0.12) * pow(rim, 3.0) * exp(-ndlS * ndlS / 0.012) * 0.22;
+
+  float ia = clamp((1.0 - r) * uRadius + 0.5, 0.0, 1.0);
+  float t = max(r - 1.0, 0.0) / GLOW;
+  float halo = exp(-t * 3.5) * (1.0 - smoothstep(0.0, 1.0, t));
+  float hl = smoothstep(-0.5, 0.7, dot(vec3(p / max(r, 1e-4), 0.0), uLight));
+  vec3 lin = col * ia + u_atmo * halo * hl * 0.9 * (1.0 - ia);
+
+  vec3 rgb = toSrgb(aces(lin * EXPOSURE));   // ACES filmic roll-off, then display gamma
+
+  if (uStars > 0.0) {
+    vec2 sp = (frag + uStarShift) / (STAR_CELL * uDpr);
+    vec2 id = floor(sp);
+    float h0 = hash12(id);
+    if (h0 < uStars * STAR_SHARE) {
+      vec2 pos = hash22(id + 17.3) * 0.7 + 0.15;
+      float d = length(fract(sp) - pos) * STAR_CELL;
+      float mag = pow(hash12(id + 7.1), 5.0);
+      float tw = 0.7 + 0.3 * sin(uTime * (0.6 + 2.0 * hash12(id + 3.3)) + h0 * 80.0);
+      float star = exp(-d * d / (0.25 + 0.6 * mag)) * (0.15 + 0.85 * mag) * tw;
+      rgb += vec3(star) * (1.0 - ia) * (1.0 - clamp(halo * 1.5, 0.0, 1.0));
+    }
+  }
+  // the original is premultiplied over the page colour: glow and stars add over the background
+  float a = max(ia, max(rgb.r, max(rgb.g, rgb.b)));
+  gl_FragColor = vec4(dither(rgb + BG * (1.0 - a)), 1.0);
+}`
+});
+</script>
+</body></html>

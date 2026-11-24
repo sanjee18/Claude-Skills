@@ -1,0 +1,2460 @@
+{
+ "version": 2,
+ "moods": [
+  "ruhig",
+  "premium",
+  "technisch",
+  "futuristisch",
+  "verspielt",
+  "energetisch",
+  "seriös",
+  "editorial",
+  "natürlich",
+  "retro",
+  "dramatisch",
+  "minimal",
+  "warm"
+ ],
+ "kinds": {
+  "bg": {
+   "label": "Hintergründe",
+   "field": "bg.id"
+  },
+  "tx": {
+   "label": "Text-Animationen",
+   "field": "page.enter"
+  },
+  "tr": {
+   "label": "Übergänge",
+   "field": "nav.transition / page.transition"
+  },
+  "fx": {
+   "label": "Interaktion & Finish",
+   "field": "theme.fx[]"
+  },
+  "page": {
+   "label": "Layouts & Seitentypen",
+   "field": "page.type"
+  },
+  "cam": {
+   "label": "Kamera & Film",
+   "field": "page.type"
+  },
+  "visual": {
+   "label": "Visuals (in split)",
+   "field": "page.visual.type"
+  },
+  "look": {
+   "label": "Look-Kombinationen",
+   "field": "theme + nav + bg + enter"
+  },
+  "world": {
+   "label": "Referenz-Welten",
+   "field": "Moodboard · references/worlds.md (kein Seitentyp)"
+  }
+ },
+ "items": [
+  {
+   "id": "network",
+   "kind": "bg",
+   "name": "Datennetz",
+   "desc": "Driftende Knoten, Lichtpakete laufen entlang der Verbindungen.",
+   "use": "Plattform, Daten, Vernetzung, KI",
+   "moods": [
+    "technisch",
+    "futuristisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "stars",
+   "kind": "bg",
+   "name": "Sternenflug",
+   "desc": "Sterne fliegen auf dich zu; beim Übergang warp gibt es Hyperspace.",
+   "use": "Vision, Launch, Zukunftsbild",
+   "moods": [
+    "futuristisch",
+    "dramatisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "aurora",
+   "kind": "bg",
+   "name": "Aurora",
+   "desc": "Weiche Farbfelder treiben langsam (nur CSS).",
+   "use": "Ruhige Premium-Seiten, Health, Consumer",
+   "moods": [
+    "ruhig",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "grid",
+   "kind": "bg",
+   "name": "Gitterboden",
+   "desc": "Perspektivisches Gitter läuft in die Tiefe (Retro-Tech).",
+   "use": "Engineering, Cyber, Gaming",
+   "moods": [
+    "retro",
+    "technisch",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "flow-field",
+   "kind": "bg",
+   "name": "Strömungsfeld",
+   "desc": "Hunderte Partikel folgen einem unsichtbaren Strömungsfeld und hinterlassen Spuren.",
+   "use": "Transformation, Energie, Bewegung, Kunst",
+   "moods": [
+    "natürlich",
+    "premium",
+    "dramatisch"
+   ],
+   "cost": 3
+  },
+  {
+   "id": "dot-wave",
+   "kind": "bg",
+   "name": "Punktwelle",
+   "desc": "Punktraster, durch das eine Welle läuft; der Cursor erzeugt Ringe.",
+   "use": "Daten, Sound, Fintech, interaktive Pitches",
+   "moods": [
+    "technisch",
+    "verspielt",
+    "minimal"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "wave-lines",
+   "kind": "bg",
+   "name": "Seidenwellen",
+   "desc": "Gestapelte, fließende Sinuslinien wie Seide oder Schall.",
+   "use": "Audio, Health, Finance-Premium, Energie",
+   "moods": [
+    "ruhig",
+    "premium",
+    "natürlich"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "bokeh",
+   "kind": "bg",
+   "name": "Bokeh",
+   "desc": "Unscharfe Lichtkreise steigen langsam auf.",
+   "use": "Event, Lifestyle, Hospitality, Feierliches",
+   "moods": [
+    "warm",
+    "premium",
+    "ruhig"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "topo",
+   "kind": "bg",
+   "name": "Höhenlinien",
+   "desc": "Topografische Konturlinien atmen langsam.",
+   "use": "Nachhaltigkeit, Geo, Strategie, Outdoor",
+   "moods": [
+    "natürlich",
+    "editorial",
+    "ruhig"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "code-rain",
+   "kind": "bg",
+   "name": "Code-Regen",
+   "desc": "Gedämpfte Zeichenspalten fallen herab.",
+   "use": "Security, Software, KI (sparsam)",
+   "moods": [
+    "technisch",
+    "retro",
+    "dramatisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "constellation",
+   "kind": "bg",
+   "name": "Sternbild",
+   "desc": "Ruhige Sterne; nahe dem Cursor verbinden sie sich zu Linien.",
+   "use": "Netzwerke, Community, Ökosystem",
+   "moods": [
+    "ruhig",
+    "futuristisch",
+    "verspielt"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "blobs",
+   "kind": "bg",
+   "name": "Flüssige Blobs",
+   "desc": "Weiche Farbblobs morphen wie eine Lavalampe (CSS).",
+   "use": "Startup, Consumer, Kreativ, Marketing",
+   "moods": [
+    "verspielt",
+    "warm",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "beams",
+   "kind": "bg",
+   "name": "Lichtkegel",
+   "desc": "Lichtstrahlen schwenken von oben wie auf einer Bühne.",
+   "use": "Keynote, Award, Produkt-Enthüllung",
+   "moods": [
+    "dramatisch",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "orbits",
+   "kind": "bg",
+   "name": "Umlaufbahnen",
+   "desc": "Konzentrische Ringe drehen sich, Satelliten kreisen.",
+   "use": "System, Ökosystem, Plattform, Kreislauf",
+   "moods": [
+    "technisch",
+    "ruhig",
+    "futuristisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "gradient-shift",
+   "kind": "bg",
+   "name": "Verlaufswandel",
+   "desc": "Großflächiger Farbverlauf wandert langsam.",
+   "use": "Marke stark zeigen, Brand-Decks",
+   "moods": [
+    "ruhig",
+    "warm",
+    "minimal"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "noise-mesh",
+   "kind": "bg",
+   "name": "Mesh mit Korn",
+   "desc": "Mesh-Gradient mit feinem Filmkorn, editorial.",
+   "use": "Agentur, Design, Premium-Editorial",
+   "moods": [
+    "editorial",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "halftone",
+   "kind": "bg",
+   "name": "Rasterdruck",
+   "desc": "Druckraster aus Punkten läuft diagonal aus.",
+   "use": "Magazin, Kultur, Retro-Print",
+   "moods": [
+    "editorial",
+    "retro"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "spotlight",
+   "kind": "bg",
+   "name": "Taschenlampe",
+   "desc": "Dunkel; ein Lichtkegel folgt dem Cursor und legt ein Punktraster frei.",
+   "use": "Entdecken, Teaser, interaktive Webseite",
+   "moods": [
+    "dramatisch",
+    "verspielt",
+    "minimal"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "datafield",
+   "kind": "bg",
+   "name": "Datenfeld",
+   "desc": "Netz mit Datenpaketen, dazu Ströme, die ins Fokus-Element der aktiven Seite zusammenlaufen und ihm folgen.",
+   "use": "SDV, Plattform, KI, Daten; passt zu warp-tunnel und data-converge",
+   "moods": [
+    "technisch",
+    "futuristisch",
+    "premium"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "light-tunnel",
+   "kind": "bg",
+   "name": "Lichtkorridor",
+   "desc": "Endloser Korridor aus Lichtrahmen fliegt langsam auf dich zu, leichte Maus-Parallaxe.",
+   "use": "Keynote, Launch, Vision, Titelseite",
+   "moods": [
+    "futuristisch",
+    "dramatisch",
+    "minimal"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "mask-words",
+   "kind": "tx",
+   "name": "Wörter aus Maske",
+   "desc": "Wörter gleiten einzeln aus einer unsichtbaren Kante hoch.",
+   "use": "Hero, Kapiteltitel (Allrounder)",
+   "moods": [
+    "premium",
+    "seriös",
+    "dramatisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "blur-words",
+   "kind": "tx",
+   "name": "Aus der Unschärfe",
+   "desc": "Wörter werden aus Unschärfe scharf.",
+   "use": "Statements, Zitate, ruhige Looks",
+   "moods": [
+    "ruhig",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "chars",
+   "kind": "tx",
+   "name": "Buchstabenwelle",
+   "desc": "Buchstaben steigen nacheinander auf.",
+   "use": "Kurze Titel (1–3 Wörter)",
+   "moods": [
+    "technisch",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "fade-up",
+   "kind": "tx",
+   "name": "Einblenden",
+   "desc": "Schlicht von unten einblenden.",
+   "use": "Fließtext, viele Seiten, seriöser Ton",
+   "moods": [
+    "minimal",
+    "seriös"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "scramble",
+   "kind": "tx",
+   "name": "Entschlüsseln",
+   "desc": "Zeichen rauschen und entschlüsseln sich zum Wort.",
+   "use": "Security, KI, Daten (1–2× pro Deck)",
+   "moods": [
+    "technisch",
+    "futuristisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "typewriter",
+   "kind": "tx",
+   "name": "Schreibmaschine",
+   "desc": "Text wird mit Cursor getippt.",
+   "use": "Prompts, Dialoge, Code",
+   "moods": [
+    "technisch",
+    "retro",
+    "verspielt"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "split-lines",
+   "kind": "tx",
+   "name": "Zeilenweise",
+   "desc": "Ganze Zeilen kippen nacheinander aus der Maske.",
+   "use": "Lange Titel, Editorial, Manifest",
+   "moods": [
+    "editorial",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "rotate-words",
+   "kind": "tx",
+   "name": "Wörter klappen auf",
+   "desc": "Wörter klappen in 3D von unten nach oben.",
+   "use": "Aufzählungen im Titel, Produktclaims",
+   "moods": [
+    "energetisch",
+    "verspielt"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "zoom-words",
+   "kind": "tx",
+   "name": "Wörter zoomen ein",
+   "desc": "Wörter fallen groß und unscharf auf ihren Platz.",
+   "use": "Laute Aussage, Event, Opener",
+   "moods": [
+    "dramatisch",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "flip-chars",
+   "kind": "tx",
+   "name": "Buchstaben drehen",
+   "desc": "Buchstaben drehen sich wie Spielkarten herein.",
+   "use": "Kurze Marken- oder Produktnamen",
+   "moods": [
+    "verspielt",
+    "technisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "slot-chars",
+   "kind": "tx",
+   "name": "Slot-Maschine",
+   "desc": "Buchstaben rollen wie an einer Anzeigetafel ein.",
+   "use": "Zahlen-nahe Titel, Countdown, Reise",
+   "moods": [
+    "verspielt",
+    "retro",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "blur-chars",
+   "kind": "tx",
+   "name": "Funkeln",
+   "desc": "Buchstaben werden in zufälliger Reihenfolge scharf.",
+   "use": "Luxus, Beauty, ruhige Enthüllung",
+   "moods": [
+    "premium",
+    "ruhig"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "wave-chars",
+   "kind": "tx",
+   "name": "Federnde Welle",
+   "desc": "Buchstaben federn mit leichtem Überschwingen herein.",
+   "use": "Consumer, Kinder, Startup",
+   "moods": [
+    "verspielt",
+    "warm"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "tracking-in",
+   "kind": "tx",
+   "name": "Zusammenziehen",
+   "desc": "Weit gesperrte Buchstaben ziehen sich zusammen.",
+   "use": "Mode, Luxus, Film-Titel",
+   "moods": [
+    "premium",
+    "dramatisch",
+    "minimal"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "shine",
+   "kind": "tx",
+   "name": "Glanzlicht",
+   "desc": "Ein Lichtband läuft einmal über den Titel.",
+   "use": "Award, Premium-Produkt, Abschluss",
+   "moods": [
+    "premium",
+    "dramatisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "marker",
+   "kind": "tx",
+   "name": "Textmarker",
+   "desc": "Akzentwörter werden wie mit einem Marker hervorgehoben.",
+   "use": "Kernbotschaft betonen, Workshops",
+   "moods": [
+    "editorial",
+    "verspielt",
+    "seriös"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "outline-fill",
+   "kind": "tx",
+   "name": "Kontur füllt sich",
+   "desc": "Titel erscheint als Kontur und füllt sich dann.",
+   "use": "Kapitel-Opener, Sport, Automotive",
+   "moods": [
+    "dramatisch",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "glitch",
+   "kind": "tx",
+   "name": "Glitch",
+   "desc": "Kurzer RGB-Störimpuls, dann steht der Titel.",
+   "use": "Disruption, Security, Gaming (sparsam)",
+   "moods": [
+    "technisch",
+    "retro",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "underline-draw",
+   "kind": "tx",
+   "name": "Linie zeichnet sich",
+   "desc": "Titel blendet ein, eine Akzentlinie zeichnet sich darunter.",
+   "use": "Beratung, seriös, Kapitel",
+   "moods": [
+    "seriös",
+    "minimal",
+    "editorial"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "rise",
+   "kind": "tx",
+   "name": "Ruhiges Aufsteigen",
+   "desc": "Der ganze Titel steigt 18 px in 1,1 s weich auf. Standard des Studio-Looks.",
+   "use": "Standard für fast alle Seiten, seriös und hochwertig",
+   "moods": [
+    "premium",
+    "seriös",
+    "ruhig",
+    "minimal"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "word-rise",
+   "kind": "tx",
+   "name": "Wort für Wort aus der Unschärfe",
+   "desc": "Jedes Wort steigt 16 px aus 12 px Unschärfe, alle 60 ms das nächste.",
+   "use": "Abschlusskarten, Kernbotschaft, Film-Titel",
+   "moods": [
+    "premium",
+    "dramatisch",
+    "futuristisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "line-rise",
+   "kind": "tx",
+   "name": "Zeilen aus der Unschärfe",
+   "desc": "Zeilen steigen nacheinander aus der Unschärfe auf.",
+   "use": "Mehrzeilige Statements, Kapitel-Opener",
+   "moods": [
+    "premium",
+    "editorial",
+    "ruhig"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "fade-blur",
+   "kind": "tr",
+   "name": "Weiche Blende",
+   "desc": "Überblenden mit leichter Unschärfe.",
+   "use": "Standard innerhalb eines Kapitels",
+   "moods": [
+    "ruhig",
+    "minimal",
+    "seriös"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "slide",
+   "kind": "tr",
+   "name": "Schieben",
+   "desc": "Seitlich schieben, Richtung folgt vor/zurück.",
+   "use": "Lineare Story",
+   "moods": [
+    "minimal",
+    "seriös"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "push-parallax",
+   "kind": "tr",
+   "name": "Parallax-Push",
+   "desc": "Alte Seite weicht dunkler zurück, neue schiebt sich darüber.",
+   "use": "Kapitelwechsel, Roadmap",
+   "moods": [
+    "premium",
+    "editorial"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "push-up",
+   "kind": "tr",
+   "name": "Hochschieben",
+   "desc": "Vertikaler Push, fühlt sich wie Scrollen an.",
+   "use": "Decks, die wie eine Webseite wirken sollen",
+   "moods": [
+    "minimal",
+    "ruhig"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "zoom-through",
+   "kind": "tr",
+   "name": "Durchzoomen",
+   "desc": "Durch die alte Seite hindurch in die neue.",
+   "use": "Tiefer eintauchen, Kapitel-Wow",
+   "moods": [
+    "dramatisch",
+    "futuristisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "clip-circle",
+   "kind": "tr",
+   "name": "Kreis-Enthüllung",
+   "desc": "Neue Seite wächst kreisförmig aus dem Klickpunkt.",
+   "use": "Fokus, Reveal, Antwort auf Frage",
+   "moods": [
+    "verspielt",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "wipe-diagonal",
+   "kind": "tr",
+   "name": "Diagonaler Wisch",
+   "desc": "Schräge Kante wischt die neue Seite herein.",
+   "use": "Tempo, Tech, Editorial",
+   "moods": [
+    "energetisch",
+    "technisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "warp",
+   "kind": "tr",
+   "name": "Hyperspace (leicht)",
+   "desc": "Flache Lichtstreifen aus der Mitte, alte Seite fliegt vorbei. Für den großen Sprung: warp-tunnel.",
+   "use": "Sprung in eine neue Welt (max. 1–2× pro Deck)",
+   "moods": [
+    "futuristisch",
+    "dramatisch",
+    "energetisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "depth-dolly",
+   "kind": "tr",
+   "name": "Kamerafahrt 3D",
+   "desc": "Alte Seite fällt in die Tiefe und dreht weg.",
+   "use": "Szenenwechsel, Problem → Lösung",
+   "moods": [
+    "dramatisch",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "curtain-split",
+   "kind": "tr",
+   "name": "Vorhang",
+   "desc": "Seite teilt sich in der Mitte, Hälften fahren auseinander.",
+   "use": "Enthüllung, Launch, großes Kapitel",
+   "moods": [
+    "dramatisch",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "blinds",
+   "kind": "tr",
+   "name": "Jalousie",
+   "desc": "Paneele schließen Spalte für Spalte, Inhalt tauscht.",
+   "use": "Kapitelgrenze mit Filmschnitt-Gefühl",
+   "moods": [
+    "editorial",
+    "dramatisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "shutter",
+   "kind": "tr",
+   "name": "Kameraverschluss",
+   "desc": "Horizontale Streifen schließen abwechselnd von links und rechts.",
+   "use": "Kapitelgrenze, Tempo, Sport",
+   "moods": [
+    "energetisch",
+    "technisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "tiles",
+   "kind": "tr",
+   "name": "Mosaik",
+   "desc": "Kacheln decken diagonal ab und geben wieder frei.",
+   "use": "Verspielte Kapitel, Portfolio, Agentur",
+   "moods": [
+    "verspielt",
+    "technisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "color-sweep",
+   "kind": "tr",
+   "name": "Farbwisch",
+   "desc": "Zwei Akzentflächen wischen durch, darunter wechselt die Seite.",
+   "use": "Marke zeigen, Kapitelwechsel",
+   "moods": [
+    "energetisch",
+    "verspielt"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "lens-sweep",
+   "kind": "tr",
+   "name": "Linsenschwenk",
+   "desc": "Ein Glasband fährt über die Seite, darunter tauscht der Inhalt.",
+   "use": "Fokuswechsel, ruhig-premium",
+   "moods": [
+    "premium",
+    "ruhig"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "cube",
+   "kind": "tr",
+   "name": "Würfel",
+   "desc": "Seiten sind Würfelflächen, der Würfel dreht sich.",
+   "use": "Perspektivwechsel (Kunde ↔ Anbieter)",
+   "moods": [
+    "verspielt",
+    "technisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "flip",
+   "kind": "tr",
+   "name": "Kartenwende",
+   "desc": "Die Seite dreht sich wie eine Karte, die neue ist die Rückseite.",
+   "use": "Vorher/Nachher, Mythos/Fakt",
+   "moods": [
+    "verspielt",
+    "energetisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "card-stack",
+   "kind": "tr",
+   "name": "Kartenstapel",
+   "desc": "Alte Seite wird zur Karte, neue gleitet von unten darüber (iOS).",
+   "use": "App-/Produkt-Decks, Detailebene",
+   "moods": [
+    "minimal",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "band-reveal",
+   "kind": "tr",
+   "name": "Horizontöffnung",
+   "desc": "Ein Band öffnet sich von der Mittellinie.",
+   "use": "Film-Opener, Cinematic",
+   "moods": [
+    "dramatisch",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "radial-wipe",
+   "kind": "tr",
+   "name": "Uhrzeiger",
+   "desc": "Die neue Seite wird wie ein Uhrzeiger aufgedeckt.",
+   "use": "Zeit, Fortschritt, Zyklus",
+   "moods": [
+    "verspielt",
+    "technisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "glitch-cut",
+   "kind": "tr",
+   "name": "Glitch-Schnitt",
+   "desc": "Kurzer digitaler Störimpuls, dann harter Schnitt.",
+   "use": "Disruption, Security-Vorfall, Gaming",
+   "moods": [
+    "technisch",
+    "energetisch",
+    "retro"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "shared",
+   "kind": "tr",
+   "auto": true,
+   "name": "Wandernder Titel",
+   "desc": "Titel oder Zahl mit gleichem shared-Key fliegt von Seite A zu Seite B.",
+   "use": "Aussage → Beleg; ruhigster Profi-Übergang",
+   "moods": [
+    "premium",
+    "seriös",
+    "minimal"
+   ],
+   "cost": 1,
+   "how": "page.shared = \"key\" auf beiden Seiten"
+  },
+  {
+   "id": "morph-open",
+   "kind": "tr",
+   "auto": true,
+   "name": "Karten-Morph",
+   "desc": "Detailseite wächst aus der geklickten Karte bzw. dem Knoten und schrumpft zurück.",
+   "use": "Übersicht → Detail (Karten, Hub, Bento)",
+   "moods": [
+    "premium",
+    "verspielt"
+   ],
+   "cost": 1,
+   "how": "items[].to = \"subId\""
+  },
+  {
+   "id": "warp-tunnel",
+   "kind": "tr",
+   "name": "Datentransfer-Warp",
+   "desc": "Sturzflug in das Fokus-Element der alten Seite, 3D-Lichttunnel mit Tiefe, dann laufen Datenströme im Fokus der neuen Seite zusammen und sie baut sich aus der Tiefe auf (~2,3 s).",
+   "use": "Der eine Kapitel-Wow: z. B. Cockpit → Portfolio, Problem → Lösung. Fokus per data-focal setzen. Max. 1× pro Deck",
+   "moods": [
+    "futuristisch",
+    "dramatisch",
+    "technisch"
+   ],
+   "cost": 3
+  },
+  {
+   "id": "data-converge",
+   "kind": "tr",
+   "name": "Datenströme",
+   "desc": "Lichtpakete fließen auf geschwungenen Bahnen ins Fokus-Element der neuen Seite, die sich als Kreis daraus öffnet.",
+   "use": "Plattform, Daten, „alles läuft zusammen“, Hub/Übersicht",
+   "moods": [
+    "technisch",
+    "futuristisch",
+    "premium"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "portal-dive",
+   "kind": "tr",
+   "name": "Portal-Flug",
+   "desc": "Leuchtender Ring öffnet sich am Klickpunkt, die neue Seite ist darin schon sichtbar, dann fliegt die Kamera hindurch.",
+   "use": "Deep Dive aus einer Übersicht, Eintritt in eine neue Welt",
+   "moods": [
+    "futuristisch",
+    "dramatisch",
+    "verspielt"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "shatter",
+   "kind": "tr",
+   "name": "Glasbruch",
+   "desc": "Risse laufen vom Klickpunkt, die alte Seite zerspringt in Scherben, die an der Kamera vorbeifliegen.",
+   "use": "Bruch mit dem Status quo, „alte Welt“ → neue Lösung (max. 1×)",
+   "moods": [
+    "dramatisch",
+    "energetisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "ink-goo",
+   "kind": "tr",
+   "name": "Flüssige Tinte",
+   "desc": "Akzent-Tinte quillt aus dem Klickpunkt, verschmilzt flüssig und deckt den Bildschirm, dann läuft sie ab.",
+   "use": "Marken-Moment, Kapitelwechsel mit Charakter, Consumer/Kreativ",
+   "moods": [
+    "verspielt",
+    "energetisch",
+    "premium"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "scan-reveal",
+   "kind": "tr",
+   "name": "Scan-Linie",
+   "desc": "Leuchtende Laser-Linie scannt über die Seite, dahinter liegt schon die neue (Röntgen-/Diagnose-Gefühl).",
+   "use": "Analyse, Ist-Aufnahme, „jetzt sehen wir, was darunter liegt“",
+   "moods": [
+    "technisch",
+    "futuristisch",
+    "seriös"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "grain",
+   "kind": "fx",
+   "name": "Filmkorn",
+   "desc": "Feines analoges Korn über allem.",
+   "use": "Dunkle Premium-Looks, Editorial",
+   "moods": [
+    "premium",
+    "editorial",
+    "retro"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "glass",
+   "kind": "fx",
+   "name": "Milchglas",
+   "desc": "Karten werden zu Glas mit Unschärfe und Lichtkante.",
+   "use": "Über bewegten Hintergründen",
+   "moods": [
+    "premium",
+    "futuristisch"
+   ],
+   "cost": 2
+  },
+  {
+   "id": "gradient",
+   "kind": "fx",
+   "name": "Titel-Verlauf",
+   "desc": "Titel laufen nach unten weich aus.",
+   "use": "Große Headlines, dunkle Themes",
+   "moods": [
+    "premium",
+    "dramatisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "vignette",
+   "kind": "fx",
+   "name": "Vignette",
+   "desc": "Ränder dunkeln ab, der Blick geht zur Mitte.",
+   "use": "Cinematic, Bühne, Fokus",
+   "moods": [
+    "dramatisch",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "scanlines",
+   "kind": "fx",
+   "name": "Bildschirmzeilen",
+   "desc": "Feine Zeilen wie auf einem Röhrenmonitor.",
+   "use": "Retro, Gaming, Security",
+   "moods": [
+    "retro",
+    "technisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "outline-cards",
+   "kind": "fx",
+   "name": "Konturkarten",
+   "desc": "Karten ohne Fläche, nur feine Kontur.",
+   "use": "Minimal, Swiss, helle Themes",
+   "moods": [
+    "minimal",
+    "editorial"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "tilt",
+   "kind": "fx",
+   "name": "3D-Neigung",
+   "desc": "Karten neigen sich zum Cursor, mit wanderndem Glanz.",
+   "use": "Portfolio, Produktkarten, Webseiten",
+   "moods": [
+    "verspielt",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "magnetic",
+   "kind": "fx",
+   "name": "Magnetische Buttons",
+   "desc": "Buttons und Knoten ziehen sich leicht zum Cursor.",
+   "use": "Interaktive Webseite, CTA",
+   "moods": [
+    "verspielt",
+    "premium"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "cursor-glow",
+   "kind": "fx",
+   "name": "Cursor-Licht",
+   "desc": "Weiches Akzentlicht folgt dem Mauszeiger.",
+   "use": "Dunkle Themes, Live-Präsentation",
+   "moods": [
+    "futuristisch",
+    "dramatisch"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "parallax",
+   "kind": "fx",
+   "name": "Tiefen-Parallax",
+   "desc": "Titel und Inhalt verschieben sich gegenläufig zur Maus.",
+   "use": "Hero, Kapitel, Tiefe ohne 3D",
+   "moods": [
+    "premium",
+    "verspielt"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "click-ripple",
+   "kind": "fx",
+   "name": "Klick-Welle",
+   "desc": "Klicks erzeugen eine Farbwelle im Element.",
+   "use": "Interaktive Demos, Touch",
+   "moods": [
+    "verspielt"
+   ],
+   "cost": 1
+  },
+  {
+   "id": "hero",
+   "kind": "page",
+   "name": "Hero / Opener",
+   "desc": "Großer Titel, Lead, optional Button.",
+   "use": "Start, Kapitelanfang",
+   "moods": [
+    "dramatisch",
+    "premium"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "hero",
+    "kicker": "Beispiel · Kickoff",
+    "title": "Ein Titel, der *hängen bleibt*",
+    "sub": "Ein Satz, warum das wichtig ist.",
+    "cta": {
+     "label": "Los geht's"
+    }
+   }
+  },
+  {
+   "id": "statement",
+   "kind": "page",
+   "name": "Statement",
+   "desc": "Eine Aussage, zentriert, viel Luft.",
+   "use": "These, Haltung, Kapitelfazit",
+   "moods": [
+    "minimal",
+    "editorial"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "statement",
+    "title": "Weniger Folien.\n*Mehr Wirkung.*"
+   }
+  },
+  {
+   "id": "number",
+   "kind": "page",
+   "name": "Eine große Zahl",
+   "desc": "Riesige Zahl zählt hoch, darunter die Bedeutung.",
+   "use": "Der eine Beleg, der zählt",
+   "moods": [
+    "dramatisch",
+    "minimal"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "number",
+    "value": 42,
+    "suffix": "%",
+    "title": "Beispielwert: weniger *Durchlaufzeit*"
+   }
+  },
+  {
+   "id": "stats",
+   "kind": "page",
+   "name": "Kennzahlen",
+   "desc": "2–4 Zahlen zählen hoch.",
+   "use": "Business Case, Ergebnisse",
+   "moods": [
+    "seriös",
+    "technisch"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "stats",
+    "title": "Beispielwerte",
+    "items": [
+     {
+      "value": 3.2,
+      "decimals": 1,
+      "suffix": " Mio",
+      "label": "Nutzer"
+     },
+     {
+      "value": 87,
+      "suffix": "%",
+      "label": "Zufriedenheit"
+     },
+     {
+      "value": 12,
+      "label": "Märkte"
+     }
+    ]
+   }
+  },
+  {
+   "id": "chart",
+   "kind": "page",
+   "name": "Diagramm (Balken → Linie)",
+   "desc": "Balken wachsen und morphen auf Klick zur Linie.",
+   "use": "Wachstum, Entwicklung",
+   "moods": [
+    "seriös",
+    "technisch"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "chart",
+    "mode": "morph",
+    "title": "Beispielwerte im *Verlauf*",
+    "data": [
+     {
+      "label": "Q1",
+      "value": 12
+     },
+     {
+      "label": "Q2",
+      "value": 19
+     },
+     {
+      "label": "Q3",
+      "value": 27
+     },
+     {
+      "label": "Q4",
+      "value": 41
+     }
+    ]
+   }
+  },
+  {
+   "id": "cards",
+   "kind": "page",
+   "name": "Karten",
+   "desc": "Raster mit Lichtfleck beim Hover, optional Link zur Detailseite.",
+   "use": "Leistungen, Optionen, Hebel",
+   "moods": [
+    "seriös",
+    "premium"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "cards",
+    "title": "Drei *Optionen*",
+    "items": [
+     {
+      "icon": "bolt",
+      "title": "Schnell",
+      "text": "Kurzer Beispieltext."
+     },
+     {
+      "icon": "shield",
+      "title": "Sicher",
+      "text": "Kurzer Beispieltext."
+     },
+     {
+      "icon": "spark",
+      "title": "Neu",
+      "text": "Kurzer Beispieltext."
+     }
+    ]
+   }
+  },
+  {
+   "id": "bento",
+   "kind": "page",
+   "name": "Bento-Raster",
+   "desc": "Asymmetrische Kacheln setzen sich von der Mitte zusammen.",
+   "use": "Viele Aussagen auf einer Seite, Produktüberblick",
+   "moods": [
+    "premium",
+    "verspielt"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "bento",
+    "title": "Alles auf *einen Blick*",
+    "items": [
+     {
+      "kind": "stat",
+      "size": "l",
+      "value": 24,
+      "suffix": "/7",
+      "label": "Beispielwert"
+     },
+     {
+      "kind": "text",
+      "size": "w",
+      "icon": "cloud",
+      "title": "Cloud",
+      "text": "Kurz."
+     },
+     {
+      "kind": "text",
+      "icon": "lock",
+      "title": "Sicher"
+     },
+     {
+      "kind": "text",
+      "icon": "users",
+      "title": "Team"
+     }
+    ]
+   }
+  },
+  {
+   "id": "split",
+   "kind": "page",
+   "name": "Text + Visual",
+   "desc": "Text links, Visual rechts (Ring, Fluss, Bild, Gerät, Vergleich, Diagramm).",
+   "use": "Erklären mit Bild",
+   "moods": [
+    "seriös",
+    "minimal"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "split",
+    "title": "Text trifft *Visual*",
+    "bullets": [
+     "Punkt eins",
+     "Punkt zwei"
+    ],
+    "visual": {
+     "type": "ring",
+     "value": 72,
+     "label": "Beispielwert"
+    }
+   }
+  },
+  {
+   "id": "timeline",
+   "kind": "page",
+   "name": "Zeitstrahl",
+   "desc": "Linie zeichnet sich, Meilensteine erscheinen.",
+   "use": "Roadmap, Historie, Plan",
+   "moods": [
+    "seriös",
+    "ruhig"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "timeline",
+    "title": "Der *Fahrplan*",
+    "items": [
+     {
+      "label": "Phase 1",
+      "title": "Verstehen"
+     },
+     {
+      "label": "Phase 2",
+      "title": "Bauen"
+     },
+     {
+      "label": "Phase 3",
+      "title": "Skalieren"
+     }
+    ]
+   }
+  },
+  {
+   "id": "steps",
+   "kind": "page",
+   "name": "Tabs / Schritte",
+   "desc": "Reiter mit Inhalt, z. B. Problem / Lösung / Mehrwert.",
+   "use": "Argumentationskette, Prozess",
+   "moods": [
+    "seriös",
+    "minimal"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "steps",
+    "title": "Vom Problem zum *Mehrwert*",
+    "items": [
+     {
+      "label": "Problem",
+      "title": "Was heute bremst",
+      "text": "Beispieltext."
+     },
+     {
+      "label": "Lösung",
+      "title": "Was wir ändern",
+      "text": "Beispieltext."
+     },
+     {
+      "label": "Mehrwert",
+      "title": "Was es bringt",
+      "text": "Beispieltext."
+     }
+    ]
+   }
+  },
+  {
+   "id": "big-list",
+   "kind": "page",
+   "name": "Große Liste",
+   "desc": "Große Zeilen, die aktive leuchtet nacheinander auf.",
+   "use": "Prinzipien, Agenda, Versprechen",
+   "moods": [
+    "editorial",
+    "premium",
+    "minimal"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "big-list",
+    "kicker": "Agenda",
+    "items": [
+     "Ausgangslage",
+     "Die *Idee*",
+     "Der Plan",
+     "Nächste Schritte"
+    ]
+   }
+  },
+  {
+   "id": "kinetic",
+   "kind": "page",
+   "name": "Kinetische Typo",
+   "desc": "Riesige Wörter laufen gegenläufig über den Bildschirm.",
+   "use": "Opener, Kapitel, Markenwerte",
+   "moods": [
+    "energetisch",
+    "dramatisch",
+    "editorial"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "kinetic",
+    "rows": [
+     [
+      "Mutig",
+      "Klar",
+      "Schnell"
+     ],
+     [
+      "Digital",
+      "Menschlich",
+      "Echt"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "marquee",
+   "kind": "page",
+   "name": "Laufband",
+   "desc": "Zwei gegenläufige Bänder mit Begriffen oder Namen.",
+   "use": "Kompetenzen, Partner, Themen",
+   "moods": [
+    "verspielt",
+    "energetisch"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "marquee",
+    "title": "Themen",
+    "rows": [
+     [
+      "Strategie",
+      "Daten",
+      "Design",
+      "Cloud"
+     ],
+     [
+      "KI",
+      "Prozesse",
+      "Change",
+      "Security"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "hub",
+   "kind": "page",
+   "name": "Hub / Portfolio-Übersicht",
+   "desc": "Knoten um einen Kern; Klick öffnet Detailseite mit Morph. Stile: orbit, gear (Zahnrad), radial, constellation.",
+   "use": "Nur wenn Inhalte echte Bereiche/Hebel sind",
+   "moods": [
+    "technisch",
+    "premium"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "hub",
+    "style": "orbit",
+    "title": "Bereiche",
+    "core": "Kern",
+    "coreHint": "Hover zeigt Text",
+    "items": [
+     {
+      "title": "Bereich A",
+      "text": "Kurz."
+     },
+     {
+      "title": "Bereich B",
+      "text": "Kurz."
+     },
+     {
+      "title": "Bereich C",
+      "text": "Kurz."
+     },
+     {
+      "title": "Bereich D",
+      "text": "Kurz."
+     },
+     {
+      "title": "Bereich E",
+      "text": "Kurz."
+     }
+    ]
+   }
+  },
+  {
+   "id": "gallery",
+   "kind": "page",
+   "name": "Bildergalerie",
+   "desc": "Bilder decken sich mit Wischblende auf.",
+   "use": "Referenzen, Eindrücke, Moodboard",
+   "moods": [
+    "editorial",
+    "warm"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "gallery",
+    "title": "Eindrücke",
+    "items": [
+     {
+      "label": "Bild 1"
+     },
+     {
+      "label": "Bild 2"
+     },
+     {
+      "label": "Bild 3"
+     },
+     {
+      "label": "Bild 4"
+     },
+     {
+      "label": "Bild 5"
+     }
+    ]
+   }
+  },
+  {
+   "id": "team",
+   "kind": "page",
+   "name": "Team / Experten",
+   "desc": "Personenkarten mit Foto oder Initialen.",
+   "use": "Ansprechpartner, Experten-Outro",
+   "moods": [
+    "warm",
+    "seriös"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "team",
+    "title": "Ihr *Team*",
+    "items": [
+     {
+      "name": "Vorname Nachname",
+      "role": "Rolle"
+     },
+     {
+      "name": "Vorname Nachname",
+      "role": "Rolle"
+     },
+     {
+      "name": "Vorname Nachname",
+      "role": "Rolle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "quote",
+   "kind": "page",
+   "name": "Zitat",
+   "desc": "Großes Zitat mit Absender.",
+   "use": "Stimme des Kunden (nur echte Zitate)",
+   "moods": [
+    "ruhig",
+    "editorial"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "quote",
+    "title": "„Platzhalter für ein echtes Zitat.“",
+    "author": "Name",
+    "role": "Rolle"
+   }
+  },
+  {
+   "id": "media",
+   "kind": "page",
+   "name": "Vollbild-Medium",
+   "desc": "Bild oder Video füllt die Seite, Text darüber.",
+   "use": "Emotion, Ort, Produkt",
+   "moods": [
+    "dramatisch",
+    "warm"
+   ],
+   "cost": 2,
+   "demo": {
+    "type": "statement",
+    "title": "Vollbild-Bild/Video\n(Bild nötig)"
+   }
+  },
+  {
+   "id": "cta",
+   "kind": "page",
+   "name": "Abschluss / CTA",
+   "desc": "Klare Handlung plus Kontakte.",
+   "use": "Ende, Next Steps",
+   "moods": [
+    "seriös",
+    "minimal"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "cta",
+    "title": "Nächster *Schritt*",
+    "cta": {
+     "label": "Termin"
+    },
+    "contacts": [
+     {
+      "label": "Kontakt",
+      "value": "[TBD]"
+     }
+    ]
+   }
+  },
+  {
+   "id": "html",
+   "kind": "page",
+   "name": "Eigenes HTML",
+   "desc": "Freies Markup, wenn der Katalog nicht reicht.",
+   "use": "Sonderfälle, eingebettete Demos",
+   "moods": [],
+   "cost": 1,
+   "demo": {
+    "type": "statement",
+    "title": "Eigenes HTML"
+   }
+  },
+  {
+   "id": "hotspots",
+   "kind": "page",
+   "name": "Produkt-Bühne (Hotspots)",
+   "desc": "Gerahmtes Produktbild mit Punkten: Hover spielt einen Clip (z. B. Haube öffnet), Klick zoomt in eine Schnitt-Ansicht mit Bauteilen, Varianten-Panel für Farben/Felgen. Eigene Renders und Clips.",
+   "use": "Produkt, Fahrzeug, Maschine, Gerät, Gebäude zum Erkunden",
+   "moods": [
+    "technisch",
+    "premium",
+    "minimal"
+   ],
+   "cost": 2,
+   "demo": {
+    "type": "hotspots",
+    "title": "Electric, *inside out.*",
+    "sub": "Explore beneath the surface.\nSelect a point to begin.",
+    "meta": "Beispiel – eigene Renders einsetzen",
+    "points": [
+     {
+      "x": 25,
+      "y": 48,
+      "label": "Antrieb",
+      "text": "Haube öffnen, Antrieb ansehen.",
+      "detail": {
+       "kicker": "Antrieb",
+       "title": "Strom wird *Bewegung.*",
+       "text": "Beispieltext für die Detailansicht.",
+       "items": [
+        {
+         "x": 40,
+         "y": 50,
+         "label": "Stator",
+         "text": "Beispiel-Erklärung."
+        },
+        {
+         "x": 55,
+         "y": 45,
+         "label": "Rotor",
+         "text": "Beispiel-Erklärung."
+        },
+        {
+         "x": 62,
+         "y": 60,
+         "label": "Getriebe",
+         "text": "Beispiel-Erklärung."
+        }
+       ]
+      }
+     },
+     {
+      "x": 64,
+      "y": 72,
+      "label": "Batterie",
+      "text": "Energie unter dem Boden."
+     },
+     {
+      "x": 55,
+      "y": 45,
+      "label": "Lack",
+      "text": "Fünf Farben.",
+      "variants": [
+       {
+        "label": "Silber",
+        "color": "#d7dde1"
+       },
+       {
+        "label": "Electric Green",
+        "color": "#edff39"
+       },
+       {
+        "label": "Sky Blue",
+        "color": "#8fb4cc"
+       },
+       {
+        "label": "Graphit",
+        "color": "#4a5258"
+       }
+      ]
+     },
+     {
+      "x": 48,
+      "y": 71,
+      "label": "Felgen",
+      "text": "Drei Designs.",
+      "variants": [
+       {
+        "label": "Multi-Speiche",
+        "color": "#9aa4ab"
+       },
+       {
+        "label": "Aero",
+        "color": "#e8edf0"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "flyover",
+   "kind": "cam",
+   "name": "UI-Überflug",
+   "desc": "Eine durchgehende Kamerafahrt über eine liegende Seite: Gleiten mit Tiefenunschärfe, Karten heben sich und stellen sich zur Linse auf, Aufstieg in die Draufsicht, Sturzflug in den Hero, Abschlusstitel Wort für Wort.",
+   "use": "Produkt- oder Plattform-Opener, Launch, Website/App zeigen (Wow, 1× pro Deck)",
+   "moods": [
+    "dramatisch",
+    "premium",
+    "futuristisch"
+   ],
+   "cost": 3,
+   "demo": {
+    "type": "flyover",
+    "hero": {
+     "kicker": "Produkt",
+     "title": "Von der Idee\nzum *Release*",
+     "sub": "Ein Beispiel-Hero mit Button.",
+     "cta": "Demo starten"
+    },
+    "sections": [
+     {
+      "title": "Alles an *einem* Ort",
+      "items": [
+       {
+        "tag": "Plan",
+        "title": "Roadmap",
+        "text": "Ziele und Meilensteine"
+       },
+       {
+        "tag": "Build",
+        "title": "Delivery",
+        "text": "Tickets, Code, Tests"
+       },
+       {
+        "tag": "Ship",
+        "title": "Release",
+        "text": "Pipeline und Rollout"
+       }
+      ]
+     },
+     {
+      "title": "Teams arbeiten *schneller*",
+      "items": [
+       {
+        "title": "Weniger Übergaben",
+        "text": "Ein Fluss statt fünf Tools"
+       },
+       {
+        "title": "Volle Nachverfolgung",
+        "text": "Vom Prompt bis zum Release"
+       }
+      ]
+     },
+     {
+      "title": "Was Kunden sagen",
+      "items": [
+       {
+        "title": "„Beispielzitat – nur echte Zitate verwenden.“",
+        "text": "Name, Rolle [TBD]",
+        "lift": 112,
+        "stand": 30
+       }
+      ]
+     }
+    ],
+    "footer": "Bereit für den *Pilot*?",
+    "end": {
+     "badge": "Produktname",
+     "title": "Gebaut für Teams,",
+     "tail": "die liefern wollen."
+    }
+   }
+  },
+  {
+   "id": "lift-cards",
+   "kind": "cam",
+   "name": "Karten stellen sich auf",
+   "desc": "Karten liegen auf einem geneigten Boden und stellen sich nacheinander mit Schatten zur Kamera auf.",
+   "use": "3–6 Hebel, Leistungen, Features mit Tiefe statt flachem Raster",
+   "moods": [
+    "premium",
+    "technisch",
+    "dramatisch"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "lift-cards",
+    "kicker": "Beispiel",
+    "title": "Vier Hebel,\n*eine Wirkung*",
+    "items": [
+     {
+      "tag": "01",
+      "title": "Discovery",
+      "text": "Ziel und Wert"
+     },
+     {
+      "tag": "02",
+      "title": "Refinement",
+      "text": "Stories und Kriterien"
+     },
+     {
+      "tag": "03",
+      "title": "Build",
+      "text": "Code und Review"
+     },
+     {
+      "tag": "04",
+      "title": "Release",
+      "text": "Pipeline und Rollout"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-card",
+   "kind": "cam",
+   "name": "Abschlusskarte",
+   "desc": "Eine Karte landet aus der Tiefe unter einem zweiteiligen Titel: Aussage plus kursiver grauer Nachsatz, Wort für Wort.",
+   "use": "Finale, Produktreveal, Claim am Ende",
+   "moods": [
+    "premium",
+    "dramatisch",
+    "minimal"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "end-card",
+    "badge": "Produktname",
+    "title": "Vom Satz zum Feature.",
+    "tail": "In einem Fluss."
+   }
+  },
+  {
+   "id": "device-float",
+   "kind": "cam",
+   "name": "Schwebendes Gerät",
+   "desc": "Ein Handy mit echter Tiefe steigt auf, dreht sich sanft; Chips schweben in verschiedenen Tiefen mit Unschärfe.",
+   "use": "App-Feature zeigen, Mobile-Produkt, Reveal",
+   "moods": [
+    "premium",
+    "futuristisch",
+    "verspielt"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "device-float",
+    "kicker": "App",
+    "title": "Das Feature,\n*live* in der App",
+    "chips": [
+     "Neu",
+     "Akku 94 %",
+     "Ladetipp",
+     "Trend 12 Monate"
+    ],
+    "html": "<div style='height:100%;background:linear-gradient(170deg,#1b2433,#0c1016);display:grid;place-items:center;color:#9fb3c8;font:600 14px Inter'>App-Screen</div>"
+   }
+  },
+  {
+   "id": "particle-form",
+   "kind": "cam",
+   "name": "Partikel formen Zahl",
+   "desc": "Tausende Punkte driften, ziehen sich zu einer Zahl oder einem Wort zusammen, halten, zerfallen.",
+   "use": "Die eine Zahl, Launch-Claim, Kapitel-Opener (nur echte Werte)",
+   "moods": [
+    "futuristisch",
+    "technisch",
+    "dramatisch"
+   ],
+   "cost": 2,
+   "demo": {
+    "type": "particle-form",
+    "text": "24/7",
+    "kicker": "Beispielwert",
+    "title": "Agenten arbeiten *rund um die Uhr*"
+   }
+  },
+  {
+   "id": "depth-stack",
+   "kind": "cam",
+   "name": "Ebenen-Stapel 3D",
+   "desc": "Architektur-Ebenen schweben in 3D auseinander, Beschriftungen zeichnen sich ein.",
+   "use": "Architektur, Plattform-Schichten, Tech-Stack",
+   "moods": [
+    "technisch",
+    "premium"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "depth-stack",
+    "kicker": "Architektur",
+    "title": "Vier Schichten,\n*ein System*",
+    "items": [
+     {
+      "title": "Experience",
+      "text": "App und Web"
+     },
+     {
+      "title": "Agenten",
+      "text": "Rollen und Skills"
+     },
+     {
+      "title": "Kontext",
+      "text": "Backlog, Code, Design"
+     },
+     {
+      "title": "Tools",
+      "text": "Tracker, Git, CI/CD"
+     }
+    ]
+   }
+  },
+  {
+   "id": "ring",
+   "kind": "visual",
+   "name": "Fortschrittsring",
+   "desc": "Ring füllt sich, Zahl zählt hoch.",
+   "use": "Reifegrad, Score, Anteil",
+   "moods": [
+    "seriös",
+    "technisch"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "split",
+    "title": "Reifegrad",
+    "visual": {
+     "type": "ring",
+     "value": 64,
+     "label": "Beispielwert"
+    }
+   }
+  },
+  {
+   "id": "flow",
+   "kind": "visual",
+   "name": "Prozessfluss",
+   "desc": "Knoten mit laufenden Impulsen dazwischen.",
+   "use": "Architektur, Prozess, Datenfluss",
+   "moods": [
+    "technisch"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "split",
+    "title": "So *fließt* es",
+    "visual": {
+     "type": "flow",
+     "nodes": [
+      "Eingang",
+      "Verarbeitung",
+      "Ergebnis"
+     ]
+    }
+   }
+  },
+  {
+   "id": "device",
+   "kind": "visual",
+   "name": "Gerät (Browser/Phone)",
+   "desc": "Screenshot im Geräterahmen, scrollt langsam.",
+   "use": "Software, App, Webseite zeigen",
+   "moods": [
+    "premium",
+    "technisch"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "split",
+    "title": "Das *Produkt*",
+    "visual": {
+     "type": "device",
+     "frame": "browser",
+     "url": "app.beispiel"
+    }
+   }
+  },
+  {
+   "id": "compare",
+   "kind": "visual",
+   "name": "Vorher / Nachher",
+   "desc": "Schieberegler vergleicht zwei Zustände.",
+   "use": "Redesign, Wirkung, Transformation",
+   "moods": [
+    "verspielt",
+    "seriös"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "split",
+    "title": "Vorher / *Nachher*",
+    "visual": {
+     "type": "compare"
+    }
+   }
+  },
+  {
+   "id": "image",
+   "kind": "visual",
+   "name": "Bild",
+   "desc": "Bild mit sanftem Zoom.",
+   "use": "Foto, Illustration, Render",
+   "moods": [
+    "warm",
+    "editorial"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "split",
+    "title": "Bild (Datei nötig)",
+    "visual": {
+     "type": "ring",
+     "value": 0,
+     "label": "Platzhalter"
+    }
+   }
+  },
+  {
+   "id": "chart",
+   "kind": "visual",
+   "name": "Diagramm im Split",
+   "desc": "Diagramm neben Text (bars/line/morph).",
+   "use": "Zahl mit Erklärung",
+   "moods": [
+    "seriös"
+   ],
+   "cost": 1,
+   "demo": {
+    "type": "split",
+    "title": "Zahl mit *Kontext*",
+    "visual": {
+     "type": "chart",
+     "mode": "line",
+     "data": [
+      {
+       "label": "A",
+       "value": 4
+      },
+      {
+       "label": "B",
+       "value": 9
+      },
+      {
+       "label": "C",
+       "value": 7
+      },
+      {
+       "label": "D",
+       "value": 14
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "look-studio",
+   "kind": "look",
+   "name": "Studio (Standard)",
+   "desc": "Der Mindeststandard: ruhige dunkle Welt, Inter, linksbündig, Eyebrow mit Linie, weiche lange Einblendungen.",
+   "moods": [
+    "premium",
+    "seriös",
+    "ruhig"
+   ],
+   "cost": 1,
+   "set": {
+    "theme": "midnight",
+    "mode": "deck",
+    "bg": "none",
+    "tr": "fade-blur",
+    "enter": "rise",
+    "fx": [
+     "grain"
+    ]
+   }
+  },
+  {
+   "id": "look-cinematic",
+   "kind": "look",
+   "name": "Cinematic Dark",
+   "desc": "Dunkel, filmisch, Tiefe.",
+   "use": "Keynote, Vision",
+   "moods": [
+    "dramatisch",
+    "premium"
+   ],
+   "cost": 2,
+   "set": {
+    "theme": "midnight",
+    "mode": "deck",
+    "bg": "beams",
+    "tr": "band-reveal",
+    "enter": "split-lines",
+    "fx": [
+     "grain",
+     "vignette"
+    ]
+   }
+  },
+  {
+   "id": "look-warp",
+   "kind": "look",
+   "name": "Warp Launch",
+   "desc": "Sternenflug und Tempo.",
+   "use": "Launch, Zukunftsbild",
+   "moods": [
+    "futuristisch",
+    "energetisch"
+   ],
+   "cost": 2,
+   "set": {
+    "theme": "midnight",
+    "mode": "deck",
+    "bg": "stars",
+    "tr": "warp",
+    "enter": "mask-words",
+    "fx": [
+     "glass"
+    ]
+   }
+  },
+  {
+   "id": "look-techgrid",
+   "kind": "look",
+   "name": "Tech Grid",
+   "desc": "Raster, Präzision, Engineering.",
+   "use": "Software, Industrie",
+   "moods": [
+    "technisch"
+   ],
+   "cost": 1,
+   "set": {
+    "theme": "steel-finance",
+    "mode": "deck",
+    "bg": "grid",
+    "tr": "wipe-diagonal",
+    "enter": "chars",
+    "fx": []
+   }
+  },
+  {
+   "id": "look-aurora",
+   "kind": "look",
+   "name": "Aurora Soft",
+   "desc": "Weich, ruhig, hochwertig.",
+   "use": "Health, Consumer, Kultur",
+   "moods": [
+    "ruhig",
+    "premium"
+   ],
+   "cost": 1,
+   "set": {
+    "theme": "aurora-violet",
+    "mode": "scroll",
+    "bg": "aurora",
+    "tr": "fade-blur",
+    "enter": "blur-words",
+    "fx": [
+     "glass"
+    ]
+   }
+  },
+  {
+   "id": "look-editorial",
+   "kind": "look",
+   "name": "Clean Editorial",
+   "desc": "Hell, Serifen, Magazin.",
+   "use": "Strategie, Bericht, Kultur",
+   "moods": [
+    "editorial",
+    "minimal"
+   ],
+   "cost": 1,
+   "set": {
+    "theme": "paper",
+    "mode": "scroll",
+    "bg": "none",
+    "tr": "push-parallax",
+    "enter": "split-lines",
+    "fx": [
+     "outline-cards"
+    ]
+   }
+  },
+  {
+   "id": "look-luxury",
+   "kind": "look",
+   "name": "Noir Gold",
+   "desc": "Schwarz und Gold, gesperrte Titel.",
+   "use": "Luxus, Private Banking, Award",
+   "moods": [
+    "premium",
+    "dramatisch"
+   ],
+   "cost": 1,
+   "set": {
+    "theme": "noir-gold",
+    "mode": "deck",
+    "bg": "bokeh",
+    "tr": "lens-sweep",
+    "enter": "tracking-in",
+    "fx": [
+     "grain",
+     "vignette"
+    ]
+   }
+  },
+  {
+   "id": "look-swiss",
+   "kind": "look",
+   "name": "Swiss Minimal",
+   "desc": "Weiß, Raster, ein Signalrot.",
+   "use": "Architektur, Design, Beratung",
+   "moods": [
+    "minimal",
+    "seriös"
+   ],
+   "cost": 1,
+   "set": {
+    "theme": "swiss-light",
+    "mode": "deck",
+    "bg": "none",
+    "tr": "slide",
+    "enter": "underline-draw",
+    "fx": [
+     "outline-cards"
+    ]
+   }
+  },
+  {
+   "id": "look-synth",
+   "kind": "look",
+   "name": "Synth Sunset",
+   "desc": "Retro-Neon, Gitter, Glitch.",
+   "use": "Gaming, Event, Musik",
+   "moods": [
+    "retro",
+    "energetisch"
+   ],
+   "cost": 2,
+   "set": {
+    "theme": "synth-sunset",
+    "mode": "deck",
+    "bg": "grid",
+    "tr": "glitch-cut",
+    "enter": "glitch",
+    "fx": [
+     "scanlines",
+     "cursor-glow"
+    ]
+   }
+  },
+  {
+   "id": "look-nature",
+   "kind": "look",
+   "name": "Nature Calm",
+   "desc": "Grün, Konturlinien, ruhig.",
+   "use": "Nachhaltigkeit, Energie, Agrar",
+   "moods": [
+    "natürlich",
+    "ruhig"
+   ],
+   "cost": 2,
+   "set": {
+    "theme": "forest-signal",
+    "mode": "scroll",
+    "bg": "topo",
+    "tr": "fade-blur",
+    "enter": "blur-words",
+    "fx": [
+     "grain"
+    ]
+   }
+  },
+  {
+   "id": "look-playful",
+   "kind": "look",
+   "name": "Playful Startup",
+   "desc": "Blobs, federnde Typo, Farbwisch.",
+   "use": "Startup, Consumer, Recruiting",
+   "moods": [
+    "verspielt",
+    "warm"
+   ],
+   "cost": 1,
+   "set": {
+    "theme": "warm-sand",
+    "mode": "deck",
+    "bg": "blobs",
+    "tr": "color-sweep",
+    "enter": "wave-chars",
+    "fx": [
+     "tilt",
+     "magnetic"
+    ]
+   }
+  },
+  {
+   "id": "look-clinic",
+   "kind": "look",
+   "name": "Clinic Light",
+   "desc": "Hell, Mint, Seidenwellen.",
+   "use": "Health, Pharma, Versicherung",
+   "moods": [
+    "ruhig",
+    "seriös"
+   ],
+   "cost": 2,
+   "set": {
+    "theme": "clinic-mint",
+    "mode": "scroll",
+    "bg": "wave-lines",
+    "tr": "fade-blur",
+    "enter": "fade-up",
+    "fx": []
+   }
+  },
+  {
+   "id": "look-data",
+   "kind": "look",
+   "name": "Data Lab",
+   "desc": "Punktwelle, Entschlüsseln, präzise.",
+   "use": "KI, Daten, Analytics",
+   "moods": [
+    "technisch",
+    "futuristisch"
+   ],
+   "cost": 2,
+   "set": {
+    "theme": "midnight",
+    "mode": "deck",
+    "bg": "dot-wave",
+    "tr": "tiles",
+    "enter": "scramble",
+    "fx": [
+     "glass",
+     "cursor-glow"
+    ]
+   }
+  },
+  {
+   "id": "scroll-stage",
+   "kind": "world",
+   "name": "Scroll-Bühne mit Film und Hairline-Rahmen",
+   "cost": 2,
+   "desc": "Eine gepinnte Bühne, ein Film aus Licht und eine einzige Zahl p treiben alles: Maskentypografie, gerichtete Austritte, Linien und Sterne als Rahmen, Lineal mit wandernder Kennzahl, 3D-Karussell mit Tiefenunschärfe, Glas-Formular.",
+   "use": "Firmen-, Produkt- oder Partnerseite, Pitch als Scroll-Story: überall, wo ein starkes Objekt und kurze Sätze tragen",
+   "moods": [
+    "dramatisch",
+    "premium",
+    "editorial",
+    "minimal",
+    "warm"
+   ],
+   "file": "scroll-stage",
+   "poster": "p=0.22",
+   "tokens": [
+    "#0c0b0a",
+    "#ece7dd",
+    "#f0b23e",
+    "#9a9487"
+   ],
+   "technik": [
+    "Pin + Runway: eine fixe Bühne, die Scroll-Position wird zur Zahl p (0..1) mit Trägheit; alles ist eine Funktion von p (assets/studio/scrollstage.js)",
+    "Film-Ebene als Fragment-Shader (Stellvertreter für ein vorgerendertes Video): Orb wandert, wächst, die Kamera taucht ein; echte Projekte nehmen ein Video mit Frame-Scrubbing",
+    "Fester Artboard 1440x900, gleichmäßig skaliert (--k), eigenes Hochformat-Artboard: Schrift, Linien und 3D-Abstände behalten ihre Proportionen",
+    "Rahmen aus vier Hairlines und 4-Punkt-Sternen an den Schnittpunkten; alles andere richtet sich an diesen Linien aus; Linien gleiten am Ende nach außen",
+    "Typografie: Zeilen-Masken (.ln>i) und Buchstaben (.ch), Austritt gerichtet (translate, scale .96, blur 5 px), Gruppen driften mit der Kamera mit",
+    "Details als Handschrift: Strichzug per stroke-dashoffset an p; Lineal mit 33 Ticks, die nahe der Kennzahl wachsen; Karten-Karussell mit rotateY/translateZ, Tiefe = Blur; Glas-Pillen mit backdrop-filter und CSS-Variablen"
+   ],
+   "uebertragen": "Konzept zuerst: ein Hauptobjekt, das genau zu diesem Inhalt gehört (Pear-Referenz: ein goldener Birnen-Monolith für den Namen Pear). Film mit Kling/Higgsfield/Blender erzeugen, Frame-Scrubbing statt Shader. Sätze wie Beats schreiben (3–5 Wörter), nie Fließtext.",
+   "quelle": "Technik und Struktur aus pear.no analysiert (öffentliche Seite). Keine Texte, Marke, Logos oder Assets übernommen; alle Inhalte hier sind Platzhalter."
+  },
+  {
+   "id": "moonlit-petals",
+   "kind": "world",
+   "name": "Moonlit Petals: Nachtblüte im Gegenlicht",
+   "cost": 3,
+   "desc": "Prozedurale Blütenkrone, einmal gebacken und danach nur komponiert: Schärfentiefe, Glühen, Dolden an Federn, Blütenblätter in Tiefenebenen, Bokeh, Korn. Der Zeiger verzieht die Krone weich wie Wind.",
+   "use": "Ruhige Hero-Fläche ohne Text, Einladung, Kosmetik, Hotel, Wellness, Danke-Seite: Stimmung statt Information",
+   "moods": [
+    "ruhig",
+    "natürlich",
+    "premium",
+    "dramatisch",
+    "warm"
+   ],
+   "file": "moonlit-petals",
+   "poster": "t=2.4",
+   "tokens": [
+    "#000000",
+    "#CFA0FF",
+    "#EDE6EA",
+    "#3E3539",
+    "#2F2A2C"
+   ],
+   "technik": [
+    "Backen und Komponieren: Krone, unscharfe Ebene, Dolden, Halo und Hintergrund einmal in Offscreen-Canvases, pro Frame nur drawImage (11.000 Blüten bei 60 fps)",
+    "Seeded Zufall (mulberry32): gleiche Seed = gleiche Szene; alle Maße im Referenzraum 736x414, skaliert auf jede Größe",
+    "Licht pro Blüte als eine Zahl, Farbe über eine 65-stufige Palette (LUT); Details (Kerben, Glanz, Staubblätter) nur dort gezeichnet, wo sie sichtbar sein können",
+    "Schärfentiefe geschenkt: hintere Ebene in niedriger Auflösung gebacken und hochskaliert; Halo per wiederholtem Halbieren; Glühen mit globalCompositeOperation lighter",
+    "Hover: Federgitter -> Textur -> kleiner WebGL-Shader verzieht das gebackene Bild (Nachbarn bewegen sich zusammen); Dolden an gedämpften Federn, die überschwingen",
+    "Tiefenebenen für Blütenblätter (Größe, Deckkraft, Fallrate aus z), seltenes Nah-Bokeh, Korn als verschobene Kachel, Vignette, reduced-motion, DPR-Grenze"
+   ],
+   "uebertragen": "Wenn Stimmung die Botschaft ist: ein Motiv, ein Licht, eine Farbe auf Schwarz. Die Technik (backen, Federn, Tiefenebenen) trägt auch Gras, Schnee, Glühwürmchen, Laub. Abstimmwerte in einem Objekt halten.",
+   "quelle": "Nutzer-Referenz (Framer-Komponente Moonlit Petals von Originkit), hier als Vanilla-Canvas ohne React portiert. Lizenz der Quelle klären, bevor etwas daraus in ein Kundenprojekt geht."
+  },
+  {
+   "id": "vinyl-supernova",
+   "kind": "world",
+   "name": "Vinyl Supernova: Partikel-Zeitleiste",
+   "cost": 3,
+   "desc": "36.000 Partikel formen eine Schallplatte, zerfallen in einen Wirbel, werden zur Wolke und bauen sich magnetisch wieder auf. Eine Zeitleiste, sechs Regler, Bloom, Spuren, Korn.",
+   "use": "Musik, Audio, Medien, Produkt-Teaser; Loop als Hero oder Übergang für alles, was zerfallen und wiederkehren soll",
+   "moods": [
+    "dramatisch",
+    "futuristisch",
+    "energetisch",
+    "technisch"
+   ],
+   "file": "vinyl-supernova",
+   "poster": "t=-0.7",
+   "tokens": [
+    "#020203",
+    "#d8dbe2",
+    "#e0305a",
+    "#3b3d45"
+   ],
+   "technik": [
+    "Eine Schleifen-Zeitleiste: Scheibe (0–.24) · Zerfall (.24–.45) · Wolke (.45–.61) · Rückbau (.61–.91); disperse = burst × (1 − reform) mit smoothstep",
+    "Jedes Partikel ist eine reine Funktion von Index-Hashes (Goldener Schnitt) und Zeit, im Vertex-Shader: keine CPU-Schleife, keine Datentextur, 30.000+ Partikel",
+    "Form aus Physik gebaut: sqrt-Verteilung für eine gleichmäßige Scheibe, Rillen als Sinus, reflektierende Bänder, Lichtkeile, rotes Label mit Ring, Spindel",
+    "Zerfall: Richtung gleichverteilt auf der Kugel, Weg pro Partikel ungleich (pow), Wirbel dreht die Richtung mit dem Zerfall, Turbulenz aus Hashes und Phase",
+    "Identität bleibt: Label-Partikel bleiben rot, der Rest wird silbrig; Funkeln über pow(sin, 12)",
+    "Nachbearbeitung: Bloom (niedrig), eigener Afterimage-Pass für Spuren, Abschlusspass für Kontrast, Vignette, Korn; Kamera zieht beim Zerfall zurück"
+   ],
+   "uebertragen": "Eine Form, ein Zerfall, eine Rückkehr: Logo, Produkt oder Instrument statt Platte. Immer als Funktion von (Index, Zeit) denken, nicht als Zustand pro Partikel. Three.js lokal einbetten, nie per CDN.",
+   "quelle": "Nutzer-Referenz (Particles Swarm Export, three.js r160 über CDN), hier auf three r147 offline portiert; Choreografie und Zahlenwerte aus dem Original, Umsetzung im Vertex-Shader."
+  }
+ ]
+}

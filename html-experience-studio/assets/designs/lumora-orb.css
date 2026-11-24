@@ -1,0 +1,25 @@
+/* design: lumora-orb · black, living liquid orb with orbit rings, huge tight caps top left, short column bottom right */
+[data-design=lumora-orb] body::before{background:radial-gradient(40% 40% at 50% 56%,rgba(47,216,255,.12),transparent 70%)}
+[data-design=lumora-orb] .stage{place-items:stretch}
+[data-design=lumora-orb] .inner{max-width:none;height:100svh;display:grid;padding:clamp(80px,11vh,120px) clamp(24px,4vw,64px) clamp(56px,8vh,90px) clamp(24px,13vw,190px)}
+[data-design=lumora-orb] .inner>*,[data-design=lumora-orb] .stage[data-type=hero] .p-hero{max-width:none!important}
+[data-design=lumora-orb] .p-hero,[data-design=lumora-orb] .p-statement,[data-design=lumora-orb] .p-split,[data-design=lumora-orb] .p-stats,[data-design=lumora-orb] .p-cards{display:grid;grid-template-rows:auto 1fr auto;height:100%}
+[data-design=lumora-orb] .t{font-weight:700;text-transform:uppercase;letter-spacing:-.045em;line-height:.92;max-width:11em}
+[data-design=lumora-orb] .t-xl,[data-design=lumora-orb] .t-l{font-size:clamp(2.6rem,4.6vw,4.6rem)}
+[data-design=lumora-orb] .acc{color:var(--text)}
+[data-design=lumora-orb] .kicker{display:none}
+/* the copy that is not the title goes to the bottom-right column */
+[data-design=lumora-orb] .lead,[data-design=lumora-orb] .bul,[data-design=lumora-orb] .btn,[data-design=lumora-orb] .stats,[data-design=lumora-orb] .cards{justify-self:end;align-self:end;max-width:300px;grid-row:3}
+[data-design=lumora-orb] .lead{font-size:13px;color:var(--muted);margin:0}
+[data-design=lumora-orb] .lead::before{content:attr(data-k);display:block}
+[data-design=lumora-orb] .btn{border-radius:2px;background:var(--accent);color:var(--on-accent);height:36px;font-size:12.5px;font-weight:600;margin-top:16px;box-shadow:0 0 30px -6px var(--accent)}
+[data-design=lumora-orb] .p-hero{grid-template-rows:auto 1fr auto auto}
+[data-design=lumora-orb] .p-hero .lead{grid-row:3}[data-design=lumora-orb] .p-hero .btn{grid-row:4}
+[data-design=lumora-orb] .stat,[data-design=lumora-orb] .card{border-color:var(--line)!important}
+[data-design=lumora-orb] .num{font-weight:700;font-size:clamp(1.6rem,2.4vw,2.2rem)}
+/* chrome: counter 001/005 on the left, social links bottom left */
+[data-design=lumora-orb] .hud-count{position:fixed;left:24px;top:110px;font:600 12px var(--font-b);color:var(--text);padding:0}
+[data-design=lumora-orb] .hud-l b{font-size:20px;font-weight:700;letter-spacing:-.03em}
+[data-design=lumora-orb] .rail{left:24px;right:auto;top:136px;bottom:auto}
+[data-design=lumora-orb] .rail button.on{background:var(--accent);width:6px}
+[data-design=lumora-orb] .hint-bar{left:24px;transform:none;bottom:28px;flex-direction:column;align-items:flex-start;gap:6px;text-transform:uppercase;font-size:11px}

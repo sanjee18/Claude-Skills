@@ -1,0 +1,14 @@
+/* design: bloom-garden · warm rosé, light-point flower, serif titles with italic accent */
+[data-design=bloom-garden]{--r:999px}
+[data-design=bloom-garden] body::before{background:radial-gradient(55% 55% at 68% 45%,rgba(217,87,127,.12),transparent 70%),radial-gradient(40% 40% at 15% 90%,rgba(232,163,61,.1),transparent 70%)}
+[data-design=bloom-garden] .t{font-weight:400;letter-spacing:-.015em;line-height:1}
+[data-design=bloom-garden] .t-xl{font-size:clamp(3rem,7vw,6.6rem)}
+[data-design=bloom-garden] .acc{color:var(--accent);font-style:italic}
+[data-design=bloom-garden] .kicker{color:var(--accent);letter-spacing:.12em}
+[data-design=bloom-garden] .kicker::before{width:6px;height:6px;border-radius:50%;background:var(--accent2);opacity:1}
+[data-design=bloom-garden] .btn{background:var(--accent);color:#fff}
+[data-design=bloom-garden] .num,[data-design=bloom-garden] .big-num{font-family:var(--font-d);font-weight:400}
+[data-design=bloom-garden] .num .pre,[data-design=bloom-garden] .num .suf{color:var(--accent);font-style:italic}
+[data-design=bloom-garden] .card h3{font:400 1.5rem/1.1 var(--font-d)}
+[data-design=bloom-garden] .p-quote blockquote{font-family:var(--font-d);font-style:italic}
+[data-design=bloom-garden] .rail button.on{background:var(--accent)}

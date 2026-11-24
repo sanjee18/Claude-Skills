@@ -1,0 +1,1542 @@
+{
+  "_doc": "Design-Themes = komplette Designsprache eines Decks. Brief: theme.design = id. Setzt Tokens, Schriften, Bauteil-Stil (CSS assets/designs/<id>.css), Standard-Bewegung (motion) und Regeln. Alles, was der Brief explizit setzt, gewinnt. Doku: references/design-themes.md",
+  "designs": [
+    {
+      "id": "keynote-glass",
+      "name": "Keynote Glass",
+      "tagline": "Hell, Blau-Dunst, Milchglas – Produkt-Launch wie auf der Bühne.",
+      "desc": "Weiße Bühne mit blauem Dunst, darin ein schwebendes Objekt aus feinen Blau-Partikeln, das sich pro Seite verwandelt (Kugel, Ring, die Kennzahl, Galaxie). Große ruhige Inter-Titel mit Verlaufs-Akzent, Milchglas-Pillen, Bewegung mit Unschärfe.",
+      "use": "Produkt-Launch, Feature-Vorstellung, Software, Pitch an Management",
+      "moods": [
+        "premium",
+        "ruhig",
+        "futuristisch"
+      ],
+      "tone": "light",
+      "tokens": {
+        "bg": "#fdfdfb",
+        "surface": "#ffffff",
+        "text": "#0f1b33",
+        "muted": "#5b6b86",
+        "line": "rgba(15,27,51,.08)",
+        "accent": "#2f6bff",
+        "accent2": "#3cc8f0",
+        "onAccent": "#ffffff"
+      },
+      "fonts": {
+        "d": "'Inter','Segoe UI',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'Inter',system-ui,sans-serif",
+        "wd": 600
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "blur-words",
+        "calm": "fade-blur",
+        "chapter": "zoom-through",
+        "wow": "portal-dive",
+        "bg": "none",
+        "fx": [
+          "glass"
+        ],
+        "hub": "orbit",
+        "tempo": "ruhig, 900–1100 ms, jede Bewegung mit Bewegungsunschärfe"
+      },
+      "rules": {
+        "layout": "Viel Weißraum, zentrierte Hero-Lockups erlaubt, Inhalt in schwebenden Glasfenstern (Radius groß).",
+        "type": "Inter 600, Tracking -0.035em, Titel max. 2 Zeilen; Kicker als kleine Pille in Eisblau.",
+        "components": "Milchglas-Karten (weiß 70 %, Blur 24 px, 1 px Rand, weicher blauer Schatten), Pillen-Buttons in Kräftigblau, Zahlen in Navy.",
+        "imagery": "Produkt-Screens im Browser-/Geräterahmen, helle freigestellte Objekte, keine Stockfotos.",
+        "signature": "Ein schwebendes Partikel-Objekt in Blau verwandelt sich Seite für Seite; ein Portal-Flug in die Produktwelt."
+      },
+      "banned": [
+        "Lila, Magenta, Orange",
+        "harte Schwarz-Flächen",
+        "Glow auf Text",
+        "Glitch und harte Schnitte",
+        "mehr als ein Akzent pro Seite"
+      ],
+      "prompt": "Richtung: Apple-Keynote-Gefühl. Hell (#FDFDFB), Navy-Text (#0F1B33), ein Kräftigblau (#2F6BFF) und Eisblau (#3CC8F0), blauer Dunst am unteren Rand. Schrift: Inter 600 für Titel, 400 für Text. Bauteile: Milchglas-Karten mit großem Radius und weichem blauem Schatten, Pillen-Buttons. Bewegung: jede Bewegung startet schon in Fahrt (starkes Ease-out) und trägt Unschärfe, die der Geschwindigkeit folgt; Übergänge ruhig fade-blur, Kapitel zoom-through, ein Wow portal-dive. Verboten: Lila/Orange, Glow auf Text, Glitch, harte Schnitte, mehr als ein Akzent pro Seite.",
+      "scene": {
+        "kind": "particles",
+        "blend": "normal",
+        "density": 0.8,
+        "size": 0.85,
+        "spin": 0.05,
+        "alpha": 0.55,
+        "shots": [
+          {
+            "shape": "sphere",
+            "cam": {
+              "az": 0,
+              "el": 14,
+              "dist": 3.4,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "ring",
+            "cam": {
+              "az": -25,
+              "el": 22,
+              "dist": 3.9,
+              "x": 0.32
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "dist": 3.4,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "galaxy",
+            "cam": {
+              "az": 20,
+              "el": 48,
+              "dist": 3.2,
+              "x": 0.32
+            }
+          },
+          {
+            "shape": "helix",
+            "cam": {
+              "az": 50,
+              "el": 12,
+              "dist": 3.7,
+              "x": 0.34
+            }
+          }
+        ],
+        "noise": 0.4
+      }
+    },
+    {
+      "id": "product-mono",
+      "name": "Product UI Mono",
+      "tagline": "Warmes Grau, Schwarz-Weiß-UI, Federn statt Glow.",
+      "desc": "Warm-graue Bühne, auf der ein einziges UI-Element die Story erzählt: Ein Cursor klickt es an, und es verwandelt sich mit Federn in den nächsten Zustand (Button, Loader, Toggle, Chart, Island, die Kennzahl). Geist-Schrift, harte 1-px-Kanten, keine Effekte.",
+      "use": "SaaS, App, Developer-Tool, UX-Konzept, Produkt-Demo",
+      "moods": [
+        "minimal",
+        "technisch",
+        "seriös"
+      ],
+      "tone": "light",
+      "tokens": {
+        "bg": "#ecebe7",
+        "surface": "#ffffff",
+        "text": "#111111",
+        "muted": "#6b6a66",
+        "line": "rgba(17,17,17,.12)",
+        "accent": "#111111",
+        "accent2": "#ff5b1f",
+        "onAccent": "#ffffff"
+      },
+      "fonts": {
+        "d": "'Geist','Inter',system-ui,sans-serif",
+        "b": "'Geist','Inter',system-ui,sans-serif",
+        "m": "'Geist Mono',ui-monospace,monospace",
+        "wd": 600
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "rise",
+        "calm": "slide",
+        "chapter": "card-stack",
+        "wow": "flip",
+        "bg": "none",
+        "fx": [],
+        "hub": "radial",
+        "tempo": "zügig, 500–800 ms, Federn mit höchstens kleinem Überschwingen"
+      },
+      "rules": {
+        "layout": "Strenges 12er-Raster, linksbündig, UI-Komponenten als Bühne (Karten wie App-Fenster).",
+        "type": "Geist 600 für Titel, Tracking -0.04em; Labels in Geist Mono, klein, keine Versalien-Orgie.",
+        "components": "Weiße Karten mit 1 px Rand und 12 px Radius, schwarze Buttons, ein einziger Signal-Akzent (Orange) für Status.",
+        "imagery": "Echte UI-Zustände (Button, Toggle, Tabs, Chart, ⌘K) statt Fotos.",
+        "signature": "Ein Objekt, nie geschnitten: Jede Seite ist ein neuer Zustand desselben UI-Elements, ausgelöst von einem Cursor-Klick."
+      },
+      "banned": [
+        "Glows",
+        "Verläufe auf UI-Flächen",
+        "Partikel-Bursts",
+        "federnde Übertreibung",
+        "Icon-Kacheln mit Farbfüllung",
+        "Leerlauf ohne Bewegung"
+      ],
+      "prompt": "Richtung: Dribbble-Niveau Produkt-UI-Motion. Warmes Grau (#ECEBE7), schwarze und weiße Bauteile, ein Signal-Orange (#FF5B1F) nur für Status. Schrift: Geist (600 Titel, 400 Text), Labels in Geist Mono. Bauteile: weiße Karten mit 1-px-Kante und 12 px Radius, schwarze Buttons. Bewegung: Federn mit höchstens kleinem Überschwingen, ein Objekt verwandelt sich statt zu schneiden; Übergänge slide / card-stack / flip. Verboten: Glows, Verläufe auf UI, Partikel, federnde Übertreibung, Icon-Kacheln, Leerlauf.",
+      "scene": {
+        "kind": "morph-ui",
+        "states": [
+          "button",
+          "loader",
+          "toggle",
+          "chart",
+          "island"
+        ]
+      }
+    },
+    {
+      "id": "particle-tech",
+      "name": "Particle Tech",
+      "tagline": "Schwarze Bühne, eine lebende Partikel-Skulptur, Mono-UI darüber – Forschungslabor-Keynote.",
+      "desc": "Eine GPU-Partikelwolke ist der Hauptdarsteller und bleibt über alle Seiten stehen: Ring-Skulptur, Galaxie, Doppelhelix, die Kennzahl selbst aus Partikeln. Jede Seite ist eine neue Form und eine neue Kamera, der Cursor wirbelt die Wolke auf. Darüber nur eine dünne Mono-Schicht: Marke, Chips, runder Zähler, schmale Textspalte.",
+      "use": "KI, Deep Tech, Forschung, Vision-Keynote, Produktname mit Wucht",
+      "moods": [
+        "futuristisch",
+        "dramatisch",
+        "energetisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#000000",
+        "surface": "#0a0a0a",
+        "text": "#dddddd",
+        "muted": "#8a8a8a",
+        "line": "#2a2a2a",
+        "accent": "#aa88ff",
+        "accent2": "#ffd28a",
+        "onAccent": "#0b0718"
+      },
+      "fonts": {
+        "d": "'Unbounded','Inter',system-ui,sans-serif",
+        "b": "'JetBrains Mono',ui-monospace,monospace",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 400
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "scramble",
+        "calm": "fade-blur",
+        "chapter": "zoom-through",
+        "wow": "warp-tunnel",
+        "bg": "none",
+        "fx": [
+          "grain"
+        ],
+        "hub": "constellation",
+        "tempo": "die Szene trägt die Bewegung: Formen fließen 2,2 s ineinander, Seiten blenden nur weich; Cursor wirbelt, Wolke heilt in ~2 s"
+      },
+      "rules": {
+        "layout": "Szene füllt den Bildschirm, Objekt rechts der Mitte; links eine schmale Spalte (max. 420 px). Hero: riesiger Titel unten links über der Wolke. Keine Kartenraster.",
+        "type": "Unbounded nur für Hero und Kennzahlen; alles andere JetBrains Mono, Versalien, 13 px, Zeilenhöhe 1.35; Überschriften der Spalte in Lavendel.",
+        "components": "Chips (#1c1c1c, 11 px), runder Seitenzähler oben rechts, Marke mit Kreis-Stern-Zeichen, Listen statt Karten (Haarlinie oben), Text mit plus-lighter über den Partikeln.",
+        "imagery": "Keine Fotos – die Partikel-Szene ist das Bild. Videos nur als kleine Thumbnails in der Spalte.",
+        "signature": "Die Kennzahl der Seite formt sich aus der Partikelwolke; jede Form entsteht aus der vorigen."
+      },
+      "banned": [
+        "helle Flächen",
+        "Kartenraster und Icon-Kacheln",
+        "Serifen",
+        "mehr als eine Akzentfarbe",
+        "Text ohne Bezug zur Szene",
+        "harte Schnitte zwischen Formen"
+      ],
+      "prompt": "Richtung: Forschungslabor-Keynote. Reines Schwarz, Text #DDDDDD, ein Lavendel (#AA88FF) für Überschriften und seltene Leuchtpunkte. Eine GPU-Partikelwolke ist der Hauptdarsteller und bleibt über alle Seiten bestehen: jede Seite ist ein Shot mit eigener Form (Ring-Skulptur, Galaxie, Doppelhelix, die Kennzahl als Partikel-Typo) und eigener Kamera; Formen fließen mit Curl-Noise ineinander, der Cursor wirbelt die Wolke auf, sie heilt in ~2 s. UI als dünne Schicht: Marke oben links, runder Zähler oben rechts, Chips, schmale Mono-Spalte (Versalien, 13 px), Text mit plus-lighter. Unbounded nur für Hero-Titel und Zahlen. Verboten: helle Flächen, Kartenraster, Icon-Kacheln, Serifen, harte Schnitte.",
+      "scene": {
+        "kind": "particles",
+        "blend": "add",
+        "density": 1,
+        "size": 1,
+        "spin": 0.05,
+        "shots": [
+          {
+            "shape": "ring",
+            "cam": {
+              "az": -20,
+              "el": 18,
+              "dist": 4.1,
+              "x": 0.3,
+              "y": 0.02
+            }
+          },
+          {
+            "shape": "galaxy",
+            "cam": {
+              "az": 30,
+              "el": 38,
+              "dist": 3.0,
+              "x": 0.34
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "el": 4,
+              "dist": 3.4,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "helix",
+            "cam": {
+              "az": 60,
+              "el": 12,
+              "dist": 3.7,
+              "x": 0.36
+            }
+          },
+          {
+            "shape": "brain",
+            "cam": {
+              "az": -40,
+              "el": 14,
+              "dist": 2.9,
+              "x": 0.32
+            }
+          },
+          {
+            "shape": "sphere",
+            "cam": {
+              "az": 10,
+              "el": 20,
+              "dist": 3.6,
+              "x": 0.34
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "editorial-archive",
+      "name": "Editorial Archive",
+      "tagline": "Papier-Creme, Serife, Regal-Rhythmus – wie ein Kulturmagazin.",
+      "desc": "Warmes Papier, auf dem riesige kursive Serifen-Ziffern und Wörter als Outline-Kulisse stehen und pro Seite wie ein umgeblättertes Blatt aus der Maske rollen. Schwarze Instrument-Serif-Titel, Haarlinien, Mono-Nummern, ein Rot.",
+      "use": "Kultur, Verlag, Marke mit Geschichte, Jahresbericht, Strategie-Erzählung",
+      "moods": [
+        "editorial",
+        "warm",
+        "seriös"
+      ],
+      "tone": "light",
+      "tokens": {
+        "bg": "#f2ece1",
+        "surface": "#faf6ee",
+        "text": "#1b1712",
+        "muted": "#6d6458",
+        "line": "rgba(27,23,18,.16)",
+        "accent": "#b3261e",
+        "accent2": "#1d3c6e",
+        "onAccent": "#faf6ee"
+      },
+      "fonts": {
+        "d": "'Instrument Serif',Georgia,serif",
+        "b": "'Inter Tight','Inter',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 400
+      },
+      "motion": {
+        "mode": "scroll",
+        "enter": "mask-words",
+        "calm": "push-parallax",
+        "chapter": "curtain-split",
+        "wow": "shatter",
+        "bg": "none",
+        "fx": [
+          "outline-cards"
+        ],
+        "hub": "radial",
+        "tempo": "gemessen, wie Umblättern, 900–1100 ms"
+      },
+      "rules": {
+        "layout": "Magazin-Raster mit Haarlinien, Spaltennummern, viel Papier, Bilder wie Regalreihen nebeneinander.",
+        "type": "Instrument Serif 400 groß für Titel, Inter Tight für Text, Mono-Nummern (No. 01) und Seitenangaben.",
+        "components": "Karten ohne Fläche, nur Haarlinie oben; Buttons als unterstrichener Text mit Pfeil; Zitate groß und kursiv.",
+        "imagery": "Buchrücken, Objekte, Archivfotos, Scans; warm und körnig.",
+        "signature": "Riesige Outline-Serife im Hintergrund (Kapitelnummer oder Kennzahl), die pro Seite aus der Maske rollt."
+      },
+      "banned": [
+        "Glas-Effekte",
+        "Neon",
+        "Glows",
+        "runde Kacheln",
+        "Partikel"
+      ],
+      "prompt": "Richtung: Kulturmagazin. Papier-Creme (#F2ECE1), Druckschwarz (#1B1712), ein Signalrot (#B3261E). Schrift: Instrument Serif für große Titel und kursive Zitate, Inter Tight für Text, Mono für Nummern (No. 01). Bauteile: Haarlinien statt Flächen, Text-Buttons mit Pfeil, Bilder in Regalreihen. Bewegung: gemessen wie Umblättern, Wörter steigen aus Masken, ruhig push-parallax, Kapitel curtain-split. Verboten: Glas, Neon, Glows, runde Kacheln, Partikel.",
+      "scene": {
+        "kind": "type",
+        "words": []
+      }
+    },
+    {
+      "id": "swiss-logistics",
+      "name": "Swiss Logistics",
+      "tagline": "Weiß, schmale fette Riesentypo, Raster und Routen.",
+      "desc": "Reinweiß, ein gepunkteter 3D-Globus mit roten Routenbögen dreht sich rechts, links riesige schmale Versalien. Die Kamera fliegt näher an Häfen, die Punkte werden zur Kennzahl, zum Wellenfeld, zum Container-Gitter.",
+      "use": "Logistik, Industrie, Mobilität, Infrastruktur, Operations-Excellence",
+      "moods": [
+        "energetisch",
+        "technisch",
+        "minimal"
+      ],
+      "tone": "light",
+      "tokens": {
+        "bg": "#ffffff",
+        "surface": "#f4f4f2",
+        "text": "#0b0b0b",
+        "muted": "#5c5c5c",
+        "line": "rgba(11,11,11,.14)",
+        "accent": "#e3262e",
+        "accent2": "#0b0b0b",
+        "onAccent": "#ffffff"
+      },
+      "fonts": {
+        "d": "'Barlow Condensed','Inter',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 800
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "line-rise",
+        "calm": "slide",
+        "chapter": "wipe-diagonal",
+        "wow": "shutter",
+        "bg": "none",
+        "fx": [],
+        "hub": "radial",
+        "tempo": "zackig, 500–750 ms, klare Richtungen"
+      },
+      "rules": {
+        "layout": "Schweizer Raster, Titel füllen die Breite, Zahlen riesig, Informationen in Spalten mit Linien.",
+        "type": "Barlow Condensed 800 Versalien, Zeilenabstand 0.9; Inter für Text; Mono für Koordinaten und Codes.",
+        "components": "Eckige Kästen ohne Radius, schwarze Balken-Buttons, rote Markierungen, Tabellen statt Karten.",
+        "imagery": "Karten, Routen, Drahtgitter-Globus, Container, Luftbilder in Schwarzweiß.",
+        "signature": "Gepunkteter Globus mit roten Routen; die Punkte ordnen sich zur riesigen Kennzahl."
+      },
+      "banned": [
+        "Radien über 4 px",
+        "Verläufe",
+        "Glas",
+        "Serifen",
+        "verspielte Federn"
+      ],
+      "prompt": "Richtung: Schweizer Typografie für Logistik. Reinweiß, Schwarz, ein Signalrot (#E3262E). Schrift: Barlow Condensed 800 in Versalien, riesig und eng (Zeilenabstand .9), Inter für Text, Mono für Codes. Bauteile: eckige Kästen ohne Radius, schwarze Balken-Buttons, rote Markierungen, Linien-Tabellen. Bewegung: zackig und gerichtet, Zeilen steigen auf, ruhig slide, Kapitel wipe-diagonal, Wow shutter. Verboten: Radien über 4 px, Verläufe, Glas, Serifen, Federn.",
+      "scene": {
+        "kind": "particles",
+        "blend": "normal",
+        "density": 0.9,
+        "size": 1.0,
+        "spin": 0.07,
+        "shots": [
+          {
+            "shape": "globe",
+            "cam": {
+              "az": 0,
+              "el": 12,
+              "dist": 3.9,
+              "x": 0.38
+            }
+          },
+          {
+            "shape": "globe",
+            "cam": {
+              "az": 140,
+              "el": 28,
+              "dist": 3.0,
+              "x": 0.44,
+              "y": -0.04
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "dist": 3.3,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "wave",
+            "cam": {
+              "az": 20,
+              "el": 34,
+              "dist": 4.2,
+              "x": 0.36,
+              "y": -0.08
+            }
+          },
+          {
+            "shape": "lattice",
+            "cam": {
+              "az": 30,
+              "el": 22,
+              "dist": 3.7,
+              "x": 0.34
+            }
+          }
+        ],
+        "noise": 0.3,
+        "route": "accent"
+      }
+    },
+    {
+      "id": "data-transfer",
+      "name": "Data Transfer",
+      "tagline": "Navy und Cyan, Datenfeld, Warp-Tunnel – Systeme, die zusammenlaufen.",
+      "desc": "Nachtblaue Welt, in der Cyan-Partikel das System bilden: Datentunnel, Globus mit Routen, die Kennzahl als Partikel-Typo, Gitter-Architektur. Inter Tight mit Mono-HUD, Glas mit Eck-Markern, Datentransfer-Warp als großer Moment.",
+      "use": "Automotive / SDV, Plattform, IT-Architektur, Daten-Strategie, Transformation",
+      "moods": [
+        "technisch",
+        "futuristisch",
+        "premium"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#040a16",
+        "surface": "#0a1426",
+        "text": "#eaf2ff",
+        "muted": "#8aa0c2",
+        "line": "rgba(111,210,255,.12)",
+        "accent": "#6fd2ff",
+        "accent2": "#2e9be0",
+        "onAccent": "#03121f"
+      },
+      "fonts": {
+        "d": "'Inter Tight','Inter',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 500
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "rise",
+        "calm": "fade-blur",
+        "chapter": "data-converge",
+        "wow": "warp-tunnel",
+        "bg": "none",
+        "bgIntensity": 0.9,
+        "fx": [
+          "glass",
+          "grain"
+        ],
+        "hub": "gear",
+        "tempo": "ruhig mit einem großen Moment: 900 ms innen, 2,3 s Warp"
+      },
+      "rules": {
+        "layout": "Linksbündige Textspalte, rechts das Kernobjekt (Hub, Ring, Fahrzeug); HUD-Labels in den Ecken.",
+        "type": "Inter Tight 500, Tracking -0.03em; HUD und Kicker in JetBrains Mono, Versalien, 11 px.",
+        "components": "Glasflächen mit Cyan-Haarlinie und Eck-Markern, Kennzahlen in Cyan, Zahnrad-Hub als Navigation.",
+        "imagery": "Fahrzeug-/System-Renderings, Röntgen- und Drahtgitter-Ansichten, UI-Screens im Cockpit.",
+        "signature": "Die Partikel fließen vom Datentunnel in den Globus, in die Kennzahl, ins Architektur-Gitter; ein Warp-Tunnel als Kapitelsprung."
+      },
+      "banned": [
+        "Warm-Töne",
+        "Serifen",
+        "Stockfotos von Menschen am Laptop",
+        "mehr als ein Warp pro Deck"
+      ],
+      "prompt": "Richtung: Datentransfer im System. Nachtblau (#040A16), Cyan (#6FD2FF) und Stahlblau (#2E9BE0). Schrift: Inter Tight 500, HUD und Kicker in JetBrains Mono (Versalien, 11 px). Bauteile: Glasflächen mit Cyan-Haarlinie und Eck-Markern, Zahnrad-Hub, Kennzahlen in Cyan. Bewegung: lebendes Datenfeld im Hintergrund, das dem Kernobjekt folgt; innen fade-blur, Kapitel data-converge, ein warp-tunnel als großer Moment. Verboten: Warm-Töne, Serifen, Stockfotos, mehr als ein Warp.",
+      "scene": {
+        "kind": "particles",
+        "blend": "add",
+        "density": 1,
+        "size": 0.9,
+        "spin": 0.04,
+        "shots": [
+          {
+            "shape": "tunnel",
+            "cam": {
+              "az": 0,
+              "el": 2,
+              "dist": 3.4,
+              "x": 0.22
+            }
+          },
+          {
+            "shape": "globe",
+            "cam": {
+              "az": -30,
+              "el": 16,
+              "dist": 3.3,
+              "x": 0.32
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "dist": 3.4,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "lattice",
+            "cam": {
+              "az": 35,
+              "el": 24,
+              "dist": 3.8,
+              "x": 0.34
+            }
+          },
+          {
+            "shape": "sphere",
+            "cam": {
+              "az": 0,
+              "el": 18,
+              "dist": 3.5,
+              "x": 0.32
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "nova-iris",
+      "name": "Nova Iris",
+      "tagline": "Eine Iris aus Lichtfasern sieht dich an – und löst sich in fließende Glasfasern auf.",
+      "desc": "Tiefes Nachtblau, im Zentrum eine Iris aus Tausenden kobaltblauen Fasern mit einem Kranz weißer Speichen; beim Weiterblättern fließen die Fasern zu Glasfaser-Strängen mit leuchtenden Perlen an den Spitzen. Schmale Versalien mit kursiven Serifen-Wörtern, (A)/(B)-Labels, Ghost-Buttons.",
+      "use": "KI-Produkt, Vision, Wahrnehmung/Computer Vision, Launch",
+      "moods": [
+        "futuristisch",
+        "premium",
+        "dramatisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#03050d",
+        "surface": "#0a0f24",
+        "text": "#eef1ff",
+        "muted": "#7f89b4",
+        "line": "rgba(120,140,255,.16)",
+        "accent": "#3d6bff",
+        "accent2": "#ffffff",
+        "onAccent": "#ffffff"
+      },
+      "fonts": {
+        "d": "'Barlow Condensed','Inter',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 500
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "line-rise",
+        "calm": "fade-blur",
+        "chapter": "zoom-through",
+        "wow": "portal-dive",
+        "bg": "none",
+        "fx": [
+          "grain",
+          "vignette"
+        ],
+        "hub": "radial",
+        "tempo": "ruhig und schwebend; die Iris pulsiert, Fasern fließen 2 s"
+      },
+      "scene": {
+        "kind": "particles",
+        "blend": "add",
+        "base": "accent",
+        "density": 1,
+        "size": 0.85,
+        "spin": 0.0,
+        "noise": 0.5,
+        "shots": [
+          {
+            "shape": "iris",
+            "cam": {
+              "az": 0,
+              "el": 0,
+              "dist": 3.0,
+              "x": 0.3
+            },
+            "lock": true
+          },
+          {
+            "shape": "fibers",
+            "cam": {
+              "az": -12,
+              "el": 6,
+              "dist": 2.6,
+              "x": 0.22
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "dist": 3.3,
+              "x": 0.28
+            }
+          },
+          {
+            "shape": "fibers",
+            "cam": {
+              "az": 28,
+              "el": -6,
+              "dist": 2.3,
+              "x": 0.3,
+              "y": 0.05
+            }
+          },
+          {
+            "shape": "iris",
+            "cam": {
+              "az": 0,
+              "el": 0,
+              "dist": 2.4,
+              "x": 0.3
+            },
+            "lock": true
+          }
+        ]
+      },
+      "rules": {
+        "layout": "Objekt in der Bildmitte rechts, Titel links darüber (überlappt das Objekt leicht), rechts eine kleine (A)-Spalte mit Text und Ghost-Button.",
+        "type": "Barlow Condensed 500 Versalien für Titel, einzelne Wörter kursiv in Instrument Serif; Labels (A) (B) in Mono.",
+        "components": "Ghost-Buttons mit Haarlinie, Pfeil-Rund-Knopf oben links, Mini-Navigation oben rechts mit Pfeilen.",
+        "imagery": "Keine Fotos; Licht-Fasern sind das Bild. Eigenes Video optional als media-Szene.",
+        "signature": "Die Iris aus Fasern, die sich in Glasfaser-Stränge mit Leuchtperlen verwandelt."
+      },
+      "banned": [
+        "Warm-Töne",
+        "Kartenraster",
+        "harte Schnitte",
+        "mehr als ein Blau"
+      ],
+      "prompt": "Richtung: KI, die sieht. Nachtblau (#03050D), Kobaltblau (#3D6BFF) als Licht, Weiß für einen Speichenkranz. Hauptdarsteller: eine Iris aus Tausenden blauen Licht-Fasern mit weißem Speichenkranz, die sich beim Weiterblättern in fließende Glasfaser-Stränge mit leuchtenden Perlen an den Spitzen auflöst. Typo: schmale Versalien (Barlow Condensed), einzelne Wörter kursiv als Serife (LEARN *to see* BRILLIANTLY). (A)/(B)-Labels in Mono, Ghost-Buttons. Bewegung ruhig und schwebend. Verboten: Warm-Töne, Kartenraster, harte Schnitte."
+    },
+    {
+      "id": "velvion-health",
+      "name": "Velvion Health",
+      "tagline": "Glühende DNA hinter einem Glas-Dashboard – Gesundheitsdaten als Kino.",
+      "desc": "Warmes Dunkel, eine glühende, funkelnde DNA-Helix als Bühne (Partikel oder eigenes Video), davor ein Glas-Dashboard: eine große Kennzahl im dunklen Kreis, Widget-Karten mit farbigen Verlaufsbildern, Pillen-Buttons, persönliche Begrüßung oben rechts.",
+      "use": "Health, Longevity, Biotech, persönliche Datenprodukte, Dashboards zum Zeigen",
+      "moods": [
+        "premium",
+        "warm",
+        "dramatisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#0c0706",
+        "surface": "rgba(30,22,20,.6)",
+        "text": "#fff3ea",
+        "muted": "#b49a8a",
+        "line": "rgba(255,200,160,.14)",
+        "accent": "#ff8a3d",
+        "accent2": "#ffe0b5",
+        "onAccent": "#1a0b04"
+      },
+      "fonts": {
+        "d": "'Inter Tight','Inter',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 600
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "rise",
+        "calm": "fade-blur",
+        "chapter": "lens-sweep",
+        "wow": "zoom-through",
+        "bg": "none",
+        "fx": [
+          "glass",
+          "grain"
+        ],
+        "hub": "orbit",
+        "tempo": "ruhig, die DNA funkelt und dreht sich langsam, Zahlen zählen"
+      },
+      "scene": {
+        "kind": "particles",
+        "blend": "add",
+        "base": "accent",
+        "density": 1,
+        "size": 1.0,
+        "spin": 0.06,
+        "noise": 0.6,
+        "shots": [
+          {
+            "shape": "helix",
+            "cam": {
+              "az": 20,
+              "el": 18,
+              "dist": 2.7,
+              "x": 0.34
+            }
+          },
+          {
+            "shape": "helix",
+            "cam": {
+              "az": 120,
+              "el": 8,
+              "dist": 1.9,
+              "x": 0.18,
+              "y": 0.05
+            }
+          },
+          {
+            "shape": "helix",
+            "cam": {
+              "az": 210,
+              "el": 30,
+              "dist": 2.6,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "brain",
+            "cam": {
+              "az": -30,
+              "el": 10,
+              "dist": 2.8,
+              "x": 0.15
+            }
+          },
+          {
+            "shape": "helix",
+            "cam": {
+              "az": 300,
+              "el": 14,
+              "dist": 2.2,
+              "x": 0.1
+            }
+          }
+        ]
+      },
+      "rules": {
+        "layout": "Bühne vollflächig; links die Begrüßung und eine große Kennzahl im dunklen Kreis, rechts eine Spalte aus Glas-Widgets.",
+        "type": "Inter Tight 600, große Zahlen 700; Labels klein und hell.",
+        "components": "Glas-Widgets (Blur 24 px) mit Verlaufsbild-Karten (Koralle, Mint, Pfirsich), Pillen-Chips mit Plus, Kennzahl im Kreis.",
+        "imagery": "DNA-/Zell-Video oder -Render als media-Szene (scene: {kind:'media', src:'dna.mp4'}); sonst die Partikel-Helix.",
+        "signature": "Glühende DNA hinter dem Glas-Dashboard, die Kennzahl im dunklen Kreis."
+      },
+      "banned": [
+        "kaltes Blau",
+        "harte Kanten",
+        "Kartenraster ohne Glas",
+        "Stockfotos von Ärzten"
+      ],
+      "prompt": "Richtung: Gesundheitsdaten als Kino. Warmes Dunkel (#0C0706), glühendes Orange (#FF8A3D) und Pfirsich. Bühne: eine funkelnde DNA-Helix (eigenes Video als media-Szene oder Partikel). Davor ein Glas-Dashboard: Begrüßung, eine riesige Kennzahl im dunklen Kreis, Widget-Karten mit Verlaufsbildern (Koralle, Mint, Pfirsich), Pillen-Chips. Inter Tight. Bewegung ruhig, Zahlen zählen. Verboten: kaltes Blau, harte Kanten, Stockfotos."
+    },
+    {
+      "id": "anchor-field",
+      "name": "Anchor Field",
+      "tagline": "Partikel bauen einen Glas-Würfel, dann einen Baum – über einem Feld aus Wellenringen.",
+      "desc": "Tiefviolettes Dunkel, über dem Boden konzentrische Wellenringe; darüber formen blaue Partikel einen gläsernen Würfel, einen Baum aus Daten, eine Kugel. Leichte große Inter-Tight-Titel, Navigation als zentrierte Pille, blauer Pillen-Button, schwebende Logo-Chips.",
+      "use": "Enterprise-KI, Versicherung, Finanzen, Plattform-Launch",
+      "moods": [
+        "technisch",
+        "premium",
+        "futuristisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#05040f",
+        "surface": "rgba(20,18,44,.7)",
+        "text": "#eef0ff",
+        "muted": "#8b8db4",
+        "line": "rgba(140,150,255,.16)",
+        "accent": "#3d86ff",
+        "accent2": "#9d86ff",
+        "onAccent": "#ffffff"
+      },
+      "fonts": {
+        "d": "'Inter Tight','Inter',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 300
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "blur-words",
+        "calm": "fade-blur",
+        "chapter": "data-converge",
+        "wow": "warp-tunnel",
+        "bg": "none",
+        "fx": [
+          "grain"
+        ],
+        "hub": "constellation",
+        "tempo": "ruhig, Partikel wachsen 2 s zur neuen Form"
+      },
+      "scene": {
+        "kind": "particles",
+        "blend": "add",
+        "base": "accent",
+        "density": 1.1,
+        "size": 0.8,
+        "spin": 0.03,
+        "noise": 0.7,
+        "shots": [
+          {
+            "shape": "box+ripple",
+            "cam": {
+              "az": 25,
+              "el": 14,
+              "dist": 3.8,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "tree+ripple",
+            "mix": 0.75,
+            "cam": {
+              "az": 0,
+              "el": 8,
+              "dist": 3.0,
+              "x": 0.24
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "dist": 3.3,
+              "x": 0.28
+            }
+          },
+          {
+            "shape": "tree+ripple",
+            "mix": 0.75,
+            "cam": {
+              "az": 60,
+              "el": 22,
+              "dist": 2.6,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "sphere+ripple",
+            "cam": {
+              "az": 0,
+              "el": 12,
+              "dist": 3.2,
+              "x": 0.22
+            }
+          }
+        ]
+      },
+      "rules": {
+        "layout": "Titel oben links leicht und groß, Objekt in der Mitte über den Wellenringen, kleine Infokarte unten links.",
+        "type": "Inter Tight 300 groß, Tracking -0.03em; Labels als Pillen mit Punkt.",
+        "components": "Zentrierte Nav-Pille, blauer Pillen-Button oben rechts, Logo-Chips als dunkle Pillen, Glas-Infokarte.",
+        "imagery": "Partikel-Objekte statt Fotos; Kundenlogos als Chips.",
+        "signature": "Wellenringe am Boden, darüber wächst aus Partikeln ein Datenbaum."
+      },
+      "banned": [
+        "Warm-Töne",
+        "fette Titel",
+        "Kartenraster",
+        "harte Schnitte"
+      ],
+      "prompt": "Richtung: ruhige Enterprise-KI. Tiefviolettes Schwarz (#05040F), Blau (#3D86FF) und Violett (#9D86FF). Über dem Boden konzentrische Wellenringe aus Licht, darüber formen Partikel nacheinander einen gläsernen Würfel mit Logo, einen Datenbaum, eine Kugel. Titel groß und leicht (Inter Tight 300), zentrierte Nav-Pille, blauer Pillen-Button, Logo-Chips. Verboten: Warm-Töne, fette Titel, Kartenraster."
+    },
+    {
+      "id": "event-horizon",
+      "name": "Event Horizon",
+      "tagline": "Ein Wirbel aus Licht hängt oben im Bild, darunter zentrierte Ruhe.",
+      "desc": "Pures Schwarz mit Sternenstaub, oben angeschnitten ein riesiger Licht-Wirbel (schwarzes Loch mit hellem Innenring). Darunter zentriert: kleiner Pillen-Hinweis, zweizeiliger Titel mit Verlauf ins Grau, kurzer Text, weißer Pillen-Button.",
+      "use": "Launch, Warteliste, KI-Produkt, Vision-Seite",
+      "moods": [
+        "futuristisch",
+        "minimal",
+        "premium"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#000000",
+        "surface": "#0b0d12",
+        "text": "#f3f5f9",
+        "muted": "#8a92a3",
+        "line": "rgba(255,255,255,.1)",
+        "accent": "#7fd3ff",
+        "accent2": "#ffffff",
+        "onAccent": "#000000"
+      },
+      "fonts": {
+        "d": "'Inter Tight','Inter',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 500
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "blur-words",
+        "calm": "fade-blur",
+        "chapter": "zoom-through",
+        "wow": "warp-tunnel",
+        "bg": "stars",
+        "bgIntensity": 0.5,
+        "fx": [],
+        "hub": "orbit",
+        "tempo": "langsam, der Wirbel dreht sich stetig"
+      },
+      "scene": {
+        "kind": "particles",
+        "blend": "add",
+        "base": "accent",
+        "density": 0.75,
+        "size": 0.65,
+        "spin": 0.12,
+        "noise": 0.4,
+        "shots": [
+          {
+            "shape": "vortex",
+            "cam": {
+              "az": 0,
+              "el": 58,
+              "dist": 2.6,
+              "x": 0,
+              "y": 0.62
+            }
+          },
+          {
+            "shape": "vortex",
+            "cam": {
+              "az": 0,
+              "el": 30,
+              "dist": 2.2,
+              "x": 0,
+              "y": 0.5
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "dist": 4.6,
+              "x": 0,
+              "y": 0.6
+            }
+          },
+          {
+            "shape": "vortex",
+            "cam": {
+              "az": 0,
+              "el": 80,
+              "dist": 3.0,
+              "x": 0,
+              "y": 0.55
+            }
+          },
+          {
+            "shape": "galaxy",
+            "cam": {
+              "az": 0,
+              "el": 50,
+              "dist": 2.8,
+              "x": 0,
+              "y": 0.5
+            }
+          }
+        ]
+      },
+      "rules": {
+        "layout": "Alles zentriert; Objekt oben angeschnitten, Text im unteren Drittel.",
+        "type": "Inter Tight 500, Titel mit Verlauf von Weiß zu Grau, Text klein und grau.",
+        "components": "Pillen-Hinweis mit Punkt, weißer Pillen-Button, dünne Navigation.",
+        "imagery": "Wirbel/Schwarzes Loch als Partikel oder eigenes Video (media, mask top).",
+        "signature": "Der Licht-Wirbel oben im Bild."
+      },
+      "banned": [
+        "linksbündige Kompositionen",
+        "Farben außer Eisblau",
+        "Kartenraster"
+      ],
+      "prompt": "Richtung: Launch an der Ereignishorizont-Kante. Schwarz mit Sternenstaub, oben angeschnitten ein riesiger Licht-Wirbel mit hellem Innenring (eisblau, weiß). Alles zentriert: Pillen-Hinweis, zweizeiliger Titel mit Verlauf ins Grau, kurzer grauer Text, weißer Pillen-Button. Inter Tight. Langsame Drehung. Verboten: Linksbündigkeit, weitere Farben, Kartenraster."
+    },
+    {
+      "id": "lumora-orb",
+      "name": "Lumora Orb",
+      "tagline": "Eine leuchtende Flüssig-Kugel mit Galaxie im Inneren, umkreist von Glasblasen.",
+      "desc": "Schwarz, in der Mitte eine lebendige Flüssig-Kugel (Shader) mit wirbelndem Licht im Inneren und Cyan-Rand, umgeben von geneigten Orbit-Ringen, auf denen Glasblasen reiten. Riesige enge Versalien oben links, Seitenzähler 001/005, Social-Links unten links, rechts unten eine kurze Spalte mit Cyan-Button.",
+      "use": "3D-/Creative-Tech, Engine, Studio, Launch mit Wow",
+      "moods": [
+        "futuristisch",
+        "dramatisch",
+        "energetisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#000000",
+        "surface": "#0a0d14",
+        "text": "#ffffff",
+        "muted": "#9aa3b5",
+        "line": "rgba(255,255,255,.12)",
+        "accent": "#2fd8ff",
+        "accent2": "#1d4dff",
+        "onAccent": "#00141c"
+      },
+      "fonts": {
+        "d": "'Inter Tight','Inter',system-ui,sans-serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 700
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "rise",
+        "calm": "fade-blur",
+        "chapter": "portal-dive",
+        "wow": "warp-tunnel",
+        "bg": "stars",
+        "bgIntensity": 0.4,
+        "fx": [],
+        "hub": "orbit",
+        "tempo": "die Kugel atmet und dreht, Ringe kippen pro Seite"
+      },
+      "scene": {
+        "kind": "particles",
+        "blend": "add",
+        "density": 0.8,
+        "size": 0.9,
+        "spin": 0.06,
+        "noise": 0.25,
+        "shots": [
+          {
+            "shape": "orbit",
+            "cam": {
+              "az": 0,
+              "el": 16,
+              "dist": 4.4,
+              "x": 0,
+              "y": -0.06
+            }
+          },
+          {
+            "shape": "orbit",
+            "cam": {
+              "az": 40,
+              "el": 34,
+              "dist": 3.4,
+              "x": 0.24,
+              "y": -0.04
+            }
+          },
+          {
+            "shape": "orbit",
+            "cam": {
+              "az": 0,
+              "el": 6,
+              "dist": 4.2,
+              "x": 0.2,
+              "y": -0.1
+            }
+          },
+          {
+            "shape": "orbit",
+            "cam": {
+              "az": -30,
+              "el": 52,
+              "dist": 3.2,
+              "x": 0.26
+            }
+          },
+          {
+            "shape": "orbit",
+            "cam": {
+              "az": 0,
+              "el": 20,
+              "dist": 3.0,
+              "x": 0.22,
+              "y": -0.06
+            }
+          }
+        ],
+        "with": {
+          "kind": "orb",
+          "x": 0.5,
+          "y": 0.56,
+          "r": 0.22,
+          "shots": [
+            {
+              "x": 0.5,
+              "y": 0.55,
+              "r": 0.22
+            },
+            {
+              "x": 0.62,
+              "y": 0.52,
+              "r": 0.24,
+              "spin": 0.6
+            },
+            {
+              "x": 0.6,
+              "y": 0.55,
+              "r": 0.2
+            },
+            {
+              "x": 0.63,
+              "y": 0.5,
+              "r": 0.22,
+              "spin": 0.8
+            },
+            {
+              "x": 0.61,
+              "y": 0.53,
+              "r": 0.3
+            }
+          ]
+        }
+      },
+      "rules": {
+        "layout": "Objekt zentral; Titel riesig oben links über dem Objekt, rechts unten eine kurze Spalte mit Button, links Zähler und Social-Links.",
+        "type": "Inter Tight 700 Versalien, Zeilenhöhe .92, Tracking -0.04em; Text klein grau.",
+        "components": "Cyan-Button eckig mit Pfeil, Seitenzähler 001/005 mit Punkten, Social-Links als Versalien-Liste, 'Continue' mit Pfeil nach unten.",
+        "imagery": "Die Kugel ist das Bild; eigene Renders/Videos optional als media-Szene.",
+        "signature": "Die lebendige Flüssig-Kugel mit Galaxie innen und Glasblasen auf den Orbit-Ringen."
+      },
+      "banned": [
+        "Kartenraster",
+        "Serifen",
+        "Warm-Töne",
+        "zweites Objekt neben der Kugel"
+      ],
+      "prompt": "Richtung: lebendige 3D-Engine. Schwarz, Cyan (#2FD8FF) und Tiefblau (#1D4DFF). Hauptdarsteller: eine leuchtende Flüssig-Kugel (Shader, Rand cyan, innen wirbelnde Galaxie, atmet), umkreist von geneigten Orbit-Ringen mit Glasblasen. Riesige enge Versalien oben links (Inter Tight 700), Zähler 001/005, Social-Links unten links, unten rechts kurzer Text mit eckigem Cyan-Button. Verboten: Kartenraster, Serifen, Warm-Töne."
+    },
+    {
+      "id": "veyra-studio",
+      "name": "Veyra Studio",
+      "tagline": "Studio-Blau, ein gerahmtes Produkt, elektrisch-grüne Punkte zum Erkunden.",
+      "desc": "Ruhiges Studio-Blau, ein Produkt-Render in einem weißen Rahmen als Bühne. Elektrisch-grüne Hotspots öffnen beim Hover per Clip das Innere, Klick zoomt in eine Schnitt-Ansicht, Varianten-Panel für Farben und Räder. Space Grotesk nur in 400, Hierarchie über Größe und Abstand.",
+      "use": "Fahrzeug, Produkt-Design, Hardware, Industrie-Design, Konzeptstudie",
+      "moods": [
+        "premium",
+        "technisch",
+        "minimal"
+      ],
+      "tone": "mid",
+      "tokens": {
+        "bg": "#6b879d",
+        "surface": "#35586e",
+        "text": "#ffffff",
+        "muted": "#e1eaf0",
+        "line": "rgba(255,255,255,.32)",
+        "accent": "#edff39",
+        "accent2": "#708fa2",
+        "onAccent": "#10190c"
+      },
+      "fonts": {
+        "d": "'Space Grotesk','Inter',system-ui,sans-serif",
+        "b": "'Space Grotesk','Inter',system-ui,sans-serif",
+        "m": "'Space Grotesk',ui-monospace,monospace",
+        "wd": 400
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "fade-up",
+        "calm": "fade-blur",
+        "chapter": "zoom-through",
+        "wow": "morph-open",
+        "bg": "none",
+        "fx": [],
+        "hub": "radial",
+        "tempo": "ruhig und präzise; Hover-Clips vorwärts bis zum Ende, dann rückwärts; Detail als Zoom-Überblendung"
+      },
+      "rules": {
+        "layout": "Kopfzeile (Wortmarke, Untertitel, Hinweis), Titelzeile, gerahmtes Bild über die volle Breite, vier Textspalten als Fußzeile, schmale Grundlinie.",
+        "type": "Space Grotesk 400 ausschließlich; Hierarchie nur über Größe und Abstand, kein Fett.",
+        "components": "Weißer 3-px-Rahmen (16 px Radius), 48-px-Hotspots mit grünen Scheiben und dünnem Plus, grüne Hover-Labels, blaues Varianten-Panel unterhalb des Bildes, grüner Zurück-Knopf mit Esc.",
+        "imagery": "Freigestelltes Produkt-Render im Studio (gleicher Bildausschnitt für alle Varianten), kurze Hover-Clips vorwärts/rückwärts, Schnittbilder für Details.",
+        "signature": "Die Produkt-Bühne: Hover öffnet das Innere, Klick zoomt in die Technik, Varianten wechseln ohne das Produkt zu verdecken."
+      },
+      "banned": [
+        "Fettschrift",
+        "Kauf-Buttons, Preise, erfundene Leistungsdaten",
+        "Kartenraster",
+        "Panels über dem Produkt",
+        "Partikel/Glows"
+      ],
+      "prompt": "Richtung: Industrie-Design-Studie. Studio-Blau (#6B879D), Panel-Blau (#35586E), Weiß, Elektrisch-Grün (#EDFF39) nur für Hotspots und Zurück-Knopf. Space Grotesk ausschließlich 400. Ein Produkt-Render in einem weißen 3-px-Rahmen ist die Bühne; vier grüne Hotspots: Hover spielt einen kurzen Clip vorwärts (Haube öffnet), Verlassen spielt ihn rückwärts; Klick zoomt per Überblendung in eine Schnitt-Ansicht mit drei Bauteil-Punkten und Liste; Lack/Räder öffnen ein blaues Panel unterhalb des Bildes. Fußzeile mit vier Textspalten. Verboten: Fett, Preise, erfundene Daten, Kartenraster, Panels über dem Produkt."
+    },
+    {
+      "id": "bloom-garden",
+      "name": "Bloom Garden",
+      "tagline": "Eine Blüte aus Licht öffnet sich – floral, warm, hochwertig.",
+      "desc": "Cremiges Rosé, eine Blüte aus Tausenden Lichtpunkten öffnet sich Schicht für Schicht, Pollen schweben; große Instrument-Serif-Titel mit kursivem Akzentwort, ruhige Scroll-Story. Für florale, organische, wachsende Themen.",
+      "use": "Floral, Kosmetik, Garten, Gesundheit, Wachstum, Nachhaltigkeit mit Wärme, Events",
+      "moods": [
+        "warm",
+        "premium",
+        "natürlich"
+      ],
+      "tone": "light",
+      "tokens": {
+        "bg": "#f7efe9",
+        "surface": "#fffaf6",
+        "text": "#3a2630",
+        "muted": "#8a6b74",
+        "line": "rgba(58,38,48,.14)",
+        "accent": "#d9577f",
+        "accent2": "#e8a33d",
+        "onAccent": "#ffffff"
+      },
+      "fonts": {
+        "d": "'Instrument Serif',Georgia,serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 400
+      },
+      "motion": {
+        "mode": "scroll",
+        "enter": "blur-words",
+        "calm": "fade-blur",
+        "chapter": "band-reveal",
+        "wow": "ink-goo",
+        "bg": "none",
+        "fx": [
+          "grain"
+        ],
+        "hub": "orbit",
+        "tempo": "langsam wachsend; die Blüte öffnet sich 2 s, Pollen treiben"
+      },
+      "scene": {
+        "kind": "particles",
+        "blend": "normal",
+        "base": "accent",
+        "density": 0.85,
+        "size": 0.9,
+        "spin": 0.04,
+        "noise": 0.45,
+        "alpha": 0.7,
+        "shots": [
+          {
+            "shape": "flower",
+            "cam": {
+              "az": 0,
+              "el": 48,
+              "dist": 2.6,
+              "x": 0.3,
+              "y": -0.02
+            }
+          },
+          {
+            "shape": "flower",
+            "cam": {
+              "az": 40,
+              "el": 18,
+              "dist": 2.2,
+              "x": 0.34
+            }
+          },
+          {
+            "shape": "numeral",
+            "cam": {
+              "az": 0,
+              "dist": 3.4,
+              "x": 0.3
+            }
+          },
+          {
+            "shape": "galaxy",
+            "cam": {
+              "az": 10,
+              "el": 55,
+              "dist": 3.0,
+              "x": 0.32
+            }
+          },
+          {
+            "shape": "flower",
+            "cam": {
+              "az": 0,
+              "el": 85,
+              "dist": 2.0,
+              "x": 0.32
+            }
+          }
+        ]
+      },
+      "rules": {
+        "layout": "Viel warmer Raum, Blüte rechts, Text links; Zitate groß und kursiv.",
+        "type": "Instrument Serif 400 für Titel (Akzentwort kursiv, Rosé), Inter für Text.",
+        "components": "Pillen-Buttons in Rosé, feine Haarlinien, runde Bild-Ausschnitte.",
+        "imagery": "Blüten/Pflanzen als Partikel-Figur (embed particles) oder Duotone in Rosé; keine bunten Stockfotos.",
+        "signature": "Die Lichtblüte, die sich Seite für Seite weiter öffnet; Kennzahlen aus Blütenpunkten."
+      },
+      "banned": [
+        "Neon",
+        "harte Schnitte",
+        "kaltes Blau",
+        "Kartenraster"
+      ],
+      "prompt": "Richtung: florale Wärme. Cremiges Rosé (#F7EFE9), Rosé-Akzent (#D9577F), Honig (#E8A33D). Hauptdarsteller: eine Blüte aus Lichtpunkten, die sich Seite für Seite öffnet, Pollen treiben; Kennzahlen formen sich aus Blütenpunkten. Instrument Serif mit kursivem Akzentwort, Inter für Text, Pillen-Buttons. Langsame Scroll-Story. Verboten: Neon, harte Schnitte, kaltes Blau, Kartenraster."
+    },
+    {
+      "id": "lanka-heritage",
+      "name": "Lanka Heritage",
+      "tagline": "Gold, Sand, warmes Schwarz – antike Steine im Abendlicht.",
+      "desc": "Variante von Dark Portfolio für die Sri-Lanka-Keynote: gleiche Schriften und Bauteile, eigene Farbwelt.",
+      "use": "Persönliche Vorstellung, Experten-Profil, Agentur, Referenzen, Award-Einreichung",
+      "moods": [
+        "premium",
+        "editorial",
+        "dramatisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#0d0a07",
+        "surface": "#17110b",
+        "text": "#f4ece0",
+        "muted": "#a39478",
+        "line": "rgba(244,236,224,.10)",
+        "accent": "#f4ece0",
+        "accent2": "#d9a95a",
+        "onAccent": "#0d0a07"
+      },
+      "fonts": {
+        "d": "'Instrument Serif',Georgia,serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 400
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "split-lines",
+        "calm": "fade-blur",
+        "chapter": "depth-dolly",
+        "wow": "lens-sweep",
+        "bg": "none",
+        "fx": [
+          "grain",
+          "vignette"
+        ],
+        "hub": "orbit",
+        "tempo": "langsam, filmisch, 1000–1300 ms, nichts federt"
+      },
+      "rules": {
+        "layout": "Titel groß unten links, Metadaten als Mono-Labels in den Ecken, Bildkarten schweben leicht schräg im Raum.",
+        "type": "Instrument Serif 400 für Titel (Akzentwort kursiv), Inter für Text, JetBrains Mono 10–11 px für Labels.",
+        "components": "Randlose Bildkarten mit feinem Rahmen, weiße Pillen-Buttons, Nummerierung 01/02 in Mono.",
+        "imagery": "Freigestelltes Porträt im Zentrum, Arbeitsproben als schwebende Screens, Schwarzweiß erlaubt.",
+        "signature": "Der 3D-Bogen aus Arbeitsproben dreht sich Seite für Seite weiter; kursives Serifen-Akzentwort."
+      },
+      "banned": [
+        "Icon-Kacheln",
+        "Verläufe",
+        "schnelle Federn",
+        "mehr als zwei Schriftgrößen pro Seite"
+      ],
+      "prompt": "Richtung: filmisches Portfolio. Tiefes Schwarz (#0A0A0A), warmes Weiß (#F3F1EC), ein gedämpftes Messing (#C9A77A) als einziger Farbton. Schrift: Instrument Serif für Titel mit kursivem Akzentwort, Inter für Text, JetBrains Mono 10–11 px für Eck-Labels. Bauteile: schwebende Bildkarten mit feinem Rahmen, weiße Pillen-Buttons, Nummern 01/02. Bewegung: langsam und filmisch, Zeilen gleiten aus Masken, Kapitel depth-dolly, Wow lens-sweep, Korn und Vignette. Verboten: bunte Akzente, Icon-Kacheln, Verläufe, federnde Bewegung.",
+      "scene": {
+        "kind": "media"
+      }
+    },
+    {
+      "id": "lanka-jungle",
+      "name": "Lanka Jungle & Highlands",
+      "tagline": "Tiefes Grün, Nebel, Moos – Regenwald und Teeland.",
+      "desc": "Variante von Dark Portfolio für die Sri-Lanka-Keynote: gleiche Schriften und Bauteile, eigene Farbwelt.",
+      "use": "Persönliche Vorstellung, Experten-Profil, Agentur, Referenzen, Award-Einreichung",
+      "moods": [
+        "premium",
+        "editorial",
+        "dramatisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#060b09",
+        "surface": "#0f1814",
+        "text": "#eaf1ea",
+        "muted": "#8ea596",
+        "line": "rgba(234,241,234,.10)",
+        "accent": "#eaf1ea",
+        "accent2": "#7fb88a",
+        "onAccent": "#060b09"
+      },
+      "fonts": {
+        "d": "'Instrument Serif',Georgia,serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 400
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "split-lines",
+        "calm": "fade-blur",
+        "chapter": "depth-dolly",
+        "wow": "lens-sweep",
+        "bg": "none",
+        "fx": [
+          "grain",
+          "vignette"
+        ],
+        "hub": "orbit",
+        "tempo": "langsam, filmisch, 1000–1300 ms, nichts federt"
+      },
+      "rules": {
+        "layout": "Titel groß unten links, Metadaten als Mono-Labels in den Ecken, Bildkarten schweben leicht schräg im Raum.",
+        "type": "Instrument Serif 400 für Titel (Akzentwort kursiv), Inter für Text, JetBrains Mono 10–11 px für Labels.",
+        "components": "Randlose Bildkarten mit feinem Rahmen, weiße Pillen-Buttons, Nummerierung 01/02 in Mono.",
+        "imagery": "Freigestelltes Porträt im Zentrum, Arbeitsproben als schwebende Screens, Schwarzweiß erlaubt.",
+        "signature": "Der 3D-Bogen aus Arbeitsproben dreht sich Seite für Seite weiter; kursives Serifen-Akzentwort."
+      },
+      "banned": [
+        "Icon-Kacheln",
+        "Verläufe",
+        "schnelle Federn",
+        "mehr als zwei Schriftgrößen pro Seite"
+      ],
+      "prompt": "Richtung: filmisches Portfolio. Tiefes Schwarz (#0A0A0A), warmes Weiß (#F3F1EC), ein gedämpftes Messing (#C9A77A) als einziger Farbton. Schrift: Instrument Serif für Titel mit kursivem Akzentwort, Inter für Text, JetBrains Mono 10–11 px für Eck-Labels. Bauteile: schwebende Bildkarten mit feinem Rahmen, weiße Pillen-Buttons, Nummern 01/02. Bewegung: langsam und filmisch, Zeilen gleiten aus Masken, Kapitel depth-dolly, Wow lens-sweep, Korn und Vignette. Verboten: bunte Akzente, Icon-Kacheln, Verläufe, federnde Bewegung.",
+      "scene": {
+        "kind": "media"
+      }
+    },
+    {
+      "id": "lanka-coast",
+      "name": "Lanka Coast",
+      "tagline": "Türkis, Tiefblau, Sonnenuntergang – Meer und Küstenlicht.",
+      "desc": "Variante von Dark Portfolio für die Sri-Lanka-Keynote: gleiche Schriften und Bauteile, eigene Farbwelt.",
+      "use": "Persönliche Vorstellung, Experten-Profil, Agentur, Referenzen, Award-Einreichung",
+      "moods": [
+        "premium",
+        "editorial",
+        "dramatisch"
+      ],
+      "tone": "dark",
+      "tokens": {
+        "bg": "#050b0e",
+        "surface": "#0c161a",
+        "text": "#eaf4f3",
+        "muted": "#8aa6a8",
+        "line": "rgba(234,244,243,.10)",
+        "accent": "#eaf4f3",
+        "accent2": "#3fc7c0",
+        "onAccent": "#050b0e"
+      },
+      "fonts": {
+        "d": "'Instrument Serif',Georgia,serif",
+        "b": "'Inter','Segoe UI',system-ui,sans-serif",
+        "m": "'JetBrains Mono',ui-monospace,monospace",
+        "wd": 400
+      },
+      "motion": {
+        "mode": "deck",
+        "enter": "split-lines",
+        "calm": "fade-blur",
+        "chapter": "depth-dolly",
+        "wow": "lens-sweep",
+        "bg": "none",
+        "fx": [
+          "grain",
+          "vignette"
+        ],
+        "hub": "orbit",
+        "tempo": "langsam, filmisch, 1000–1300 ms, nichts federt"
+      },
+      "rules": {
+        "layout": "Titel groß unten links, Metadaten als Mono-Labels in den Ecken, Bildkarten schweben leicht schräg im Raum.",
+        "type": "Instrument Serif 400 für Titel (Akzentwort kursiv), Inter für Text, JetBrains Mono 10–11 px für Labels.",
+        "components": "Randlose Bildkarten mit feinem Rahmen, weiße Pillen-Buttons, Nummerierung 01/02 in Mono.",
+        "imagery": "Freigestelltes Porträt im Zentrum, Arbeitsproben als schwebende Screens, Schwarzweiß erlaubt.",
+        "signature": "Der 3D-Bogen aus Arbeitsproben dreht sich Seite für Seite weiter; kursives Serifen-Akzentwort."
+      },
+      "banned": [
+        "Icon-Kacheln",
+        "Verläufe",
+        "schnelle Federn",
+        "mehr als zwei Schriftgrößen pro Seite"
+      ],
+      "prompt": "Richtung: filmisches Portfolio. Tiefes Schwarz (#0A0A0A), warmes Weiß (#F3F1EC), ein gedämpftes Messing (#C9A77A) als einziger Farbton. Schrift: Instrument Serif für Titel mit kursivem Akzentwort, Inter für Text, JetBrains Mono 10–11 px für Eck-Labels. Bauteile: schwebende Bildkarten mit feinem Rahmen, weiße Pillen-Buttons, Nummern 01/02. Bewegung: langsam und filmisch, Zeilen gleiten aus Masken, Kapitel depth-dolly, Wow lens-sweep, Korn und Vignette. Verboten: bunte Akzente, Icon-Kacheln, Verläufe, federnde Bewegung.",
+      "scene": {
+        "kind": "media"
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+/* design: particle-tech · AXON principle: the GPU particle scene (scene.js) is the hero, the UI is a thin mono layer.
+   Object framed right of centre by the scene camera; copy in a narrow left column; hero title huge, bottom left. */
+[data-design=particle-tech]{--r:2px;--glass:transparent;--chip:#1c1c1c}
+[data-design=particle-tech] body::before{background:radial-gradient(40% 45% at 66% 50%,rgba(170,136,255,.07),transparent 70%)}
+[data-design=particle-tech] body{font:400 13px/1.35 var(--font-b);letter-spacing:.02em;text-transform:uppercase}
+[data-design=particle-tech] #bg{opacity:.35}
+
+/* stage: no centred slide composition; a left column that never covers the object */
+[data-design=particle-tech] .stage{place-items:center start}
+[data-design=particle-tech] .inner{max-width:none;padding:120px 24px 96px clamp(24px,4vw,64px)}
+[data-design=particle-tech] .inner>*{max-width:430px}
+[data-design=particle-tech] .t,[data-design=particle-tech] .lead,[data-design=particle-tech] .kicker,[data-design=particle-tech] .bul,[data-design=particle-tech] .card,[data-design=particle-tech] .stat{mix-blend-mode:plus-lighter}
+
+/* type */
+[data-design=particle-tech] .t{font-family:var(--font-b);font-weight:400;font-size:13px!important;line-height:1.35;letter-spacing:.02em;color:var(--accent);margin-bottom:1em}
+[data-design=particle-tech] .t .acc{color:#fff}
+[data-design=particle-tech] .lead{font-size:13px;line-height:1.35;color:var(--text);text-align:justify;max-width:380px;margin-top:0}
+[data-design=particle-tech] .kicker{font:400 11px/1 var(--font-m);letter-spacing:.04em;color:#cfcfcf;background:var(--chip);padding:5px 9px;border-radius:0;margin-bottom:18px}
+[data-design=particle-tech] .kicker::before{display:none}
+
+/* hero: the one big typographic moment */
+[data-design=particle-tech] .p-hero{max-width:min(880px,62vw)!important;align-self:end}
+[data-design=particle-tech] .stage[data-type=hero]{place-items:end start}
+[data-design=particle-tech] .p-hero .t{font-family:var(--font-d);font-weight:400;font-size:clamp(2.6rem,6.6vw,7rem)!important;line-height:.96;letter-spacing:-.035em;color:#fff;text-transform:uppercase;margin-bottom:.35em}
+[data-design=particle-tech] .p-hero .t .acc{color:var(--accent)}
+[data-design=particle-tech] .p-hero .lead{max-width:420px}
+
+/* buttons: thin outline, mono */
+[data-design=particle-tech] .btn{height:36px;padding:0 14px;border-radius:0;background:transparent;color:var(--text);border:1px solid var(--line);font:400 12px/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;margin-top:24px;box-shadow:none}
+[data-design=particle-tech] .btn:hover{border-color:var(--accent);color:#fff;box-shadow:none}
+
+/* split: the scene is the visual */
+[data-design=particle-tech] .p-split{display:block}
+[data-design=particle-tech] .p-split .col-vis{display:none}
+[data-design=particle-tech] .bul{gap:.5em;margin-top:1em}
+[data-design=particle-tech] .bul li{padding-left:1.2em}
+[data-design=particle-tech] .bul li::before{content:"\2022";background:none;width:auto;height:auto;top:0;color:var(--accent)}
+
+/* stats: a list, the first number is also formed by the particles */
+[data-design=particle-tech] .stats{display:grid;grid-template-columns:1fr!important;gap:0;margin-top:8px;max-width:380px}
+[data-design=particle-tech] .stat{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding:14px 0}
+[data-design=particle-tech] .num{font:400 clamp(1.6rem,2.4vw,2.2rem)/1 var(--font-d);letter-spacing:-.02em;color:#fff}
+[data-design=particle-tech] .num .pre,[data-design=particle-tech] .num .suf{color:var(--accent)}
+[data-design=particle-tech] .stat .lbl{margin:0;color:var(--muted);text-align:right}
+
+/* cards -> logbook rows */
+[data-design=particle-tech] .cards{grid-template-columns:1fr!important;gap:0;max-width:380px}
+[data-design=particle-tech] .card,[data-design=particle-tech] .bento .tile,[data-design=particle-tech] .st-panel,[data-design=particle-tech] .card-flat{background:transparent!important;border:0!important;border-top:1px solid var(--line)!important;border-radius:0!important;padding:16px 0!important;box-shadow:none!important;display:grid;grid-template-columns:44px 1fr;gap:2px 12px}
+[data-design=particle-tech] .card::before,[data-design=particle-tech] .tile::before{display:none}
+[data-design=particle-tech] .ico-wrap{display:none!important}
+[data-design=particle-tech] .card .tag{grid-row:span 2;color:var(--accent);font:400 12px var(--font-m)}
+[data-design=particle-tech] .card h3,[data-design=particle-tech] .tile h3{font:400 13px/1.35 var(--font-b);color:#fff;letter-spacing:.02em}
+[data-design=particle-tech] .card p,[data-design=particle-tech] .tile p{font-size:12px;color:var(--muted)}
+
+/* hub: quiet constellation over the sphere */
+[data-design=particle-tech] .node{background:rgba(0,0,0,.6);border:1px solid var(--line);border-radius:0;font:400 11px var(--font-m);letter-spacing:.06em;text-transform:uppercase}
+[data-design=particle-tech] .node .nd{width:6px;height:6px;box-shadow:none;background:var(--accent)}
+[data-design=particle-tech] .hub-mid b{font:400 13px var(--font-m);color:var(--accent)}
+
+/* chrome: brand + round counter + quiet rail */
+[data-design=particle-tech] .hud{top:24px;font:400 13px/1.2 var(--font-m)!important;text-transform:uppercase;letter-spacing:.02em}
+[data-design=particle-tech] .hud-l{left:24px}
+[data-design=particle-tech] .hud-l b{display:inline-flex;align-items:center;gap:12px;font-size:20px;font-weight:400;color:#fff}
+[data-design=particle-tech] .hud-l b::before{content:"";width:34px;height:34px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18.5' fill='none' stroke='white' stroke-width='1.6'/%3E%3Cpolygon fill='white' points='20,9 22.6,16.2 30,14.5 25,20 30,25.5 22.6,23.8 20,31 17.4,23.8 10,25.5 15,20 10,14.5 17.4,16.2'/%3E%3C/svg%3E") center/contain no-repeat}
+[data-design=particle-tech] .hud-l b+span{font-size:11px;color:var(--muted)}
+[data-design=particle-tech] .hud-r{right:24px}
+[data-design=particle-tech] .hud-count{min-width:44px;height:44px;padding:0 14px;white-space:nowrap;justify-content:center;border-radius:999px;border:1px solid var(--line);background:#0a0a0a;color:#fff;font-size:12px}
+[data-design=particle-tech] .ov-btn{border-radius:0}
+[data-design=particle-tech] .rail{bottom:28px}
+[data-design=particle-tech] .rail button{border-radius:0;height:2px;width:14px;background:#333}
+[data-design=particle-tech] .rail button.on{width:28px;height:2px;background:var(--accent)}
+[data-design=particle-tech] .hint-bar{font:400 11px var(--font-m)!important;text-transform:uppercase;letter-spacing:.04em}
+[data-design=particle-tech] .hint-bar kbd{border-radius:0;background:var(--chip);border-color:var(--line)}
+
+@media (max-width:760px){
+  [data-design=particle-tech] .stage{place-items:end start}
+  [data-design=particle-tech] .inner{padding:90px 20px 70px}
+  [data-design=particle-tech] .p-hero .t{font-size:clamp(2.2rem,11vw,3.4rem)!important}
+}

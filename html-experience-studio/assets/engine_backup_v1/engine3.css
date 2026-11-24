@@ -1,0 +1,87 @@
+/* ===== engine3 · STUDIO BASELINE (Mindeststandard) =====
+   Derived from the professional reference deck (see references/design-rules.md §0):
+   one calm world, embedded Inter/Ubuntu, left-aligned editorial copy, eyebrow with hairline,
+   quiet HUD chips, pill rail, kbd hints, radial backdrop + grain, one long soft entrance. */
+:root{--ease-out:cubic-bezier(.22,1,.36,1);--ease-io:cubic-bezier(.65,0,.35,1);--r:18px;
+  --text-2:color-mix(in srgb,var(--text) 66%,transparent);--text-3:color-mix(in srgb,var(--text) 42%,transparent);
+  --line-2:color-mix(in srgb,var(--text) 16%,transparent);--glass:color-mix(in srgb,var(--text) 4%,transparent)}
+body{font:400 clamp(15px,1.05vw,17px)/1.55 var(--font-b);font-feature-settings:"ss01","cv11";letter-spacing:-.003em}
+
+/* backdrop: soft radial light + film grain, always on (bg effects sit on top, quieter) */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(60% 50% at 18% 12%,color-mix(in srgb,var(--accent2) 13%,transparent),transparent 70%),
+    radial-gradient(55% 45% at 86% 82%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 70%),
+    radial-gradient(70% 60% at 50% 112%,color-mix(in srgb,var(--accent) 6%,transparent),transparent 70%)}
+body::after{content:"";position:fixed;inset:-50%;z-index:26;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#bg{opacity:.55}
+
+/* layout: generous left margin like an editorial page */
+.inner{max-width:1440px;padding:clamp(92px,14vh,150px) clamp(28px,5vw,88px) clamp(80px,11vh,120px)}
+
+/* type: restrained scale, display 500, tight tracking, no shouting */
+.kicker{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--font-b);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+.kicker::before{content:"";width:18px;height:1px;background:currentColor;opacity:.7}
+.t{font-weight:var(--w-d,500);letter-spacing:-.025em;line-height:1.04}
+.t-xl{font-size:clamp(2.4rem,5vw,4.6rem)}
+.t-l{font-size:clamp(2.1rem,4.3vw,4.25rem)}
+.t-m{font-size:clamp(1.6rem,2.8vw,2.6rem)}
+.t-s{font-size:clamp(1.3rem,2vw,1.8rem)}
+.acc{color:var(--accent)}
+.t .dim,.dim{color:var(--text-3)}
+.lead{color:var(--text-2);font-size:clamp(15px,1.25vw,19px);line-height:1.55;max-width:32em;margin-top:22px}
+
+/* left-aligned by default; centred only when the brief says align:"center" */
+.p-hero,.p-statement{max-width:980px;text-align:left;margin-inline:0}
+.p-statement .lead,.p-hero .lead{margin-inline:0}
+.p-hero.center{text-align:center;margin-inline:auto}.p-hero.center .lead{margin-inline:auto}.p-hero.center .kicker{justify-content:center}
+.hero-meta{font:500 12.5px var(--font-b);letter-spacing:.01em;color:var(--text-3)}
+
+/* buttons: quiet pill, ghost by default look */
+.btn{gap:10px;padding:0 20px;height:46px;font:500 14px/1 var(--font-b);border-radius:999px;margin-top:34px}
+@media (hover:hover){.btn:hover{box-shadow:0 10px 30px -14px var(--accent)}}
+
+/* cards: glass panes with hairline, line icon without filled tile */
+.card,.bento .tile,.st-panel,.card-flat{background:var(--glass)!important;border:1px solid var(--line)!important;border-radius:var(--r)!important;box-shadow:none}
+.ico-wrap{background:none!important;border:0!important;width:auto!important;height:auto!important;padding:0!important;color:var(--accent);margin-bottom:14px}
+.ico-wrap .ico{width:22px;height:22px;stroke-width:1.6}
+.card h3,.st-panel h3{font:500 clamp(17px,1.35vw,21px)/1.25 var(--font-d);letter-spacing:-.01em}
+.card p,.st-panel p{color:var(--text-2);font-size:clamp(14px,1vw,15.5px)}
+
+/* HUD: brand left, chips right, no mono caps */
+.hud{top:26px;font:500 12.5px/1 var(--font-b);letter-spacing:.01em;text-transform:none;color:var(--text-2)}
+.hud-l{left:clamp(28px,5vw,88px);gap:16px}.hud-l b{font-weight:600;color:var(--text)}
+.hud-l b+span{display:flex;align-items:center;gap:16px}.hud-l b+span::before{content:"";width:1px;height:16px;background:var(--line-2)}
+.hud-r{right:clamp(24px,3vw,48px);gap:8px}
+.hud-count{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;color:var(--text-3);font-variant-numeric:tabular-nums}
+.ov-btn{display:inline-grid;place-items:center;width:auto;height:34px;padding:0 14px;border-radius:999px;border:1px solid transparent;color:var(--text-2);font-size:12.5px}
+.ov-btn:hover{color:var(--text);background:var(--glass);border-color:var(--line)}
+.progress{opacity:.0}
+
+/* rail: horizontal pills bottom right */
+.rail{top:auto;bottom:40px;right:clamp(24px,3vw,48px);transform:none;display:flex;gap:6px;align-items:center}
+.rail button{width:6px;height:6px;border-radius:50%;background:color-mix(in srgb,var(--text) 22%,transparent);transition:all .5s var(--ease-out)}
+.rail button.on{width:22px;border-radius:4px;background:var(--text);transform:none}
+.rail button:hover{background:color-mix(in srgb,var(--text) 55%,transparent)}
+
+/* hint: small keycaps */
+.hint-bar{bottom:42px;font:500 12px/1 var(--font-b);letter-spacing:.02em;color:var(--text-3);opacity:1;display:flex;gap:10px;align-items:center}
+.hint-bar kbd{font:600 11px/1 var(--font-b);color:var(--text-2);border:1px solid var(--line-2);border-radius:6px;padding:4px 7px;background:var(--glass)}
+
+/* overview */
+.overview{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+
+/* big-list / steps / stats: calmer */
+.p-biglist .bl li{font-weight:500;letter-spacing:-.025em}
+.st-tab{font:500 14px var(--font-b)!important;border-radius:14px!important}
+.st-tab span{font:600 11px var(--font-b)!important;letter-spacing:.08em;color:var(--text-3)}
+.st-no{font:600 11px var(--font-b)!important;letter-spacing:.14em;color:var(--accent)}
+.stat .v,.num .v{font-weight:500!important;letter-spacing:-.04em}
+
+/* media: cinematic shade like the reference title scene */
+.p-media .media-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--bg) 88%,transparent) 0%,color-mix(in srgb,var(--bg) 60%,transparent) 28%,transparent 58%),linear-gradient(0deg,color-mix(in srgb,var(--bg) 85%,transparent) 0%,transparent 36%)}
+.p-media .media-bg img{animation:kenburns 14s var(--ease-out) both}
+@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+
+@media (max-width:760px){.hint-bar{display:none}.rail{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.p-media .media-bg img{animation:none}}

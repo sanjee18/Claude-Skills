@@ -1,0 +1,28 @@
+{
+  "meta": { "title": "Inspektion aus der Luft", "pageTitle": "3D-Modell-Szene · Demo", "org": "Demo", "lang": "de", "audience": "Werksleitung" },
+  "theme": { "design": "data-transfer" },
+  "nav": { "mode": "deck" },
+  "scene": {
+    "kind": "model", "src": "inspection-drone.glb", "look": "studio", "intro": "scan", "spin": 3,
+    "shots": [
+      { "az": 35, "el": 14, "dist": 6.2, "x": 0.3 },
+      { "az": 70, "el": 8, "dist": 3.6, "x": 0.22, "look": "xray", "focus": ["LiDAR", "Gimbal"],
+        "notes": [ { "at": "LiDAR", "label": "LiDAR", "text": "Tastet Oberflächen auf Millimeter ab" }, { "at": "Gimbal", "label": "Kamera-Gimbal", "text": "Stabilisiert die Bilder im Wind" } ] },
+      { "az": -30, "el": 30, "dist": 3.8, "x": 0.22, "look": "xray", "focus": ["Battery", "FlightController"],
+        "notes": [ { "at": "Battery", "label": "Akku", "text": "Wechsel in unter einer Minute" }, { "at": "FlightController", "label": "Flugrechner", "text": "Fliegt die Route selbstständig" } ] },
+      { "az": 20, "el": 22, "dist": 5.4, "x": 0.18, "look": "blueprint", "explode": 0.7 },
+      { "az": 0, "el": 62, "dist": 4.6, "x": 0.18, "look": "hologram", "anim": "Rotors" },
+      { "az": 140, "el": 10, "dist": 4.2, "x": 0.2, "look": "points" },
+      { "az": 215, "el": 16, "dist": 4.4, "x": 0.2, "look": "studio", "anim": "Rotors" }
+    ]
+  },
+  "pages": [
+    { "id": "start", "type": "hero", "kicker": "Demo · 3D-Modell-Szene", "title": "Inspektion *aus der Luft*", "sub": "Ein echtes GLB-Modell als Hauptdarsteller: Kamerafahrten, Röntgen-Scan, Annotationen, Explosionsansicht.", "cta": { "label": "Start", "to": "sees" } },
+    { "id": "sees", "type": "statement", "kicker": "Sensorik", "title": "Sieht, was vom Boden *verborgen* bleibt.", "sub": "Röntgen-Look: die Hülle wird Glas, die Sensoren leuchten.", "transition": "scan-reveal" },
+    { "id": "inside", "type": "big-list", "kicker": "Innenleben", "title": "Was *innen* arbeitet", "items": [ { "title": "Akku", "text": "Wechselbar, mittig für den Schwerpunkt" }, { "title": "Flugrechner", "text": "Route, Abstand, Rückkehr" } ] },
+    { "id": "parts", "type": "statement", "kicker": "Aufbau", "title": "Jedes Bauteil *einzeln* verstehen.", "sub": "Blaupause und Explosionsansicht aus demselben Modell.", "transition": "zoom-through" },
+    { "id": "flight", "type": "steps", "kicker": "Ablauf", "title": "So läuft ein *Flug*", "items": [ { "label": "Route", "title": "Route", "text": "Vorab am Bildschirm geplant" }, { "label": "Flug", "title": "Flug", "text": "Autonom, mit Sicherheitsabstand" }, { "label": "Befund", "title": "Befund", "text": "Bilder und Punktwolke im Bericht" } ] },
+    { "id": "data", "type": "statement", "kicker": "Daten", "title": "Aus Punkten wird ein *digitaler Zwilling*.", "sub": "Derselbe Körper als Punktwolke – passt zu Partikel-Welten.", "transition": "warp-tunnel" },
+    { "id": "next", "type": "cta", "title": "Euer Objekt als *Held*.", "sub": "GLB aus Blender, CAD oder dem Hersteller – der Skill macht die Bühne.", "cta": { "label": "Von vorn", "to": "start" }, "contacts": [ { "label": "Demo", "value": "html-experience-studio" } ] }
+  ]
+}

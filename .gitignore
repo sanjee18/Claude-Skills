@@ -1,0 +1,7 @@
+node_modules/
+**/out/
+**/frames/
+__pycache__/
+*.log
+.DS_Store
+Thumbs.db

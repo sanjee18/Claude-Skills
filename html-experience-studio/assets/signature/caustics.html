@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caustic Pool · Signature</title>
+<style>html,body{margin:0;height:100%;background:#021317;overflow:hidden}</style>
+</head><body>
+<!--
+  Caustic Pool — sunlight focused by a moving water surface onto the floor.
+
+  Not a pattern that looks like caustics: the actual optics, cheaply.
+  The surface is a sum of travelling waves h(P). Light falling straight
+  down is bent by the slope, so the ray that leaves P lands at
+      Q = P + k · ∇h(P).
+  Brightness on the floor is how much the surface squeezes or spreads
+  that light: 1 / |det(∂Q/∂P)| = 1 / |det(I + k · Hessian h)|.
+  Both ∇h and the Hessian are analytic (sines), so the bright lines are
+  sharp and stable at any resolution. Three slightly different k per
+  colour channel give the faint rainbow fringe real caustics have.
+  Pointer: a lens of water (a smooth bump, also analytic) rides the
+  sprung pointer: under it the pattern gathers into a bright knot.
+  Hash: #deep=02262b&light=d8fff7&k=.55
+-->
+<script src="studio:sigkit"></script>
+<script>
+Sig({
+  params: { deep: '#03292f', light: '#cffff4', k: 1.25, scale: 10.0 },
+  rest: [0.58, 0.46],
+  frag: `
+// six travelling waves: amplitude, wave vector, speed
+void waves(vec2 P, float t, out vec2 g, out vec3 Hs){
+  g = vec2(0.); Hs = vec3(0.);                               // Hs = (hxx, hxy, hyy)
+  for (int i = 0; i < 6; i++) {
+    float fi = float(i);
+    float ang = fi * 2.399 + .3;                             // golden-angle directions: no visible repeat
+    float kk = .9 + fi * .42;
+    vec2 K = vec2(cos(ang), sin(ang)) * kk;
+    float a = .55 / (kk * kk);                               // longer waves are taller (a ~ 1/k²)
+    float ph = dot(K, P) + t * sqrt(kk) * .55 + fi * 1.7;    // deep-water dispersion: ω ~ √k
+    g += a * cos(ph) * K;
+    float s = -a * sin(ph);
+    Hs += s * vec3(K.x * K.x, K.x * K.y, K.y * K.y);
+  }
+}
+void lens(vec2 P, vec2 C, float A, float S, inout vec2 g, inout vec3 Hs){
+  vec2 d = P - C; float e = A * exp(-dot(d, d) / S);
+  g += -2. / S * d * e;
+  Hs += e * (4. / (S * S) * vec3(d.x * d.x, d.x * d.y, d.y * d.y) - 2. / S * vec3(1., 0., 1.));
+}
+float bright(vec2 g, vec3 Hs, float k){
+  float det = (1. + k * Hs.x) * (1. + k * Hs.z) - k * k * Hs.y * Hs.y;
+  return 1. / (abs(det) + .035);
+}
+void main(){
+  vec2 P = (gl_FragCoord.xy - .5 * uRes) / uRes.y * u_scale;
+  vec2 C = uPtrN * vec2(uRes.x / uRes.y, 1.) * .5 * u_scale;
+  vec2 g; vec3 Hs;
+  waves(P, uTime, g, Hs);
+  lens(P, C, 1.6 * uHover + .8 * uPress, 3.2, g, Hs);
+  vec3 I = vec3(bright(g, Hs, u_k * .985), bright(g, Hs, u_k), bright(g, Hs, u_k * 1.02));
+  I = pow(I / 14.0, vec3(1.5));                               // keep the floor dark, the lines bright
+  vec2 v = gl_FragCoord.xy / uRes - .5;
+  float depthFade = 1. - .6 * dot(v, v);                      // light thins toward the frame edge
+  vec3 col = u_deep * (.55 + .45 * depthFade) + u_light * I * .9 * depthFade;
+  // floor texture: a whisper of sand so the light has something to land on
+  col *= .93 + .07 * fbm2(P * 3.);
+  gl_FragColor = vec4(dither(toSrgb(aces(col * 1.25))), 1.);
+}`
+});
+</script>
+</body></html>

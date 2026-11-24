@@ -1,0 +1,14 @@
+/* design: data-transfer · night blue, cyan hairlines with corner markers, mono HUD, gear hub */
+[data-design=data-transfer]{--r:10px;--glass:rgba(111,210,255,.035)}
+[data-design=data-transfer] body::before{background:radial-gradient(60% 50% at 20% 10%,rgba(46,155,224,.14),transparent 70%),radial-gradient(50% 45% at 85% 85%,rgba(111,210,255,.08),transparent 70%)}
+[data-design=data-transfer] .t{font-weight:500;letter-spacing:-.03em}
+[data-design=data-transfer] .kicker,[data-design=data-transfer] .tag,[data-design=data-transfer] .tl-item .when,[data-design=data-transfer] .st-no,[data-design=data-transfer] .hud,[data-design=data-transfer] .hint{font-family:var(--font-m)!important;text-transform:uppercase;letter-spacing:.14em}
+[data-design=data-transfer] .kicker{font-size:11px;font-weight:500}
+[data-design=data-transfer] .card,[data-design=data-transfer] .bento .tile,[data-design=data-transfer] .st-panel,[data-design=data-transfer] .card-flat{background:linear-gradient(180deg,rgba(111,210,255,.05),rgba(10,20,38,.55))!important;border:1px solid rgba(111,210,255,.16)!important;border-radius:10px!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+[data-design=data-transfer] .card::after,[data-design=data-transfer] .bento .tile::after{content:"";position:absolute;inset:6px;pointer-events:none;opacity:.7;background:linear-gradient(var(--accent),var(--accent)) 0 0/10px 1px no-repeat,linear-gradient(var(--accent),var(--accent)) 0 0/1px 10px no-repeat,linear-gradient(var(--accent),var(--accent)) 100% 100%/10px 1px no-repeat,linear-gradient(var(--accent),var(--accent)) 100% 100%/1px 10px no-repeat}
+[data-design=data-transfer] .btn{background:var(--accent);color:var(--on-accent);border-radius:8px;font-weight:600}
+[data-design=data-transfer] .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(111,210,255,.35)}
+[data-design=data-transfer] .num .pre,[data-design=data-transfer] .num .suf{color:var(--accent)}
+[data-design=data-transfer] .stat{border-top:1px solid rgba(111,210,255,.25)}
+[data-design=data-transfer] .vis-ring .arc{filter:drop-shadow(0 0 6px rgba(111,210,255,.6))}
+[data-design=data-transfer] .node{background:rgba(10,20,38,.85);border-color:rgba(111,210,255,.3)}

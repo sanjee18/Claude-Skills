@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dot Lens · Signature</title>
+<style>html,body{margin:0;height:100%;background:#f3f2ee;overflow:hidden}</style>
+</head><body>
+<!--
+  Dot Lens — a printed halftone field on warm paper, read through a loupe.
+  The light piece of the set: editorial, Swiss, made for white decks.
+
+  The field: a dot screen at a fixed pitch whose dot size follows a slow,
+  low-contrast tone field (two octaves of noise and a gentle diagonal
+  falloff), so the page breathes without ever becoming busy. Dots are
+  antialiased analytically (distance / fwidth), crisp at any DPR.
+  The loupe rides the sprung pointer: inside it the screen is magnified
+  with a barrel profile (strongest in the middle, continuous at the rim),
+  the dots in the centre take the accent colour, and the glass has a rim
+  highlight on its upper left, a hairline edge and a soft contact shadow
+  lower right. Press to push the magnification further.
+  Hash: #paper=f3f2ee&ink=1c1d21&accent=ff4f1f&pitch=10
+-->
+<script src="studio:sigkit"></script>
+<script>
+Sig({
+  params: { paper: '#f3f2ee', ink: '#1c1d21', accent: '#ff4f1f', pitch: 10.0, lens: 120.0 },
+  rest: [0.64, 0.42],
+  frag: `
+float field(vec2 q){
+  float t = uTime * .03;
+  float v = fbm2(q * .0021 + vec2(t, -t * .7)) * .8 + noise2(q * .006 - t) * .2;
+  float diag = smoothstep(1.7, -.1, (q.x / uRes.x + q.y / uRes.y));
+  return clamp(.10 + .55 * smoothstep(.28, .72, v) * (.45 + .55 * diag) + .12 * diag, .06, .82);
+}
+float dots(vec2 q, float pitch, out float tone){
+  vec2 cell = floor(q / pitch);
+  vec2 c = (cell + .5) * pitch;
+  tone = field(c);
+  float r = pitch * .5 * sqrt(tone) * .92;
+  float d = length(q - c) - r;
+  float aa = fwidth(q.x) * .8 + .35;
+  return smoothstep(aa, -aa, d);
+}
+void main(){
+  vec2 q = gl_FragCoord.xy;
+  float pitch = u_pitch * uDpr;
+  float R = u_lens * uDpr * (.6 + .4 * uHover);
+  vec2 d = q - uPtr;
+  float rl = length(d) / R;
+  float inside = step(rl, 1.);
+  float mag = (1.9 + .6 * uPress);
+  vec2 qs = q;
+  if (rl < 1.) {
+    float k = 1. - (1. - 1. / mag) * (1. - rl * rl);            // barrel: centre magnified, rim continuous
+    qs = uPtr + d * k;
+  }
+  float tone; float ink = dots(qs, pitch, tone);
+  vec3 dotc = mix(u_ink, u_accent, inside * smoothstep(.75, .1, rl) * smoothstep(.25, .55, tone));
+  vec3 col = mix(u_paper, dotc, ink);
+  // the glass
+  if (rl < 1.06) {
+    float rim = smoothstep(.93, 1., rl) * smoothstep(1.03, 1., rl);
+    vec2 nd = d / max(length(d), 1.);
+    col = mix(col, vec3(1.), rim * (.25 + .55 * max(0., dot(nd, normalize(vec2(-.6, .8))))));
+    col *= 1. - .12 * smoothstep(.98, 1.02, rl) * smoothstep(1.06, 1.02, rl);        // hairline edge
+    col = mix(col, col * .985 + .015, inside * (1. - rl * rl) * .5);                // glass lifts the paper a touch
+  }
+  float sh = length(d - vec2(10., -14.) * uDpr) / R;
+  col *= 1. - .10 * smoothstep(1.25, .95, sh) * (1. - inside) * uHover;             // contact shadow
+  gl_FragColor = vec4(dither(col), 1.);
+}`
+});
+</script>
+</body></html>

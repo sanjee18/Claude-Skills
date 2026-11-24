@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Glass Orb · Signature</title>
+<style>html,body{margin:0;height:100%;background:#0d0d12;overflow:hidden}</style>
+</head><body>
+<!--
+  Glass Orb — a solid glass sphere in a quiet studio, with a thin iridescent
+  film, standing in front of a softly lit wall.
+
+  Traced, not faked: the eye ray enters the sphere (Snell), crosses it,
+  leaves it (Snell again, or total internal reflection), and reads the
+  studio behind. R, G and B use slightly different indices, so the image
+  inside is inverted with a faint spectral fringe at the rim. The outer
+  reflection is weighted by Fresnel and tinted by a thin-film term (soap-
+  bubble colours that shift with angle), kept subtle. The wall shows the
+  sphere's soft shadow and the bright caustic the sphere focuses inside it.
+  Studio: a gradient wall, two soft light panels, and a coloured key that
+  follows the sprung pointer — move it and every refraction and the
+  caustic move with it. Hover lifts the sphere toward you a touch.
+  Hash: #key=6b8bff&wall=17171f&film=1
+-->
+<script src="studio:sigkit"></script>
+<script>
+Sig({
+  params: { key: '#6c8cff', wall: '#15151c', film: 1.0, size: 0.34 },
+  rest: [0.72, 0.30],
+  frag: `
+vec3 studio(vec3 ro, vec3 rd, vec3 lp){
+  // the wall: plane z = -1.2
+  float t = (-1.2 - ro.z) / min(rd.z, -1e-3);
+  vec3 w = ro + rd * max(t, 0.);
+  vec3 c = u_wall * (.5 + .6 * smoothstep(-1.4, 1.4, w.y));
+  c += vec3(1.) * .10 * exp(-pow((w.y - 1.25) * 4.0, 2.)) * smoothstep(1.8, .2, abs(w.x + .4));   // overhead softbox
+  c += vec3(1., .96, .92) * .10 * exp(-pow((w.x + 2.1) * 3.5, 2.));                                   // side strip
+  c += u_key * 1.1 * exp(-dot(w.xy - lp.xy, w.xy - lp.xy) * 3.5);                                    // the coloured key
+  // the floor: a lighter table that meets the wall in a soft edge. Seen through the sphere it turns
+  // upside down, which is what makes solid glass read as solid glass.
+  float fl = smoothstep(-.40, -.47, w.y);
+  c = mix(c, vec3(.42, .41, .46) * (.22 + .18 * smoothstep(-1.6, -.45, w.y)) + u_key * .05, fl);
+  c += vec3(1.) * .06 * exp(-abs(w.y + .435) * 60.);            // the seam catches light
+  if (rd.z > -.02) c = mix(u_wall * .5, c, .3);                                                       // rays heading back toward us
+  return c;
+}
+vec2 sph(vec3 ro, vec3 rd, float R){
+  float b = dot(ro, rd), c = dot(ro, ro) - R * R, h = b * b - c;
+  if (h < 0.) return vec2(-1.); h = sqrt(h); return vec2(-b - h, -b + h);
+}
+vec3 through(vec3 ro, vec3 rd, vec3 n, float eta, float R, vec3 lp){
+  vec3 r1 = refract(rd, n, 1. / eta);
+  vec2 t = sph(ro + r1 * 1e-3, r1, R);
+  vec3 p2 = ro + r1 * max(t.y, 0.);
+  vec3 n2 = -normalize(p2);
+  vec3 r2 = refract(r1, n2, eta);
+  if (dot(r2, r2) < 1e-4) r2 = reflect(r1, n2);              // total internal reflection
+  return studio(p2, r2, lp);
+}
+void main(){
+  vec2 p = (gl_FragCoord.xy - .5 * uRes) / uRes.y;
+  float R = u_size * (1. + .04 * uHover);
+  vec3 ro = vec3(0., 0., 3.2);
+  vec3 rd = normalize(vec3(p, -1.8 * 1.0));
+  ro.y -= sin(uTime * .6) * .006;                              // a breath, not a bounce
+  vec3 lp = vec3(uPtrN * vec2(uRes.x / uRes.y, 1.) * 1.1, -1.2);
+  vec3 col = studio(ro, rd, lp);
+
+  // on the wall: soft shadow and the focused caustic (both from the key's direction)
+  vec3 Ld = normalize(vec3(0., 0., 0.) - lp);
+  float tw = (-1.2 - ro.z) / rd.z; vec3 w = ro + rd * tw;
+  vec2 sc = (-Ld.xy / max(-Ld.z, .2)) * 1.2 * -1.;             // where the sphere's image lands on the wall
+  float ds = length(w.xy - sc * .0 - vec2(0., 0.)) ;
+  col *= 1. - .35 * smoothstep(R * 1.25, R * .55, ds);
+  col += u_key * .9 * exp(-pow(ds / (R * .22), 2.)) * .6;
+
+  vec2 hit = sph(ro, rd, R);
+  if (hit.x > 0.) {
+    vec3 x = ro + rd * hit.x, n = normalize(x);
+    vec3 refr = vec3(through(x, rd, n, 1.44, R, lp).r, through(x, rd, n, 1.455, R, lp).g, through(x, rd, n, 1.47, R, lp).b);
+    float cosi = clamp(dot(-rd, n), 0., 1.);
+    float F = .04 + .96 * pow(1. - cosi, 5.);
+    vec3 refl = studio(x, reflect(rd, n), lp);
+    vec3 film = .5 + .5 * cos(TAU * (cosi * 1.6 + vec3(0., .33, .67)));
+    refl *= mix(vec3(1.), film * 1.4, .45 * u_film);
+    vec3 glass = refr * vec3(.97, .985, 1.) * (1. - F) + refl * F;
+    glass += vec3(1.) * pow(max(dot(reflect(rd, n), normalize(vec3(-.4, .8, .45))), 0.), 220.) * 2.2;   // the softbox, as a point
+    float aa = smoothstep(0., 2. / uRes.y, length(p) - 0.) ;
+    float edge = clamp((R - length(x.xy - vec2(0.)) * 0. - length(p) * 1.778) , 0., 1.);
+    col = glass;
+  }
+  gl_FragColor = vec4(dither(toSrgb(aces(col * 1.2))), 1.);
+}`
+});
+</script>
+</body></html>

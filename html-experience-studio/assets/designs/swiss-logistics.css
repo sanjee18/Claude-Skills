@@ -1,0 +1,28 @@
+/* design: swiss-logistics · white, Barlow Condensed 800 caps, black grid, signal red, no radius */
+[data-design=swiss-logistics]{--r:0px;--glass:#fff}
+[data-design=swiss-logistics] body::before{background:repeating-linear-gradient(0deg,transparent 0 79px,rgba(11,11,11,.05) 79px 80px)}
+[data-design=swiss-logistics] body::after{display:none}
+[data-design=swiss-logistics] .t{font-weight:800;letter-spacing:-.01em;line-height:.88;text-transform:uppercase}
+[data-design=swiss-logistics] .t-xl{font-size:clamp(3.4rem,10vw,10rem)}
+[data-design=swiss-logistics] .t-l{font-size:clamp(2.6rem,6.4vw,6.4rem)}
+[data-design=swiss-logistics] .t-m{font-size:clamp(2rem,4vw,3.6rem)}
+[data-design=swiss-logistics] .acc{color:var(--accent)}
+[data-design=swiss-logistics] .kicker{font:500 11px/1 var(--font-m);letter-spacing:.08em;color:var(--text);gap:10px}
+[data-design=swiss-logistics] .kicker::before{width:10px;height:10px;background:var(--accent);opacity:1}
+[data-design=swiss-logistics] .card,[data-design=swiss-logistics] .bento .tile,[data-design=swiss-logistics] .st-panel,[data-design=swiss-logistics] .card-flat{background:#fff!important;border:0!important;border-top:3px solid var(--text)!important;border-radius:0!important;box-shadow:none!important}
+[data-design=swiss-logistics] .card h3,[data-design=swiss-logistics] .tile h3,[data-design=swiss-logistics] .tl-item h3{font:700 clamp(1.4rem,2vw,1.9rem)/1 var(--font-d);text-transform:uppercase;letter-spacing:0}
+[data-design=swiss-logistics] .ico-wrap{color:var(--accent)}
+[data-design=swiss-logistics] .btn{background:var(--text);color:#fff;border-radius:0;height:48px;font:600 13px/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;box-shadow:none}
+[data-design=swiss-logistics] .btn:hover{background:var(--accent);box-shadow:none}
+[data-design=swiss-logistics] .btn.ghost{background:transparent;color:var(--text);border:2px solid var(--text)}
+[data-design=swiss-logistics] .tag,[data-design=swiss-logistics] .tl-item .when,[data-design=swiss-logistics] .st-no{font-family:var(--font-m);color:var(--accent)}
+[data-design=swiss-logistics] .stat{border-top:3px solid var(--text)}
+[data-design=swiss-logistics] .num,[data-design=swiss-logistics] .big-num,[data-design=swiss-logistics] .vis-ring b{font-weight:800;letter-spacing:-.02em}
+[data-design=swiss-logistics] .num{font-size:clamp(3rem,7.4vw,6.6rem)}
+[data-design=swiss-logistics] .vis-ring .arc{stroke-linecap:butt;stroke-width:12}
+[data-design=swiss-logistics] .vis-ring .trk{stroke-width:12}
+[data-design=swiss-logistics] .bul li::before{width:8px;height:8px;background:var(--accent);top:.5em}
+[data-design=swiss-logistics] .node{border-radius:0;border:2px solid var(--text);background:#fff;font-weight:700}
+[data-design=swiss-logistics] .node .nd{border-radius:0;box-shadow:none;background:var(--accent)}
+[data-design=swiss-logistics] .rail button,[data-design=swiss-logistics] .hud-count,[data-design=swiss-logistics] .ov-btn{border-radius:0}
+[data-design=swiss-logistics] .rail button.on{background:var(--accent)}

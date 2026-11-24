@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#04070b">
+<title>Hafenwerk · Portfolio-Demo (Erlebnis-Hub)</title>
+<!-- DEMO der Bauart "Erlebnis-Hub": Mechanik übernehmen, ALLES Inhaltliche ersetzen (leakcheck prüft das). -->
+<link rel="studio-fonts" href="Inter Tight:500,600;Inter:400,500,600;Geist Mono:400">
+<link rel="stylesheet" href="studio:experience">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="x-grain"></div>
+
+<!-- ============ INTRO · zentriert-oben, Vollbild-Film (hier: prozeduraler Stand-in), zwei Pills ============ -->
+<section class="scene intro" data-id="intro" data-role="intro" data-title="Titel">
+  <div class="x-media">
+    <!-- Echter Held: video-Tag mit autoplay muted loop playsinline, poster und src auf media/hero.mp4 (bündelt als data-URI) -->
+    <canvas id="harbour"></canvas>
+  </div>
+  <div class="x-scrim-b"></div>
+  <header class="x-nav">
+    <div class="x-logo"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M14 2 26 14 14 26 2 14Z" fill="#fff" opacity=".9"/><path d="M14 8 20 14 14 20 8 14Z" fill="#04070b" opacity=".5"/></svg>hafenwerk</div>
+    <nav class="x-nav-links">
+      <div class="x-nav-i"><button class="x-nav-b">Story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="x-dd liquid-glass"><button data-go="today">Heute</button><button data-go="tomorrow">Morgen</button></div></div>
+      <div class="x-nav-i"><button class="x-nav-b">Portfolio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="x-dd liquid-glass"><button data-go-item="berth">Liegeplatz</button><button data-go-item="yard">Yard</button><button data-go-item="gate">Gate</button><button data-go-item="power">Landstrom</button><button data-go-item="crew">Organisation</button></div></div>
+      <button class="x-nav-b" data-go="outro">Team</button>
+    </nav>
+    <span class="x-mono">[TBD Datum] · Vorstand</span>
+  </header>
+  <div class="intro-c">
+    <h1 class="x-h-hero"><span class="x-ln"><span>Schiffe warten.</span></span><span class="x-ln"><span>Daten nicht. <span class="x-dim">Wir</span></span></span><span class="x-ln"><span class="x-dim">verbinden beides.</span></span></h1>
+    <p class="x-lead" data-in="3">Fünf Hebel, ein Hafen-Betriebssystem: kürzere Liegezeiten, ohne einen Meter neue Kaimauer.</p>
+    <div class="intro-cta" data-in="4">
+      <button class="x-btn" data-x="next">Reise starten</button>
+      <button class="x-btn liquid-glass glass" data-x="hub">Direkt zum Portfolio</button>
+    </div>
+  </div>
+  <aside class="notes">Begrüßung. Ein Satz zum Anlass. Dann sofort: Wir zeigen heute, wo die Liegezeit verloren geht.</aside>
+</section>
+
+<!-- ============ STORY 1 · Instrument: Lineal mit wandernder Kennzahl ============ -->
+<section class="scene today" data-id="today" data-role="story" data-chapter="Heute">
+  <div class="today-c">
+    <div class="x-eyebrow" data-in>Heute</div>
+    <div class="x-num" data-in="1"><span id="hoursNum">0</span><small> h</small></div>
+    <h2 class="x-h-l" data-in="2">liegt ein Schiff im Schnitt. <span class="x-dim">Gut ein Drittel davon wartet es.</span></h2>
+    <div class="x-mono" data-in="3">Quelle: [TBD] · Stand [TBD]</div>
+  </div>
+  <svg class="ruler" id="ruler" viewBox="0 0 1000 120" preserveAspectRatio="none" data-in="2" data-fx="wipe"></svg>
+  <aside class="notes">Zahl wirken lassen. Nicht erklären, warum – das kommt auf der nächsten Seite.</aside>
+</section>
+
+<!-- ============ STORY 2 · Anlauf eines Schiffs als Band, das sich zusammenzieht ============ -->
+<section class="scene tomorrow" data-id="tomorrow" data-role="story" data-chapter="Morgen">
+  <div class="tomorrow-c">
+    <div class="x-eyebrow" data-in>Morgen</div>
+    <h2 class="x-h-xl" data-in="1">Ein Anlauf.<br><span class="x-dim">Ein Datenstrom.</span></h2>
+  </div>
+  <div class="band" data-in="2">
+    <div class="band-row"><span>Heute</span><i style="--w:22%">Anmeldung</i><i class="wait" style="--w:31%">Warten</i><i style="--w:27%">Umschlag</i><i class="wait" style="--w:20%">Abfertigung</i></div>
+    <div class="band-row now"><span>Ziel</span><i style="--w:18%">Anmeldung</i><i class="wait" style="--w:6%"></i><i style="--w:27%">Umschlag</i><i class="wait" style="--w:5%"></i></div>
+  </div>
+  <aside class="notes">Die Lücken sind das Geschäft. Jeder Hebel im Portfolio schließt eine davon.</aside>
+</section>
+
+<!-- ============ HUB · Zahnrad rechts, Text links, Fortschritt ============ -->
+<section class="scene hub" data-id="hub" data-role="hub" data-chapter="Portfolio" data-title="Portfolio">
+  <div class="hub-c">
+    <div class="x-eyebrow" data-in>Hafenwerk Portfolio</div>
+    <h2 class="x-h-xl" data-in="1">Ein System.<br><span class="x-dim">Fünf Hebel.</span></h2>
+    <p class="x-lead" data-in="2">Jeder Hebel schließt eine Lücke im Anlauf. Klick auf ein Bauteil.</p>
+    <div class="legend" data-in="3" id="legend"></div>
+    <div class="x-progress" data-in="4"><span data-x-progress-text></span><span class="x-bar"><b data-x-progress-bar></b></span></div>
+    <div class="hub-btns" data-in="5"><button class="x-btn" data-x-next></button><button class="x-btn ghost" data-go="outro">Ansprechpartner</button></div>
+  </div>
+  <div class="gear-wrap" id="gear"></div>
+  <aside class="notes">Publikum wählen lassen. Reihenfolge egal – das Zahnrad merkt sich, was gesehen wurde.</aside>
+</section>
+
+<!-- ============ SUB · Liegeplatz (Kette aus 2 Seiten): Spannungsbogen, dann Zeitstrahl ============ -->
+<section class="scene sub arc" data-id="berth-1" data-role="sub" data-item="berth" data-title="Liegeplatz · Bogen">
+  <div class="sub-head"><div class="mini" data-mini="berth"></div><div><div class="x-eyebrow" data-in>Liegeplatz-Planung · 1/2</div><h2 class="x-h-l" data-in="1">Vom Zufall <span class="x-dim">zum Fahrplan.</span></h2></div></div>
+  <div class="arc-band">
+    <div class="arc-step" data-in="2"><span class="x-mono">Problem</span><b>Ankunft unbekannt</b><p>Liegeplätze werden nach Anmeldung vergeben, nicht nach Prognose.</p></div>
+    <svg class="arc-line" viewBox="0 0 100 10" preserveAspectRatio="none" data-in="3" data-fx="wipe"><path d="M0 5 H100" /></svg>
+    <div class="arc-step" data-in="4"><span class="x-mono">Lösung</span><b>ETA aus AIS + Wetter</b><p>Prognose 48 h voraus, Planung rollt alle 15 min nach.</p></div>
+    <svg class="arc-line" viewBox="0 0 100 10" preserveAspectRatio="none" data-in="5" data-fx="wipe"><path d="M0 5 H100" /></svg>
+    <div class="arc-step hot" data-in="6"><span class="x-mono">Wert</span><b>[TBD] h weniger Warten</b><p>Pro Anlauf, belegt im Pilot (Quelle [TBD]).</p></div>
+  </div>
+  <aside class="notes">Drei Schritte, ein Satz je Schritt.</aside>
+</section>
+<section class="scene sub weeks" data-id="berth-2" data-role="sub" data-item="berth" data-title="Liegeplatz · Pilot">
+  <div class="sub-head"><div class="mini" data-mini="berth"></div><div><div class="x-eyebrow" data-in>Liegeplatz-Planung · 2/2</div><h2 class="x-h-l" data-in="1">Acht Wochen <span class="x-dim">bis zum Beleg.</span></h2></div></div>
+  <ol class="weeks-track" data-in="2"></ol>
+  <aside class="notes">Pilot ist klein genug für ein Ja heute.</aside>
+</section>
+
+<!-- ============ SUB · Yard: Schichten-Stapel (isometrisch) ============ -->
+<section class="scene sub layers" data-id="yard-1" data-role="sub" data-item="yard" data-title="Yard · Architektur">
+  <div class="layers-c"><div class="x-eyebrow" data-in>Yard-Steuerung</div><h2 class="x-h-l" data-in="1">Drei Schichten.<br><span class="x-dim">Eine Wahrheit.</span></h2>
+    <p class="x-lead" data-in="2">Fahr mit der Maus über eine Schicht.</p></div>
+  <div class="stack" data-in="3">
+    <div class="lay" style="--n:2"><b>Entscheiden</b><span>Stellplatz-Optimierer</span></div>
+    <div class="lay" style="--n:1"><b>Verstehen</b><span>Digitaler Zwilling des Yards</span></div>
+    <div class="lay" style="--n:0"><b>Erfassen</b><span>Kran-, Gate-, Trucker-Daten</span></div>
+  </div>
+</section>
+
+<!-- ============ SUB · Gate: Vorher/Nachher-Schalter ============ -->
+<section class="scene sub switch" data-id="gate-1" data-role="sub" data-item="gate" data-title="Gate · Vorher/Nachher">
+  <div class="switch-c"><div class="x-eyebrow" data-in>Smart Gate</div><h2 class="x-h-l" data-in="1">Ein Klick. <span class="x-dim">Zwei Welten.</span></h2>
+    <div class="toggle liquid-glass" data-in="2" role="tablist"><button class="on" data-state="a">Heute</button><button data-state="b">Mit Smart Gate</button><i></i></div></div>
+  <div class="lanes" data-in="3" data-state="a">
+    <div class="lane"><span>Spur 1</span><div class="trucks"></div></div><div class="lane"><span>Spur 2</span><div class="trucks"></div></div>
+    <div class="lane"><span>Spur 3</span><div class="trucks"></div></div>
+    <div class="lane-kpi"><b data-a="[TBD] min" data-b="[TBD] min">[TBD] min</b><span>Durchfahrt je Truck</span></div>
+  </div>
+</section>
+
+<!-- ============ SUB · Landstrom: Zahlenwand ============ -->
+<section class="scene sub wall" data-id="power-1" data-role="sub" data-item="power" data-title="Landstrom · Zahlen">
+  <div class="wall-c"><div class="x-eyebrow" data-in>Landstrom</div><h2 class="x-h-l" data-in="1">Motor aus. <span class="x-dim">Hafen an.</span></h2></div>
+  <div class="wall">
+    <div data-in="2"><span class="x-num">[TBD]</span><p>Liegeplätze mit Anschluss</p></div>
+    <div data-in="3"><span class="x-num">[TBD]</span><p>t CO₂ pro Jahr vermieden</p></div>
+    <div data-in="4"><span class="x-num">[TBD]</span><p>Monate bis Netzanschluss</p></div>
+  </div>
+</section>
+
+<!-- ============ SUB · Organisation: ein Zitat, ein Beleg ============ -->
+<section class="scene sub quote" data-id="crew-1" data-role="sub" data-item="crew" data-title="Organisation · Stimme">
+  <blockquote data-in="1"><span class="q">„</span>[TBD Zitat aus dem Betrieb, max. 15 Wörter]</blockquote>
+  <div class="x-mono" data-in="2">[TBD Name] · [TBD Rolle] — freigegeben am [TBD]</div>
+</section>
+
+<!-- ============ OUTRO · Entscheidung + Köpfe um das gedimmte Zahnrad ============ -->
+<section class="scene outro" data-id="outro" data-role="outro" data-chapter="Entscheidung" data-title="Entscheidung">
+  <div class="outro-c"><div class="x-eyebrow" data-in>Entscheidung heute</div>
+    <h2 class="x-h-xl" data-in="1">Pilot Liegeplatz.<br><span class="x-dim">Start [TBD Datum].</span></h2>
+    <p class="x-lead" data-in="2">Owner: [TBD] · Budget: [TBD] · Review nach acht Wochen.</p></div>
+  <div class="outro-gear" data-in="3"><div id="outroGear"></div>
+    <div class="who" style="--a:-60deg"><i>[TBD]</i><b>[TBD Name]</b><span>Liegeplatz</span></div>
+    <div class="who" style="--a:20deg"><i>[TBD]</i><b>[TBD Name]</b><span>Yard &amp; Gate</span></div>
+    <div class="who" style="--a:150deg"><i>[TBD]</i><b>[TBD Name]</b><span>Organisation</span></div></div>
+</section>
+
+<section class="scene backup" data-id="b-cost" data-role="backup" data-title="Backup · Kostenmodell">
+  <div class="wall-c"><div class="x-eyebrow" data-in>Backup</div><h2 class="x-h-l" data-in="1">Kostenmodell [TBD]</h2></div>
+</section>
+
+<script src="studio:experience"></script>
+<script src="story.js"></script>
+</body>
+</html>

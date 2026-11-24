@@ -1,0 +1,506 @@
+{
+  "meta": {
+    "title": "Showcase · Library Preview",
+    "org": "Beispiel GmbH",
+    "lang": "de"
+  },
+  "theme": {
+    "preset": "midnight",
+    "fx": []
+  },
+  "nav": {
+    "mode": "deck",
+    "transition": "zoom-through",
+    "rail": true
+  },
+  "bg": {
+    "id": "network",
+    "intensity": 1
+  },
+  "pages": [
+    {
+      "id": "start",
+      "type": "hero",
+      "kicker": "Workshop · 12. März",
+      "title": "Aus Folien werden\n*Erlebnisse*",
+      "sub": "Eine Seite, ein Gedanke, eine Bewegung – Beispielinhalt zur Vorschau der Bibliothek.",
+      "cta": {
+        "label": "Los geht's",
+        "to": "zahlen"
+      },
+      "meta": "Beispiel GmbH · Demo-Daten"
+    },
+    {
+      "id": "statement",
+      "type": "statement",
+      "kicker": "Shared Element",
+      "title": "Drei Zahlen, *eine* Botschaft",
+      "shared": "kern",
+      "sub": "Der Titel wandert in die nächste Seite."
+    },
+    {
+      "id": "zahlen",
+      "type": "stats",
+      "kicker": "Zahlen (Demo)",
+      "title": "Drei Zahlen, *eine* Botschaft",
+      "items": [
+        {
+          "value": 42,
+          "suffix": "%",
+          "label": "Beispielwert A",
+          "note": "Platzhalter – echte Zahlen kommen vom Kunden"
+        },
+        {
+          "value": 1280,
+          "label": "Beispielwert B"
+        },
+        {
+          "value": 3.7,
+          "decimals": 1,
+          "prefix": "×",
+          "label": "Beispielwert C"
+        }
+      ],
+      "shared": "kern"
+    },
+    {
+      "id": "chart",
+      "type": "chart",
+      "mode": "morph",
+      "kicker": "Datenstory",
+      "title": "Balken werden zur *Linie*",
+      "note": "Demo-Daten.",
+      "label": "Beispielverlauf",
+      "data": [
+        {
+          "label": "Q1",
+          "value": 20
+        },
+        {
+          "label": "Q2",
+          "value": 34
+        },
+        {
+          "label": "Q3",
+          "value": 46
+        },
+        {
+          "label": "Q4",
+          "value": 71
+        },
+        {
+          "label": "Q5",
+          "value": 88
+        }
+      ]
+    },
+    {
+      "id": "karten",
+      "type": "cards",
+      "kicker": "Bausteine",
+      "title": "Karten mit *Spotlight*",
+      "columns": 3,
+      "items": [
+        {
+          "icon": "bolt",
+          "title": "Schnell",
+          "text": "Eine HTML-Datei, offline, sofort im Browser."
+        },
+        {
+          "icon": "layers",
+          "title": "Modular",
+          "text": "Seitentypen, Hintergründe und Übergänge frei kombinierbar."
+        },
+        {
+          "icon": "shield",
+          "title": "Verlässlich",
+          "text": "Zahlen exakt wie geliefert, nie erfunden."
+        }
+      ]
+    },
+    {
+      "id": "bento",
+      "type": "bento",
+      "kicker": "Bento",
+      "title": "Alles auf *einen* Blick",
+      "items": [
+        {
+          "kind": "stat",
+          "size": "l",
+          "value": 128,
+          "suffix": "k",
+          "label": "Beispielwert (Demo)"
+        },
+        {
+          "kind": "text",
+          "icon": "spark",
+          "title": "Baut sich auf",
+          "text": "Kacheln fliegen von der Mitte weg ein."
+        },
+        {
+          "kind": "chart",
+          "size": "w",
+          "title": "Verlauf (Demo)",
+          "data": [
+            {
+              "label": "A",
+              "value": 10
+            },
+            {
+              "label": "B",
+              "value": 24
+            },
+            {
+              "label": "C",
+              "value": 18
+            },
+            {
+              "label": "D",
+              "value": 40
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "icon": "shield",
+          "title": "Ruhig",
+          "text": "Eine Idee pro Kachel."
+        },
+        {
+          "kind": "quote",
+          "size": "w",
+          "text": "Das sieht nicht nach Folie aus.",
+          "author": "Demo-Zitat"
+        }
+      ]
+    },
+    {
+      "id": "marquee",
+      "type": "marquee",
+      "kicker": "Marquee",
+      "title": "Themen, die *laufen*",
+      "rows": [
+        [
+          "Strategie",
+          "Daten",
+          "Plattform",
+          "Design",
+          "Engineering",
+          "Sicherheit",
+          "Betrieb"
+        ],
+        [
+          "Kunde",
+          "Prozess",
+          "Wachstum",
+          "Nachhaltigkeit",
+          "Automatisierung",
+          "KI",
+          "Transformation"
+        ]
+      ]
+    },
+    {
+      "id": "ring",
+      "type": "split",
+      "kicker": "Visual: Ring",
+      "title": "Ein Wert, *sofort* verstanden",
+      "bullets": [
+        "Zählt hoch, zeichnet den Ring",
+        "Ideal für Reifegrad oder Fortschritt"
+      ],
+      "visual": {
+        "type": "ring",
+        "value": 72,
+        "label": "Beispiel-Reifegrad"
+      }
+    },
+    {
+      "id": "flow",
+      "type": "split",
+      "flip": true,
+      "kicker": "Visual: Fluss",
+      "title": "Vom Signal zur *Aktion*",
+      "bullets": [
+        "Impulse laufen entlang der Linie",
+        "Für Architektur- und Prozessbilder"
+      ],
+      "visual": {
+        "type": "flow",
+        "nodes": [
+          "Input",
+          "Plattform",
+          "Ergebnis"
+        ]
+      }
+    },
+    {
+      "id": "device",
+      "type": "split",
+      "kicker": "Visual: Device",
+      "title": "Das Produkt im *Rahmen*",
+      "bullets": [
+        "Browser- oder Handy-Rahmen",
+        "Echte Screenshots scrollen automatisch"
+      ],
+      "visual": {
+        "type": "device",
+        "frame": "browser",
+        "url": "beispiel.example"
+      }
+    },
+    {
+      "id": "compare",
+      "type": "split",
+      "flip": true,
+      "kicker": "Visual: Vorher/Nachher",
+      "title": "Der Unterschied in *einer* Bewegung",
+      "bullets": [
+        "Regler per Maus oder Pfeiltasten",
+        "Startet mit einer kurzen Demo-Fahrt"
+      ],
+      "visual": {
+        "type": "compare",
+        "a": {
+          "label": "Vorher"
+        },
+        "b": {
+          "label": "Nachher"
+        }
+      }
+    },
+    {
+      "id": "zeit",
+      "type": "timeline",
+      "kicker": "Fahrplan",
+      "title": "Vier Schritte, *ein* Weg",
+      "items": [
+        {
+          "label": "Phase 1",
+          "title": "Verstehen",
+          "text": "Ziel und Publikum klären."
+        },
+        {
+          "label": "Phase 2",
+          "title": "Entwerfen",
+          "text": "Storyboard und Look wählen."
+        },
+        {
+          "label": "Phase 3",
+          "title": "Bauen",
+          "text": "Seiten, Daten, Bewegung."
+        },
+        {
+          "label": "Phase 4",
+          "title": "Schärfen",
+          "text": "Prüfen und liefern."
+        }
+      ]
+    },
+    {
+      "id": "schritte",
+      "type": "steps",
+      "kicker": "Tabs",
+      "title": "Problem. Lösung. *Mehrwert.*",
+      "items": [
+        {
+          "label": "Problem",
+          "title": "Das Problem",
+          "text": "Statische Folien verlieren Aufmerksamkeit.",
+          "bullets": [
+            "Wenig Interaktion",
+            "Austauschbare Optik"
+          ]
+        },
+        {
+          "label": "Lösung",
+          "title": "Die Lösung",
+          "text": "Interaktive HTML-Erlebnisse mit klarer Dramaturgie."
+        },
+        {
+          "label": "Mehrwert",
+          "title": "Der Mehrwert",
+          "text": "Mehr Wirkung beim Kunden, weniger Iterationen im Bau."
+        }
+      ]
+    },
+    {
+      "id": "hub",
+      "type": "hub",
+      "kicker": "Portfolio",
+      "title": "Sechs Hebel, *ein* System",
+      "core": "Beispiel",
+      "coreHint": "Klicke einen Bereich",
+      "items": [
+        {
+          "title": "Daten",
+          "text": "Daten nutzbar machen.",
+          "to": "s-daten",
+          "color": "#5fd6ff"
+        },
+        {
+          "title": "Plattform",
+          "text": "Skalierbar bauen.",
+          "to": "s-plattform",
+          "color": "#2fd6b4"
+        },
+        {
+          "title": "Prozesse",
+          "text": "Abläufe vereinfachen.",
+          "to": "s-prozesse",
+          "color": "#a98bff"
+        },
+        {
+          "title": "Kunden",
+          "text": "Erlebnisse gestalten.",
+          "to": "s-kunden",
+          "color": "#ff8a7a"
+        },
+        {
+          "title": "Menschen",
+          "text": "Teams befähigen.",
+          "to": "s-menschen",
+          "color": "#ffd166"
+        },
+        {
+          "title": "Sicherheit",
+          "text": "Vertrauen schaffen.",
+          "to": "s-sicher",
+          "color": "#7be3a8"
+        }
+      ],
+      "subpages": [
+        {
+          "id": "s-daten",
+          "type": "steps",
+          "kicker": "Hebel 1",
+          "title": "Daten",
+          "items": [
+            {
+              "label": "Problem",
+              "title": "Problem",
+              "text": "Daten liegen verteilt."
+            },
+            {
+              "label": "Lösung",
+              "title": "Lösung",
+              "text": "Ein gemeinsames Datenmodell."
+            },
+            {
+              "label": "Mehrwert",
+              "title": "Mehrwert",
+              "text": "Schnellere Entscheidungen."
+            }
+          ]
+        },
+        {
+          "id": "s-plattform",
+          "type": "split",
+          "kicker": "Hebel 2",
+          "title": "Plattform",
+          "bullets": [
+            "Modular",
+            "Skalierbar"
+          ],
+          "visual": {
+            "type": "flow",
+            "nodes": [
+              "Quelle",
+              "Kern",
+              "Service"
+            ]
+          }
+        },
+        {
+          "id": "s-prozesse",
+          "type": "timeline",
+          "kicker": "Hebel 3",
+          "title": "Prozesse",
+          "items": [
+            {
+              "label": "Heute",
+              "title": "Manuell"
+            },
+            {
+              "label": "Morgen",
+              "title": "Assistiert"
+            },
+            {
+              "label": "Ziel",
+              "title": "Autonom"
+            }
+          ]
+        },
+        {
+          "id": "s-kunden",
+          "type": "stats",
+          "kicker": "Hebel 4",
+          "title": "Kunden",
+          "items": [
+            {
+              "value": 85,
+              "suffix": "%",
+              "label": "Beispielwert"
+            },
+            {
+              "value": 12,
+              "label": "Beispielwert"
+            }
+          ]
+        },
+        {
+          "id": "s-menschen",
+          "type": "cards",
+          "kicker": "Hebel 5",
+          "title": "Menschen",
+          "columns": 2,
+          "items": [
+            {
+              "icon": "users",
+              "title": "Teams",
+              "text": "Gemeinsam lernen."
+            },
+            {
+              "icon": "target",
+              "title": "Ziele",
+              "text": "Klar ausrichten."
+            }
+          ]
+        },
+        {
+          "id": "s-sicher",
+          "type": "statement",
+          "kicker": "Hebel 6",
+          "title": "Vertrauen ist die\n*Grundlage*"
+        }
+      ]
+    },
+    {
+      "id": "zitat",
+      "type": "quote",
+      "title": "Das war *die* Präsentation, nach der wir gefragt haben.",
+      "author": "Beispiel-Stimme",
+      "role": "Demo-Zitat"
+    },
+    {
+      "id": "ende",
+      "type": "cta",
+      "kicker": "Nächster Schritt",
+      "title": "Sprechen wir über *Ihr* Projekt",
+      "cta": {
+        "label": "Zurück zum Portfolio",
+        "to": "hub"
+      },
+      "contacts": [
+        {
+          "label": "Ansprechpartner",
+          "value": "Name Nachname"
+        },
+        {
+          "label": "Kontakt",
+          "value": "name@example.com"
+        }
+      ]
+    }
+  ]
+}

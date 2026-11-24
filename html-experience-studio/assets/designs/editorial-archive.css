@@ -1,0 +1,28 @@
+/* design: editorial-archive · paper cream, Instrument Serif, hairlines, numbers, one red */
+[data-design=editorial-archive]{--r:0px;--glass:transparent}
+[data-design=editorial-archive] body::before{background:repeating-linear-gradient(90deg,transparent 0 calc(100%/12 - 1px),rgba(27,23,18,.045) calc(100%/12 - 1px) calc(100%/12))}
+[data-design=editorial-archive] body::after{opacity:.06}
+[data-design=editorial-archive] .t{font-weight:400;letter-spacing:-.015em;line-height:1}
+[data-design=editorial-archive] .t-xl{font-size:clamp(3rem,7.4vw,7rem)}
+[data-design=editorial-archive] .acc{color:var(--accent);font-style:italic}
+[data-design=editorial-archive] .kicker{font:500 11px/1 var(--font-m);letter-spacing:.12em;color:var(--text);padding-bottom:10px;border-bottom:1px solid var(--text);gap:14px}
+[data-design=editorial-archive] .kicker::before{content:"§";width:auto;height:auto;background:none;color:var(--accent);opacity:1}
+[data-design=editorial-archive] .lead{color:var(--muted);font-size:clamp(15px,1.2vw,18px)}
+[data-design=editorial-archive] .card,[data-design=editorial-archive] .bento .tile,[data-design=editorial-archive] .st-panel,[data-design=editorial-archive] .card-flat{background:transparent!important;border:0!important;border-top:1px solid var(--text)!important;border-radius:0!important;padding:18px 0 0!important;box-shadow:none!important}
+[data-design=editorial-archive] .card h3,[data-design=editorial-archive] .tile h3,[data-design=editorial-archive] .tl-item h3{font:400 clamp(1.4rem,2vw,1.9rem)/1.1 var(--font-d)}
+[data-design=editorial-archive] .ico-wrap{display:none!important}
+[data-design=editorial-archive] .tag,[data-design=editorial-archive] .tl-item .when,[data-design=editorial-archive] .st-no{font-family:var(--font-m);color:var(--accent);letter-spacing:.1em}
+[data-design=editorial-archive] .btn{background:transparent;color:var(--text);border-radius:0;padding:0 0 6px;height:auto;border-bottom:1px solid var(--text);font:500 15px/1 var(--font-b);box-shadow:none}
+[data-design=editorial-archive] .btn:hover{box-shadow:none;color:var(--accent);border-color:var(--accent)}
+[data-design=editorial-archive] .stat{border-top:1px solid var(--text)}
+[data-design=editorial-archive] .num,[data-design=editorial-archive] .big-num,[data-design=editorial-archive] .vis-ring b{font-weight:400}
+[data-design=editorial-archive] .num .pre,[data-design=editorial-archive] .num .suf,[data-design=editorial-archive] .vis-ring i{font-style:italic}
+[data-design=editorial-archive] .vis-ring .arc{stroke-width:2;stroke-linecap:butt}
+[data-design=editorial-archive] .vis-ring .trk{stroke-width:2}
+[data-design=editorial-archive] .bul li::before{content:"\2014";background:none;width:auto;height:auto;top:0;color:var(--accent)}
+[data-design=editorial-archive] .bul li{padding-left:1.8rem}
+[data-design=editorial-archive] .node{border-radius:0;background:var(--bg);border-color:var(--text)}
+[data-design=editorial-archive] .node .nd{box-shadow:none;border-radius:0}
+[data-design=editorial-archive] .p-quote blockquote{font-family:var(--font-d);font-style:italic}
+[data-design=editorial-archive] .rail button{border-radius:0}
+[data-design=editorial-archive] .rail button.on{background:var(--accent)}

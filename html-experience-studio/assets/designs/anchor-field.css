@@ -1,0 +1,17 @@
+/* design: anchor-field · deep violet, particle objects over light ripples, light large titles, nav pill, blue pill CTA */
+[data-design=anchor-field]{--r:16px}
+[data-design=anchor-field] body::before{background:radial-gradient(60% 40% at 55% 85%,rgba(61,134,255,.14),transparent 70%),radial-gradient(40% 40% at 50% 40%,rgba(157,134,255,.08),transparent 70%)}
+[data-design=anchor-field] .stage{place-items:start start}
+[data-design=anchor-field] .inner{padding-top:clamp(110px,15vh,170px)}
+[data-design=anchor-field] .t{font-weight:300;letter-spacing:-.035em;line-height:1.02}
+[data-design=anchor-field] .t-xl{font-size:clamp(2.8rem,5.6vw,5.6rem)}
+[data-design=anchor-field] .acc{color:var(--text);opacity:.55}
+[data-design=anchor-field] .kicker{height:26px;padding:0 12px;border-radius:999px;border:1px solid var(--line-2);font:500 10px/1 var(--font-m);letter-spacing:.12em;color:var(--text)}
+[data-design=anchor-field] .kicker::before{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:1}
+[data-design=anchor-field] .btn{background:var(--accent);color:#fff;border-radius:999px;height:40px;font-weight:600;box-shadow:0 10px 30px -10px var(--accent)}
+[data-design=anchor-field] .card,[data-design=anchor-field] .stat{border-color:var(--line)!important}
+[data-design=anchor-field] .node{background:rgba(14,13,32,.85);border:1px solid var(--line-2);border-radius:999px;padding:.7rem 1.2rem;font-weight:600}
+[data-design=anchor-field] .node .nd{box-shadow:none}
+/* navigation pill centred in the HUD */
+[data-design=anchor-field] .hud-l b+span{position:fixed;left:50%;top:22px;translate:-50% 0;height:38px;padding:0 18px;display:flex;align-items:center;border-radius:999px;background:rgba(20,18,44,.65);border:1px solid var(--line);color:var(--text)}
+[data-design=anchor-field] .hud-l b+span::before{display:none}

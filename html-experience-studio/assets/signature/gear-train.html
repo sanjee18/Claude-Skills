@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gear Train · Signature</title>
+<style>html,body{margin:0;height:100%;background:#0b0c0e;overflow:hidden}</style>
+</head><body>
+<!--
+  Gear Train — five machined gears that actually mesh, under a lamp you hold.
+
+  The gears are signed distance fields: a pitch circle with teeth from a
+  clamped cosine (flat tops, flat roots, straight flanks), a bore with a
+  keyway, and lightening holes. They are laid out as a real train: centre
+  distance = sum of pitch radii, speed ratio = inverse tooth ratio, and
+  each gear's phase is solved so a tooth of the driver always sits in a gap
+  of the driven gear along the line of centres. Nothing ever interpenetrates.
+  Material: the face is turned metal (circular brushing → anisotropic
+  highlight that radiates from each hub), the edge is a chamfer whose
+  normal comes from the distance field's gradient, gaps get ambient
+  occlusion, and every gear throws a soft shadow away from the lamp.
+  Pointer = the lamp (hover brings it closer). Drag turns the train with
+  momentum. One gear can wear the accent (#accent), the rest stay steel.
+  The consulting "gear" motif, done as engineering rather than clip art.
+  Hash: #metal=b9bec6&accent=c9a36a&bg=0b0c0e
+-->
+<script src="studio:sigkit"></script>
+<script>
+// [teeth, module] per gear, and the angle at which each one hangs off the previous
+const GEARS = [[40, 0.034], [14, 0.034], [24, 0.034], [11, 0.034], [30, 0.034]];
+// solved offline: no two non-meshing gears closer than 0.06 (see references/signature.md)
+const ANGLES = [0, -2.178, 2.818, 1.613, 2.862];
+const START = [1.35, 0.12];   // train sits right of centre: the left half stays free for type
+let layout = null;
+function solve() {
+  const out = []; let prev = null;
+  GEARS.forEach(([N, m], i) => {
+    const R = m * N / 2;
+    if (!prev) out.push({ x: START[0], y: START[1], N, m, R, th0: 0 });
+    else { const d = prev.R + R, th = ANGLES[i]; out.push({ x: prev.x + Math.cos(th) * d, y: prev.y + Math.sin(th) * d, N, m, R, th0: th }); }
+    prev = out[out.length - 1];
+  });
+  return out;
+}
+Sig({
+  drag: true, budget: 2.0e6,
+  params: { metal: '#6c727b', accent: '#b8915a', bg: '#0b0c0e', accentGear: 2, scale: 2.7 },
+  rest: [0.7, 0.3],
+  onFrame(s, set) {
+    layout = layout || solve();
+    const a = [];
+    a[0] = s.time * 0.12 + s.spin.x * 0.6;
+    for (let i = 1; i < layout.length; i++) {
+      const A = layout[i - 1], B = layout[i], t0 = B.th0;
+      a[i] = t0 + Math.PI + (A.N * (t0 - a[i - 1]) - Math.PI) / B.N;
+    }
+    layout.forEach((g, i) => { set('uG[' + i + ']', [g.x, g.y, g.N, g.m]); set('uA[' + i + ']', a[i]); });
+  },
+  frag: `
+uniform vec4 uG[5]; uniform float uA[5];
+// distance to one gear (negative inside), in world units
+float gear(vec2 p, vec4 g, float ang){
+  vec2 d = p - g.xy;
+  float r = length(d), th = atan(d.y, d.x);
+  float R = g.w * g.z * .5, m = g.w;
+  float tooth = clamp(1.7 * cos(g.z * (th - ang)), -1.25, 1.0);   // clamped cosine: flat top, flat root
+  float body = r - (R + m * tooth);
+  body *= .75;                                                     // radial field is not a true distance: be conservative
+  float bore = R * .16 - r;
+  vec2 kd = vec2(cos(ang), sin(ang));
+  float key = max(abs(dot(d, vec2(-kd.y, kd.x))) - R * .045, abs(dot(d, kd) - R * .16) - R * .05);
+  float holes = 1e3;
+  if (g.z > 20.) {                                                  // big gears get lightening holes
+    float sec = TAU / 6.;
+    float a2 = mod(th - ang + sec * .5, sec) - sec * .5;
+    vec2 hp = vec2(cos(a2), sin(a2)) * r - vec2(R * .58, 0.);
+    holes = length(hp) - R * .17;
+  }
+  return max(max(body, -min(holes, min(-bore, key) < 0. ? min(-bore, key) : -bore)), 0. - 1e3) ;
+}
+float scene(vec2 p, out int id){
+  float d = 1e3; id = -1;
+  for (int i = 0; i < 5; i++) {
+    float gi = gear(p, uG[i], uA[i]);
+    if (gi < d) { d = gi; id = i; }
+  }
+  return d;
+}
+void main(){
+  vec2 p = (gl_FragCoord.xy - .5 * uRes) / uRes.y * u_scale;
+  int id; float d = scene(p, id);
+  float px = u_scale / uRes.y;
+  vec3 lamp = vec3(uPtrN * vec2(uRes.x / uRes.y, 1.) * .5 * u_scale, .55 - .2 * uHover);
+
+  // background: graphite plate, soft shadows cast away from the lamp, occlusion near the teeth
+  vec3 Lb = normalize(lamp - vec3(p, -.05));
+  int sid; float ds = scene(p - Lb.xy / max(Lb.z, .2) * .035, sid);
+  float shadow = smoothstep(-.01, .05, ds);
+  float ao = smoothstep(0., .06, d);
+  float lb = .25 + .75 * pow(max(0., Lb.z), 2.);
+  vec3 col = u_bg * (.55 + .45 * shadow) * (.6 + .4 * ao) * (.7 + .5 * lb);
+
+  if (d < px * 1.5) {
+    // chamfer: within ~.012 of the edge the surface rolls off; normal from the field's gradient
+    float e = .0025; int t;
+    vec2 gr = vec2(scene(p + vec2(e, 0.), t) - scene(p - vec2(e, 0.), t), scene(p + vec2(0., e), t) - scene(p - vec2(0., e), t)) / (2. * e);
+    float ch = smoothstep(.014, 0., -d);
+    vec3 n = normalize(vec3(gr * ch * 1.3, 1.));
+    vec4 g = uG[0]; float ang = uA[0];
+    for (int i = 0; i < 5; i++) if (i == id) { g = uG[i]; ang = uA[i]; }
+    vec2 rd = p - g.xy;
+    vec3 T = normalize(vec3(-rd.y, rd.x, 0.));                    // turned metal: brushing runs round the hub
+    T = normalize(T - n * dot(n, T)); vec3 B = cross(n, T);
+    vec3 L = normalize(lamp - vec3(p, 0.)), V = vec3(0., 0., 1.), Hh = normalize(L + V);
+    float hn = max(dot(n, Hh), 1e-3);
+    float at = dot(Hh, T) / .07, ab = dot(Hh, B) / .55;
+    float aniso = exp(-(at * at + ab * ab) / (hn * hn));
+    float ndl = max(dot(n, L), 0.);
+    vec3 base = float(id) == u_accentGear ? u_accent : u_metal;
+    float grain = .9 + .1 * noise2(vec2(length(rd) * 900., 0.));  // fine turning marks
+    vec3 m = base * (.10 + .45 * ndl) * grain + base * aniso * .55 + vec3(1.) * pow(hn, 300.) * .4;
+    m *= .7 + .3 * smoothstep(-.03, 0., d - .0);                  // face slightly darker than the lit chamfer
+    float cov = smoothstep(px * 1.5, -px * .5, d);
+    col = mix(col, m, cov);
+  }
+  vec2 v = gl_FragCoord.xy / uRes - .5;
+  col *= 1. - .4 * dot(v, v);
+  gl_FragColor = vec4(dither(toSrgb(aces(col * 1.15))), 1.);
+}`
+});
+</script>
+</body></html>

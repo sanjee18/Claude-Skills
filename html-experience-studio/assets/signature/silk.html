@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Satin · Signature</title>
+<style>html,body{margin:0;height:100%;background:#0d0c0e;overflow:hidden}</style>
+</head><body>
+<!--
+  Satin — a draped silk sheet under one soft key light.
+
+  The sheet is a height field: three long folds (sines along their own
+  directions) bent by a slow domain warp, so the folds wander instead of
+  marching. Lighting is what makes it satin rather than plastic:
+    wrap diffuse     light bleeds a little past the fold crest, like woven cloth
+    Kajiya-Kay sheen the highlight runs ALONG the threads (anisotropic), so it
+                     stretches into long bands across each fold instead of a dot
+    valley occlusion the deep side of every fold closes up and darkens
+  Pointer: a fingertip pressing into the cloth. The dent follows the sprung
+  pointer, deepens on press, and the sheen bends around it.
+  Quiet enough to sit behind type: keep exposure ≤ 1, sheen ≤ .7.
+  Light version: #base=e9e5df&sheen=ffffff&shade=8a8178&exposure=1.15
+-->
+<script src="studio:sigkit"></script>
+<script>
+Sig({
+  params: { base: '#16131a', sheen: '#e8d3b0', shade: '#050406', exposure: 0.95, scale: 3.4 },
+  rest: [0.62, 0.42],
+  frag: `
+float dent(vec2 p){
+  vec2 d = p - uPtrN * vec2(uRes.x / uRes.y, 1.) * .5 * u_scale;
+  return (.10 + .20 * uPress) * uHover * exp(-dot(d, d) / (.045 + .03 * uPress));
+}
+float H(vec2 p){
+  float t = uTime;
+  // smooth trigonometric warp: long, continuous folds (noise here reads as crumpled foil, not satin)
+  vec2 q = p;
+  q += .38 * vec2(sin(q.y * 1.15 + t * .09), sin(q.x * .95 - t * .07 + 1.3));
+  q += .22 * vec2(sin(q.y * 1.9 - t * .06 + 2.1), sin(q.x * 1.7 + t * .08 + .4));
+  float h = .55 * sin(dot(q, vec2(.92, .42)) * 2.0 + t * .16)
+          + .28 * sin(dot(q, vec2(-.33, .95)) * 3.4 - t * .12 + 1.7)
+          + .12 * sin(dot(q, vec2(.62, -.78)) * 6.1 + t * .19);
+  return h - dent(p);
+}
+void main(){
+  vec2 p = (gl_FragCoord.xy - .5 * uRes) / uRes.y * u_scale;
+  float e = 1.5 / uRes.y * u_scale;
+  float h = H(p), hx = H(p + vec2(e, 0.)), hy = H(p + vec2(0., e));
+  vec3 n = normalize(vec3(-(hx - h) / e * .42, -(hy - h) / e * .42, 1.));
+  vec3 L = normalize(vec3(-.55, .62, .58));
+  vec3 V = vec3(0., 0., 1.);
+  vec3 Hv = normalize(L + V);
+
+  // Ward anisotropic highlight: wide along the threads, narrow across them,
+  // so each fold crest that turns toward the light carries a long satin band.
+  vec3 T = normalize(vec3(.94, .34, 0.)); T = normalize(T - n * dot(n, T));
+  vec3 B = cross(n, T);
+  float hn = max(dot(n, Hv), 1e-3);
+  float at = dot(Hv, T) / .75, ab = dot(Hv, B) / .07;
+  float band = exp(-(at * at + ab * ab) / (hn * hn));
+  float ab2 = dot(Hv, B) / .32;
+  float sheen = band * .85 + exp(-(at * at * .5 + ab2 * ab2) / (hn * hn)) * .12;
+
+  float ndl = dot(n, L);
+  float wrap = pow(clamp((ndl + .35) / 1.35, 0., 1.), 1.6);
+  float ao = smoothstep(-1.05, .55, h);
+  vec3 col = mix(u_shade, u_base, wrap) * (.35 + .65 * ao);
+  col += u_sheen * sheen * (.25 + .75 * ao) * smoothstep(-.2, .4, ndl);
+  col += u_sheen * pow(1. - n.z, 3.) * .04;                    // a breath of rim on steep flanks
+
+  vec2 v = gl_FragCoord.xy / uRes - .5;
+  col *= 1. - .55 * dot(v, v);                                   // lens falloff, not a vignette ring
+  gl_FragColor = vec4(dither(toSrgb(aces(col * u_exposure * 1.6))), 1.);
+}`
+});
+</script>
+</body></html>

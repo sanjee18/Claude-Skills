@@ -1,0 +1,23 @@
+{
+  "fonts": {
+    "grotesk":   { "d": "'Inter Tight','Segoe UI Variable Display','Segoe UI',system-ui,-apple-system,sans-serif", "b": "'Inter','Segoe UI Variable Text','Segoe UI',system-ui,-apple-system,sans-serif", "m": "ui-monospace,'SF Mono','Cascadia Code',Consolas,monospace", "wd": 650 },
+    "editorial": { "d": "'Iowan Old Style','Palatino Linotype',Georgia,'Times New Roman',serif", "b": "'Segoe UI',system-ui,-apple-system,sans-serif", "m": "ui-monospace,Consolas,monospace", "wd": 500 },
+    "tech":      { "d": "'Bahnschrift','Segoe UI Semibold','Segoe UI',system-ui,sans-serif", "b": "'Segoe UI',system-ui,-apple-system,sans-serif", "m": "ui-monospace,'Cascadia Mono',Consolas,monospace", "wd": 600 },
+    "humanist":  { "d": "'Avenir Next','Avenir','Segoe UI',system-ui,sans-serif", "b": "'Avenir Next','Avenir','Segoe UI',system-ui,sans-serif", "m": "ui-monospace,Consolas,monospace", "wd": 600 }
+  },
+  "presets": {
+    "midnight":          { "note": "Neutral dark, cyan accent. Safe default.", "font": "grotesk", "bg": "#05070c", "surface": "#0d121c", "text": "#f2f5fa", "muted": "#93a0b8", "line": "rgba(255,255,255,.09)", "accent": "#5fd6ff", "accent2": "#2f7bff", "onAccent": "#00131c" },
+    "capgemini-invent":  { "note": "Approximation of Capgemini Invent look (vibrant blue on deep navy). Verify against the current CI guide before client use.", "font": "grotesk", "bg": "#050b18", "surface": "#0b1426", "text": "#f5f7fa", "muted": "#9db0cc", "line": "rgba(255,255,255,.09)", "accent": "#12abdb", "accent2": "#0070ad", "onAccent": "#00131c" },
+    "paper":             { "note": "Neutral light, editorial, ink on warm white.", "font": "editorial", "bg": "#f6f3ee", "surface": "#ffffff", "text": "#14171c", "muted": "#5d6470", "line": "rgba(20,23,28,.12)", "accent": "#0b5fff", "accent2": "#7a4dff", "onAccent": "#ffffff" },
+    "aurora-violet":     { "note": "Soft violet/pink glow, calm premium.", "font": "humanist", "bg": "#0a0716", "surface": "#140f26", "text": "#f4f1ff", "muted": "#a79fc4", "line": "rgba(255,255,255,.1)", "accent": "#b794ff", "accent2": "#ff7ab8", "onAccent": "#12062a" },
+    "warm-sand":         { "note": "Warm dark, amber accent: retail, hospitality, consumer.", "font": "humanist", "bg": "#100c08", "surface": "#1b1510", "text": "#f7efe4", "muted": "#b3a28d", "line": "rgba(255,240,220,.1)", "accent": "#ffb35c", "accent2": "#ff6f4a", "onAccent": "#241300" },
+    "forest-signal":     { "note": "Deep green, lime signal: energy, sustainability, agri.", "font": "tech", "bg": "#05100c", "surface": "#0b1c15", "text": "#effaf3", "muted": "#8fb09f", "line": "rgba(220,255,235,.1)", "accent": "#5af2a0", "accent2": "#b6f24a", "onAccent": "#00170c" },
+    "steel-finance":     { "note": "Cool graphite with restrained teal: finance, insurance, public.", "font": "grotesk", "bg": "#0a0d11", "surface": "#12171d", "text": "#eef1f5", "muted": "#8d97a6", "line": "rgba(255,255,255,.09)", "accent": "#45d0c2", "accent2": "#7aa2ff", "onAccent": "#001815" },
+    "noir-gold":         { "note": "Black and warm gold: luxury, private banking, awards.", "font": "editorial", "bg": "#0a0907", "surface": "#15130f", "text": "#f5efe3", "muted": "#a89c86", "line": "rgba(255,240,210,.1)", "accent": "#d8b26a", "accent2": "#8f6b3a", "onAccent": "#1a1205" },
+    "swiss-light":       { "note": "White, strict grid feel, one signal red.", "font": "grotesk", "bg": "#f7f7f5", "surface": "#ffffff", "text": "#111111", "muted": "#5b5b5b", "line": "rgba(0,0,0,.12)", "accent": "#e3262e", "accent2": "#111111", "onAccent": "#ffffff" },
+    "synth-sunset":      { "note": "Retro neon: magenta and orange on deep purple.", "font": "tech", "bg": "#0e0716", "surface": "#1a0f27", "text": "#fbefff", "muted": "#b49ac8", "line": "rgba(255,200,255,.1)", "accent": "#ff4fb8", "accent2": "#ff9f43", "onAccent": "#22001a" },
+    "clinic-mint":       { "note": "Light, calm mint and blue: health, pharma, insurance.", "font": "humanist", "bg": "#f3f8f7", "surface": "#ffffff", "text": "#11201f", "muted": "#557070", "line": "rgba(17,32,31,.12)", "accent": "#0f9d8a", "accent2": "#2f6fd6", "onAccent": "#ffffff" },
+    "terracotta":        { "note": "Warm light editorial: clay, sand, ink.", "font": "editorial", "bg": "#f4ece2", "surface": "#fbf6ef", "text": "#2a1d16", "muted": "#7a6556", "line": "rgba(42,29,22,.13)", "accent": "#c4562d", "accent2": "#3f6b5b", "onAccent": "#ffffff" },
+    "mono-ink":          { "note": "Pure black and white, no colour; type does the work.", "font": "grotesk", "bg": "#0b0b0b", "surface": "#151515", "text": "#f2f2f2", "muted": "#8f8f8f", "line": "rgba(255,255,255,.1)", "accent": "#ffffff", "accent2": "#9a9a9a", "onAccent": "#000000" }
+  }
+}

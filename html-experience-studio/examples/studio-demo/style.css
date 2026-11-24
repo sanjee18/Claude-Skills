@@ -1,0 +1,31 @@
+:root{--bg:#0b1016;--text:#f2ede4;--muted:#a8a296;--accent:#ffc98a;--line:rgba(242,237,228,.16);
+  --font-d:'Instrument Serif',Georgia,serif;--font-b:'Inter',system-ui,sans-serif;--font-m:'JetBrains Mono',monospace}
+.hud{position:fixed;left:var(--gutter);top:26px;z-index:20;font:400 10.5px/1 var(--font-m);letter-spacing:.18em;display:flex;align-items:center;gap:12px;color:var(--text)}
+.hud .mark{width:9px;height:9px;border:1px solid var(--accent);border-radius:50%}
+.hud .sep{width:24px;height:1px;background:var(--line)}
+#studio-chapter{color:var(--muted)}
+.kicker{font:400 10.5px/1.2 var(--font-m);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.title{font:400 clamp(3.4rem,9vw,8.6rem)/.92 var(--font-d);letter-spacing:-.025em}
+.h2{font:400 clamp(2.4rem,5vw,4.6rem)/.98 var(--font-d);letter-spacing:-.02em}
+i{font-style:italic;color:var(--accent)}
+.lead{max-width:30em;margin-top:22px;color:var(--muted);font-size:clamp(14px,1.1vw,17px);line-height:1.6}
+.mono{font:400 10.5px/1.4 var(--font-m);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.s-open{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:13vh}
+.s-approach{display:flex;justify-content:flex-end;align-items:center}
+.s-approach .col{max-width:430px;text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.s-ridge{display:flex;align-items:flex-end;padding-bottom:12vh}
+.s-ridge .col{max-width:440px}
+.profile{width:100%;height:auto;color:var(--accent);margin-top:28px}
+.pin{display:flex;align-items:center;gap:10px;font:400 10.5px var(--font-m);letter-spacing:.16em;text-transform:uppercase;opacity:0;transition:opacity 1s .9s}
+.scene.on .pin{opacity:1}
+.pin i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(255,201,138,.18),0 0 22px var(--accent);margin-left:-5px}
+.pin span{padding:5px 9px;border:1px solid var(--line);background:rgba(11,16,22,.55);backdrop-filter:blur(6px)}
+.s-end{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.num{font:400 clamp(6rem,16vw,14rem)/.9 var(--font-d);display:flex;align-items:baseline;gap:.2em}
+.num span{font:400 .16em var(--font-m);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:760px){.s-approach{align-items:flex-end}.s-approach .col{max-width:100%}}
+
+/* legibility: a cinematic vignette + low gradient over the WebGL frame (project-level, tuned to this world) */
+body::after{content:"";position:fixed;inset:0;z-index:4;pointer-events:none;
+  background:radial-gradient(120% 90% at 60% 40%,transparent 45%,rgba(4,8,14,.55) 100%),linear-gradient(0deg,rgba(4,8,14,.6),transparent 42%)}
+.s-end{align-items:flex-start;text-align:left;justify-content:flex-end;padding-bottom:12vh}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Light Curtain · Signature</title>
+<style>html,body{margin:0;height:100%;background:#05030c;overflow:hidden}</style>
+</head><body>
+<!--
+  Light Curtain — light rising off a floor through still air, like an aurora
+  seen edge-on or a stage wash through haze.
+
+  Three layers of rays at different depths. Each ray is a 1D noise in x
+  (where the light is) times a vertical profile (how high it reaches); far
+  layers are narrower, dimmer and slower, so the curtain has depth without
+  any geometry. Fine vertical streaks ride on top, a bright floor line
+  anchors it, and the glow is computed in linear light and tone-mapped, so
+  overlapping rays bloom instead of clipping to white.
+  Pointer: the curtain leans toward the cursor (strongest near the floor,
+  like air pushed sideways) and brightens where you are; layers shift by
+  depth, so the lean reads as parallax.
+  Quiet by default: headline-safe in the top 55 %.  Hash: #lo=3a1dff&hi=c7b8ff&floor=ffffff
+-->
+<script src="studio:sigkit"></script>
+<script>
+Sig({
+  params: { lo: '#3b1ce6', hi: '#b8a4ff', floor: '#e9e4ff', gain: 1.0 },
+  rest: [0.5, 0.7],
+  frag: `
+float rays(vec2 p, float layer, float t){
+  float sx = mix(3.0, 7.5, layer);                            // far layers: narrower rays
+  float drift = t * mix(.05, .02, layer);
+  float x = p.x * sx + layer * 11.3;
+  float a = noise2(vec2(x + drift * 6., layer * 3.1));
+  float b = noise2(vec2(x * 2.3 - drift * 9., layer * 5.7 + 2.));
+  float I = pow(clamp(a * .85 + b * .45 - .42, 0., 1.), 2.6) * 2.2;
+  float reach = .10 + .42 * noise2(vec2(x * .6 + drift * 2., layer + 9.));   // how high this ray climbs
+  float y = p.y + .5;                                         // 0 at the floor
+  float prof = exp(-max(y, 0.) / (reach * mix(.55, .38, layer))) * smoothstep(-.02, .015, y);
+  float streak = .75 + .25 * noise2(vec2(x * 24., y * .8 - t * .05));
+  return I * prof * streak * mix(1., .45, layer);
+}
+void main(){
+  vec2 p = (gl_FragCoord.xy - .5 * uRes) / uRes.y;           // y: -.5 .. .5
+  vec2 m = uPtrN * vec2(uRes.x / uRes.y, 1.) * .5;
+  float y0 = p.y + .5;
+  vec3 col = vec3(0.);
+  for (int i = 0; i < 3; i++) {
+    float layer = float(i) / 2.;
+    // lean toward the pointer: strongest at the floor, fades with height and depth
+    float pull = uHover * .22 * exp(-y0 * 2.2) * (1. - .55 * layer);
+    vec2 q = p;
+    q.x -= (m.x - p.x) * pull * exp(-abs(m.x - p.x) * 1.6);
+    q.x += m.x * .04 * (layer - .5) * uHover;                // parallax by depth
+    float I = rays(q, layer, uTime);
+    vec3 tint = mix(u_lo, u_hi, clamp(y0 * 1.2 + layer * .3, 0., 1.));
+    col += tint * I * mix(.9, .45, layer);
+  }
+  // the floor: a hot line and the light it throws on the haze just above it
+  float fl = exp(-abs(y0) * 140.) * .9 + exp(-max(y0, 0.) * 16.) * .10;
+  col += u_floor * fl * (.55 + .45 * noise2(vec2(p.x * 3. + uTime * .05, 1.)));
+  // the pointer warms the air near it
+  float near = exp(-dot(p - m, p - m) * 9.) * uHover;
+  col *= 1. + .35 * near;
+  col += u_lo * .012;                                         // night air is never pure black
+  col *= u_gain;
+  gl_FragColor = vec4(dither(toSrgb(aces(col * 1.35))), 1.);
+}`
+});
+</script>
+</body></html>

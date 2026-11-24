@@ -1,0 +1,24 @@
+/* design: lanka-jungle · black, Instrument Serif titles with italic accent, mono corner labels */
+[data-design=lanka-jungle]{--r:4px;--glass:rgba(243,241,236,.03)}
+[data-design=lanka-jungle] body::before{background:radial-gradient(60% 60% at 50% 45%,rgba(127,184,138,.07),transparent 70%)}
+[data-design=lanka-jungle] .t{font-weight:400;letter-spacing:-.02em;line-height:.98}
+[data-design=lanka-jungle] .t-xl{font-size:clamp(3.2rem,8vw,7.6rem)}
+[data-design=lanka-jungle] .t-l{font-size:clamp(2.6rem,5.6vw,5.4rem)}
+[data-design=lanka-jungle] .acc{color:var(--text);font-style:italic}
+[data-design=lanka-jungle] .kicker,[data-design=lanka-jungle] .tag,[data-design=lanka-jungle] .tl-item .when,[data-design=lanka-jungle] .st-no,[data-design=lanka-jungle] .hint,[data-design=lanka-jungle] .hud{font:400 10.5px/1.2 var(--font-m)!important;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+[data-design=lanka-jungle] .kicker::before{width:24px;background:var(--muted)}
+[data-design=lanka-jungle] .lead{font-size:clamp(14px,1.05vw,16px);color:var(--muted);max-width:28em}
+[data-design=lanka-jungle] .card,[data-design=lanka-jungle] .bento .tile,[data-design=lanka-jungle] .st-panel,[data-design=lanka-jungle] .card-flat{background:transparent!important;border:0!important;border-top:1px solid var(--line)!important;border-radius:0!important;padding-left:0!important;padding-right:0!important;box-shadow:none!important}
+[data-design=lanka-jungle] .card h3,[data-design=lanka-jungle] .tile h3,[data-design=lanka-jungle] .tl-item h3{font:400 clamp(1.5rem,2.2vw,2.1rem)/1.1 var(--font-d)}
+[data-design=lanka-jungle] .ico-wrap{display:none!important}
+[data-design=lanka-jungle] .btn{background:var(--text);color:#0a0a0a;font-weight:500}
+[data-design=lanka-jungle] .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line-2)}
+[data-design=lanka-jungle] .stat{border-top:1px solid var(--line)}
+[data-design=lanka-jungle] .num,[data-design=lanka-jungle] .big-num,[data-design=lanka-jungle] .vis-ring b{font-weight:400;letter-spacing:-.03em}
+[data-design=lanka-jungle] .num .pre,[data-design=lanka-jungle] .num .suf,[data-design=lanka-jungle] .vis-ring i{color:var(--accent2);font-style:italic}
+[data-design=lanka-jungle] .vis-ring .arc{stroke:var(--accent2);stroke-width:3}
+[data-design=lanka-jungle] .vis-ring .trk{stroke-width:3}
+[data-design=lanka-jungle] .bul li::before{width:14px;height:1px;background:var(--muted)}
+[data-design=lanka-jungle] .node{background:#111;border-color:var(--line-2)}
+[data-design=lanka-jungle] .node .nd{box-shadow:none;background:var(--accent2)}
+[data-design=lanka-jungle] .p-quote blockquote{font-family:var(--font-d);font-style:italic}

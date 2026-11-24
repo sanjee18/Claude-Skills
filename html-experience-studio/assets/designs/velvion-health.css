@@ -1,0 +1,19 @@
+/* design: velvion-health · warm dark, glowing DNA stage, glass dashboard widgets, big number in a dark circle */
+[data-design=velvion-health]{--r:22px}
+[data-design=velvion-health] body::before{background:radial-gradient(50% 60% at 70% 30%,rgba(255,138,61,.16),transparent 70%),radial-gradient(40% 50% at 10% 90%,rgba(255,120,80,.1),transparent 70%)}
+[data-design=velvion-health] .t{font-weight:600;letter-spacing:-.03em}
+[data-design=velvion-health] .kicker{font:500 12px/1 var(--font-b);letter-spacing:.02em;text-transform:none;color:var(--accent2)}
+[data-design=velvion-health] .kicker::before{width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:1}
+[data-design=velvion-health] .btn{background:rgba(255,255,255,.92);color:#1a0b04;font-weight:600}
+/* the first number sits big in a dark circle, the others become glass widgets */
+[data-design=velvion-health] .stats{gap:12px!important}
+[data-design=velvion-health] .stat{border:1px solid var(--line)!important;border-radius:22px;padding:18px 20px!important;background:rgba(24,16,14,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+[data-design=velvion-health] .stat:first-child{flex-direction:column;justify-content:center;align-items:center;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#1b1210,#070403 72%);box-shadow:0 0 0 1px rgba(255,170,110,.18),0 0 60px -10px rgba(255,138,61,.45);text-align:center}
+[data-design=velvion-health] .stat:first-child .num{font-size:96px;font-weight:700}
+[data-design=velvion-health] .stat:first-child .lbl{order:-1;text-align:center;font-size:13px;color:var(--text);margin-bottom:6px}
+[data-design=velvion-health] .num .pre,[data-design=velvion-health] .num .suf{color:var(--accent)}
+[data-design=velvion-health] .card{border:1px solid var(--line)!important;border-radius:20px!important;background:rgba(24,16,14,.55)!important;backdrop-filter:blur(24px)!important;padding:16px!important;margin-bottom:10px;position:relative;overflow:hidden}
+[data-design=velvion-health] .card:nth-child(3n+1)::after,[data-design=velvion-health] .card:nth-child(3n+2)::after{display:block!important;content:"";position:absolute;inset:0 0 0 45%;background:linear-gradient(120deg,#f7a08a,#e86a6a 40%,#9fd8d0);opacity:.85;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
+[data-design=velvion-health] .card:nth-child(3n+2)::after{background:linear-gradient(120deg,#9fe0c9,#f3b18a 60%,#e57e72)}
+[data-design=velvion-health] .card .tag{color:var(--accent)}
+[data-design=velvion-health] .hud-l b{font-size:12px;letter-spacing:.12em;text-transform:uppercase}

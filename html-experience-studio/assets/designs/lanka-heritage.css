@@ -1,0 +1,24 @@
+/* design: lanka-heritage · black, Instrument Serif titles with italic accent, mono corner labels */
+[data-design=lanka-heritage]{--r:4px;--glass:rgba(243,241,236,.03)}
+[data-design=lanka-heritage] body::before{background:radial-gradient(60% 60% at 50% 45%,rgba(228,190,120,.07),transparent 70%)}
+[data-design=lanka-heritage] .t{font-weight:400;letter-spacing:-.02em;line-height:.98}
+[data-design=lanka-heritage] .t-xl{font-size:clamp(3.2rem,8vw,7.6rem)}
+[data-design=lanka-heritage] .t-l{font-size:clamp(2.6rem,5.6vw,5.4rem)}
+[data-design=lanka-heritage] .acc{color:var(--text);font-style:italic}
+[data-design=lanka-heritage] .kicker,[data-design=lanka-heritage] .tag,[data-design=lanka-heritage] .tl-item .when,[data-design=lanka-heritage] .st-no,[data-design=lanka-heritage] .hint,[data-design=lanka-heritage] .hud{font:400 10.5px/1.2 var(--font-m)!important;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+[data-design=lanka-heritage] .kicker::before{width:24px;background:var(--muted)}
+[data-design=lanka-heritage] .lead{font-size:clamp(14px,1.05vw,16px);color:var(--muted);max-width:28em}
+[data-design=lanka-heritage] .card,[data-design=lanka-heritage] .bento .tile,[data-design=lanka-heritage] .st-panel,[data-design=lanka-heritage] .card-flat{background:transparent!important;border:0!important;border-top:1px solid var(--line)!important;border-radius:0!important;padding-left:0!important;padding-right:0!important;box-shadow:none!important}
+[data-design=lanka-heritage] .card h3,[data-design=lanka-heritage] .tile h3,[data-design=lanka-heritage] .tl-item h3{font:400 clamp(1.5rem,2.2vw,2.1rem)/1.1 var(--font-d)}
+[data-design=lanka-heritage] .ico-wrap{display:none!important}
+[data-design=lanka-heritage] .btn{background:var(--text);color:#0a0a0a;font-weight:500}
+[data-design=lanka-heritage] .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line-2)}
+[data-design=lanka-heritage] .stat{border-top:1px solid var(--line)}
+[data-design=lanka-heritage] .num,[data-design=lanka-heritage] .big-num,[data-design=lanka-heritage] .vis-ring b{font-weight:400;letter-spacing:-.03em}
+[data-design=lanka-heritage] .num .pre,[data-design=lanka-heritage] .num .suf,[data-design=lanka-heritage] .vis-ring i{color:var(--accent2);font-style:italic}
+[data-design=lanka-heritage] .vis-ring .arc{stroke:var(--accent2);stroke-width:3}
+[data-design=lanka-heritage] .vis-ring .trk{stroke-width:3}
+[data-design=lanka-heritage] .bul li::before{width:14px;height:1px;background:var(--muted)}
+[data-design=lanka-heritage] .node{background:#111;border-color:var(--line-2)}
+[data-design=lanka-heritage] .node .nd{box-shadow:none;background:var(--accent2)}
+[data-design=lanka-heritage] .p-quote blockquote{font-family:var(--font-d);font-style:italic}

@@ -1,0 +1,173 @@
+{
+ "meta": {
+  "title": "Electric vehicle design",
+  "pageTitle": "VEYRA — Electric, inside out.",
+  "org": "VEYRA",
+  "lang": "en"
+ },
+ "theme": {
+  "design": "veyra-studio"
+ },
+ "nav": {
+  "mode": "deck",
+  "rail": false
+ },
+ "_source": "VEYRA v1.0.0 by Amir Mušić, MIT (code and bundled media to the extent of the author's rights). github.com/amirmushichge/veyra-interactive-car. Media embedded unchanged.",
+ "pages": [
+  {
+   "id": "veyra",
+   "type": "hotspots",
+   "title": "Electric, inside out.",
+   "sub": "Explore beneath the surface.\nSelect a point to begin.",
+   "src": "media/exterior-polished.png",
+   "ratio": "1670 / 941",
+   "backLabel": "Back to vehicle",
+   "meta": "VEYRA — Design study  ·  Explore systems. Personalise the exterior.",
+   "footer": [
+    {
+     "title": "Electric drive",
+     "text": "Lift the hood. Explore how the motor turns electricity into motion."
+    },
+    {
+     "title": "Battery architecture",
+     "text": "Look beneath the body. Discover the energy stored under the cabin."
+    },
+    {
+     "title": "Body finishes",
+     "text": "Five colours. From studio silver to a vivid electric green."
+    },
+    {
+     "title": "Wheel designs",
+     "text": "Three expressions. Compare multi-spoke, aero and forged wheels."
+    }
+   ],
+   "points": [
+    {
+     "x": 25,
+     "y": 48,
+     "label": "Electric drive",
+     "hover": {
+      "forward": "media/hood-hover-forward.mp4",
+      "reverse": "media/hood-hover-reverse.mp4"
+     },
+     "detail": {
+      "src": "media/drive-blue.png",
+      "kicker": "Power delivery",
+      "title": "Electricity,\ninto motion.",
+      "text": "The electric motor turns electrical energy into rotation. A reduction gear transfers that rotation to the wheels.",
+      "noteLabel": "For the driver",
+      "note": "Control of motor torque gives the driver a responsive connection to the wheels.",
+      "items": [
+       {
+        "label": "Stator windings",
+        "text": "Stationary windings create a rotating magnetic field.",
+        "x": 32,
+        "y": 46
+       },
+       {
+        "label": "Rotor",
+        "text": "The rotor turns within the stator and drives the shaft.",
+        "x": 24,
+        "y": 49
+       },
+       {
+        "label": "Reduction gear",
+        "text": "Gearing lowers rotational speed and increases wheel torque.",
+        "x": 48,
+        "y": 51
+       }
+      ]
+     }
+    },
+    {
+     "x": 64,
+     "y": 72,
+     "label": "Battery",
+     "hover": {
+      "forward": "media/battery-hover-forward.mp4",
+      "reverse": "media/battery-hover-reverse.mp4"
+     },
+     "detail": {
+      "src": "media/battery-blue.png",
+      "kicker": "Energy storage",
+      "title": "The energy\nbeneath you.",
+      "text": "A traction battery stores electrical energy and supplies it to the drive system. In this concept, it sits low beneath the cabin.",
+      "noteLabel": "For the driver",
+      "note": "A low, flat package leaves the cabin above it open.",
+      "items": [
+       {
+        "label": "Cell modules",
+        "text": "Cells grouped into modules store the energy.",
+        "x": 31,
+        "y": 42
+       },
+       {
+        "label": "High-voltage connection",
+        "text": "Orange connections mark the high-voltage electrical path in this illustration.",
+        "x": 27,
+        "y": 55
+       },
+       {
+        "label": "Protective enclosure",
+        "text": "The pack housing supports and protects the assembly.",
+        "x": 49,
+        "y": 49
+       }
+      ]
+     }
+    },
+    {
+     "x": 55,
+     "y": 51,
+     "label": "Paint",
+     "text": "Body colour",
+     "variants": [
+      {
+       "label": "Studio Silver",
+       "color": "#c9cfd2"
+      },
+      {
+       "label": "Electric Green",
+       "color": "#edff39",
+       "src": "media/config/electric-green.png"
+      },
+      {
+       "label": "Lime Green",
+       "color": "#9fdc32",
+       "src": "media/config/lime-green.png"
+      },
+      {
+       "label": "Sky Blue",
+       "color": "#708fa2",
+       "src": "media/config/sky-blue.png"
+      },
+      {
+       "label": "Graphite",
+       "color": "#30363c",
+       "src": "media/config/graphite.png"
+      }
+     ]
+    },
+    {
+     "x": 48,
+     "y": 71,
+     "label": "Wheels",
+     "text": "Wheel design",
+     "variants": [
+      {
+       "label": "Multi-spoke"
+      },
+      {
+       "label": "Aero Disc",
+       "src": "media/config/wheels-aero.png"
+      },
+      {
+       "label": "Sport Forged",
+       "src": "media/config/wheels-forged.png"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

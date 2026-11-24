@@ -1,0 +1,24 @@
+/* design: veyra-studio · studio blue, framed product stage, electric green points, Space Grotesk 400 only */
+[data-design=veyra-studio]{--r:12px}
+[data-design=veyra-studio] body{background:linear-gradient(180deg,#6b879d,#708fa2);font-weight:400}
+[data-design=veyra-studio] body::before{background:radial-gradient(70% 60% at 50% 40%,rgba(255,255,255,.08),transparent 70%)}
+[data-design=veyra-studio] body::after{opacity:.02}
+[data-design=veyra-studio] *{font-weight:400!important}
+[data-design=veyra-studio] .t{letter-spacing:-.03em;line-height:1.02}
+[data-design=veyra-studio] .t-xl{font-size:clamp(2.6rem,5vw,4.8rem)}
+[data-design=veyra-studio] .acc{color:var(--text);opacity:.82}
+[data-design=veyra-studio] .kicker{font-size:12px;letter-spacing:0;text-transform:none;color:var(--muted)}
+[data-design=veyra-studio] .kicker::before{background:var(--accent);height:6px;width:6px;border-radius:50%;opacity:1}
+[data-design=veyra-studio] .lead{color:var(--muted)}
+[data-design=veyra-studio] .btn{background:var(--accent);color:var(--on-accent);border-radius:8px;height:40px}
+[data-design=veyra-studio] .card,[data-design=veyra-studio] .bento .tile,[data-design=veyra-studio] .st-panel,[data-design=veyra-studio] .card-flat{background:color-mix(in srgb,#35586e 55%,transparent)!important;border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:none!important}
+[data-design=veyra-studio] .ico-wrap{color:var(--accent)}
+[data-design=veyra-studio] .stat{border-top:1px solid var(--line)}
+[data-design=veyra-studio] .num .pre,[data-design=veyra-studio] .num .suf{color:var(--accent)}
+[data-design=veyra-studio] .vis-ring .arc{stroke:var(--accent)}
+[data-design=veyra-studio] .bul li::before{background:var(--accent)}
+[data-design=veyra-studio] .node{background:#35586e;border-color:var(--line)}[data-design=veyra-studio] .node .nd{background:var(--accent);box-shadow:none}
+[data-design=veyra-studio] .hud{text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--text)}
+[data-design=veyra-studio] .hud-l b{font-size:17px;letter-spacing:.02em}
+[data-design=veyra-studio] .rail button{background:rgba(255,255,255,.35)}[data-design=veyra-studio] .rail button.on{background:var(--accent)}
+[data-design=veyra-studio] .hint-bar{color:var(--muted)}
